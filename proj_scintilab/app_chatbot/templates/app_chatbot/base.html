@@ -1,11 +1,33 @@
+{% load static %}
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat</title>
+  <link rel="stylesheet" href="{% static 'app_chatbot/css/styles.css' %}">
 </head>
+
 <body>
-    
+
+  <div id="chat-icon">
+    <img src="{% static 'app_chatbot/img/icon.jpeg' %}" alt="Ícone de chat">
+  </div>
+
+  <div class="modal" id="chat-modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <!-- TODO: estilizar o header cores+logo -->
+      <header>Header aqui!</header>
+      <div id="chat-window"></div>
+      <input type="text" id="user-input" placeholder="Digite sua mensagem...">
+    </div>
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="{% static 'app_gestor/js/script.js' %}"></script>
 </body>
+
 </html>
