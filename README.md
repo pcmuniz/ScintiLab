@@ -4,5 +4,7 @@ O Scintilad é um projeto destinado a auxíliar uma empresa de prestações de s
 
 # Tecnologias Utilizadas
 Backend: Python, Django
+
 Frontend: HTML, CSS, JavaScript
+
 Banco de Dados: SQLITE3/PostgreSQL
