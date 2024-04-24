@@ -3,12 +3,11 @@
 O Scintilad é um projeto destinado a auxíliar uma empresa de prestações de serviçõs na área de conserto de eletromésticos, a Eceel-Tech, colaborando com a empresa na automatização de sua ordem de serviço, visando um atendimento mais rapido e preciso, para uma melhor armonia entre cliente e empresa.
 
 # Tecnologias Utilizadas
-Backend: Python, Django
-
-Frontend: HTML, CSS, JavaScript
-
-Banco de Dados: SQLITE3/PostgreSQL
-
+- <b>Backend</b>: Python, Django
+- <b>Frontend</b>: HTML, CSS, JavaScript 
+- <b>Banco de Dados</b>:  SQLITE3/PostgreSQL
+- <b>Hospedagem</b>: Azure
+  
 # Links Úteis:
 <a href="https://ec2.atlassian.net/jira/software/projects/SCIN/boards/3?atlOrigin=eyJpIjoiYTAyMjM2ZGQzMDQyNGFjMmJkMzkyOWIxNTMwNDk2ZTEiLCJwIjoiaiJ9" target="_blank">Link do Jira</a>
 <br>
