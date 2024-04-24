@@ -6,11 +6,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chat</title>
+  <title>{% block title %}Chat{% endblock %}</title>
   <link rel="stylesheet" href="{% static 'app_chatbot/css/styles.css' %}">
 </head>
 
 <body>
+  {% block content %}
+
+  {% endblock %}
 
   <div id="chat-icon">
     <img src="{% static 'app_chatbot/img/icon.jpeg' %}" alt="Ícone de chat">
