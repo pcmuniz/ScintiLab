@@ -10,7 +10,7 @@ Frontend: HTML, CSS, JavaScript
 Banco de Dados: SQLITE3/PostgreSQL
 
 # Links Úteis:
-<a href="https://ec2.atlassian.net/jira/software/projects/SCRUM/boards/1/backlog?atlOrigin=eyJpIjoiNTI5OTNlYzNmMWZhNDk1YTg4MTM1MjllNGIxNjIxMDMiLCJwIjoiaiJ9](https://ec2.atlassian.net/jira/software/projects/SCIN/boards/3?atlOrigin=eyJpIjoiYTAyMjM2ZGQzMDQyNGFjMmJkMzkyOWIxNTMwNDk2ZTEiLCJwIjoiaiJ9" target="_blank">Link do Jira</a>
+<a href="https://ec2.atlassian.net/jira/software/projects/SCIN/boards/3?atlOrigin=eyJpIjoiYTAyMjM2ZGQzMDQyNGFjMmJkMzkyOWIxNTMwNDk2ZTEiLCJwIjoiaiJ9" target="_blank">Link do Jira</a>
 <br>
 <a href="#" target="_blank">ScreenCast</a>
 <br>
