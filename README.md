@@ -35,8 +35,6 @@ Para isso, estamos desenvolvendo processos de formulários personalizados, pensa
 <br>
 <a href="https://ec2.atlassian.net/jira/software/projects/SCIN/boards/3?atlOrigin=eyJpIjoiYTAyMjM2ZGQzMDQyNGFjMmJkMzkyOWIxNTMwNDk2ZTEiLCJwIjoiaiJ9" target="_blank">Link do Jira</a>
 <br>
-<a href="#" target="_blank">ScreenCast</a>
-<br>
 <a href="#" target="_blank">Protótipo lofi</a>
 <br>
 <a href="#" target="_blank">Relatório da programação em pares</a>
