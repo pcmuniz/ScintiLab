@@ -13,6 +13,12 @@ Buscando atender as queixas de longos processos de preenchimento de dados, dados
 Para isso, estamos desenvolvendo processos de formulários personalizados, pensando em futuramente implementar um chatbot que atenda às necessidades e expectativas do cliente.
 </p>
 
+# Funcionalidades
+- <b>Cadastro de Produtos</b>: Adicionar informações detalhadas dos produtos.
+- <b>Controle de Estoque</b>: Monitorar as quantidades de estoque em tempo real.
+- <b>Gestão de Fornecedores</b>: Manter um registro de fornecedores e suas informações de contato.
+- <b>Relatórios</b>: Gerar relatórios de informações sobre de estoque e fornecedores.
+
 # Tecnologias Utilizadas
 - <b>Backend</b>: Python, Django
 - <b>Frontend</b>: HTML, CSS, JavaScript 
