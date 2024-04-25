@@ -13,11 +13,15 @@ Buscando atender as queixas de longos processos de preenchimento de dados, dados
 Para isso, estamos desenvolvendo processos de formulários personalizados, pensando em futuramente implementar um chatbot que atenda às necessidades e expectativas do cliente.
 </p>
 
-# Funcionalidades
-- <b>Cadastro de Produtos</b>: Adicionar informações detalhadas dos produtos.
-- <b>Controle de Estoque</b>: Monitorar as quantidades de estoque em tempo real.
-- <b>Gestão de Fornecedores</b>: Manter um registro de fornecedores e suas informações de contato.
-- <b>Relatórios</b>: Gerar relatórios de informações sobre de estoque e fornecedores.
+# Funcionalidades Atuais
+- <b>Fazer uma Ordem de Serviço</b>: O usuário pode fazer uma ordem de serviço através de um formulário.
+- <b>Visualizar Ordem de Serviço</b>: O funcionário pode visualizar todas as ordens de serviço que os usuários fizeram.
+
+# Funcionalidades Futuras
+- <b>Chatbot</b>: Um chatbot pelo qual o usuário pode mandar suas informações mais facilmente sem ter que navegar pelo site.
+- <b>Marcar uma visita técnica</b>: O usuário poderá marcar uma visita em sua casa se o aparelho for grande ou pesado demais para o transporte comum.
+- <b>Notificação da conclusão da Ordem de Serviço</b>: O usuário é notificado de que seu aparelho está consertado.
+- <b>Status da Ordem de Serviço</b>: O usuário poderá acompanhar o seu eletroméstico e o progresso do conserto pelo site.
 
 # Tecnologias Utilizadas
 - <b>Backend</b>: Python, Django
@@ -31,8 +35,13 @@ Para isso, estamos desenvolvendo processos de formulários personalizados, pensa
 <br>
 <a href="https://ec2.atlassian.net/jira/software/projects/SCIN/boards/3?atlOrigin=eyJpIjoiYTAyMjM2ZGQzMDQyNGFjMmJkMzkyOWIxNTMwNDk2ZTEiLCJwIjoiaiJ9" target="_blank">Link do Jira</a>
 <br>
-<a href="#" target="_blank">ScreenCast</a>
+<a href="https://www.figma.com/file/t1SDE8c3BFofibJgGYyzY9/ScintiLab?type=design&node-id=0-1&mode=design&t=PwQyrRNEJg618muG-0" target="_blank">Protótipo lofi</a>
 <br>
-<a href="#" target="_blank">Protótipo lofi</a>
+<a href="https://drive.google.com/file/d/1xU0VYFelxazgKKj0D-L44v92Pz8SM2Y0/view?usp=sharing" target="_blank">Link Programação em Par</a>
 <br>
-<a href="#" target="_blank">Relatório da programação em pares</a>
+<a href="https://www.youtube.com/watch?v=g1xdpkVw68k" target="_blank">Link Screencast</a>
+<br> 
+<a href="https://drive.google.com/file/d/1Cj4x_oeCT7zmOTZQArjaCSFQP7g2zXIo/view?usp=sharing" target="_blank">Link Diagrama de Atividades</a>
+
+
+
