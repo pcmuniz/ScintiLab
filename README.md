@@ -13,11 +13,15 @@ Buscando atender as queixas de longos processos de preenchimento de dados, dados
 Para isso, estamos desenvolvendo processos de formulários personalizados, pensando em futuramente implementar um chatbot que atenda às necessidades e expectativas do cliente.
 </p>
 
-# Funcionalidades
-- <b>Cadastro de Produtos</b>: Adicionar informações detalhadas dos produtos.
-- <b>Controle de Estoque</b>: Monitorar as quantidades de estoque em tempo real.
-- <b>Gestão de Fornecedores</b>: Manter um registro de fornecedores e suas informações de contato.
-- <b>Relatórios</b>: Gerar relatórios de informações sobre de estoque e fornecedores.
+# Funcionalidades Atuais
+- <b>Fazer uma Ordem de Serviço</b>: O usuário pode fazer uma ordem de serviço através de um formulário.
+- <b>Visualizar Ordem de Serviço</b>: O funcionário pode visualizar todas as ordens de serviço que os usuários fizeram.
+
+# Funcionalidades Futuras
+- <b>Chatbot</b>: Um chatbot pelo qual o usuário pode mandar suas informações mais facilmente sem ter que navegar pelo site.
+- <b>Marcar uma visita técnica</b>: O usuário poderá marcar uma visita em sua casa se o aparelho for grande ou pesado demais para o transporte comum.
+- <b>Notificação da conclusão da Ordem de Serviço</b>: O usuário é notificado de que seu aparelho está consertado.
+- <b>Status da Ordem de Serviço</b>: O usuário poderá acompanhar o seu eletroméstico e o progresso do conserto pelo site.
 
 # Tecnologias Utilizadas
 - <b>Backend</b>: Python, Django
