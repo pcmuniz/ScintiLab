@@ -1,41 +1,41 @@
-#chat-icon {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    cursor: pointer;
-  }
-  
-  #chat-icon img {
-    width: 50px;
-    height: auto;
-  }
-  
-  .modal {
-    display: none;
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 400px;
-    height: 500px;
-    background-color: white;
-    border: 1px solid #ccc;
-    border-radius: 5%;
-  }
-  
-  .modal-content {
-    padding: 20px;
-  }
-  
-  .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-  }
-  
-  .close:hover,
-  .close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-  }
+.card-title {
+  text-align: center;
+}
+
+
+.card {
+  max-width: 540px;
+  border-radius: 10px;
+  border-color: black;
+}
+
+
+.card-block {
+  padding-top: 15px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-bottom: 15px;
+}
+
+
+.card-body {
+  max-width: 100%;
+}
+
+
+.card-info-topics {
+  padding-left: 10%;
+}
+
+
+.text-after-colon {
+  display: inline-block;
+  margin-left: 1em;
+}
+
+
+.card-info-topics, .card-info {
+  width: 50%;
+  float: left;
+  box-sizing: border-box;
+}
