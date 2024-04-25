@@ -18,7 +18,7 @@ class OrdemServicoView(View):
                                          bairro_cliente=form["bairro_cliente"], cep_cliente=form["cep_cliente"], cidade_cliente=form["cidade_cliente"], uf_cliente=form["uf_cliente"])
             dados_cliente.save()
 
-            dados_comprador = DadosComprador(nome_comprador=form["nome_comprador"], cpf_cnpj =form["id_comprador"], rg_ie=form["sub_id_comprador"], data_nascimento_comprador=form["data_nascimento-comprador"],
+            dados_comprador = DadosComprador(nome_comprador=form["nome_comprador"], cpf_cnpj =form["id_comprador"], rg_ie=form["sub_id_comprador"], data_nascimento_comprador=form["data_nascimento_comprador"],
                                          email_comprador=form["email_comprador"], celular_comprador=form["celular_comprador"], telefone_comprador=form["telefone_comprador"], endereco_comprador=form["endereco_comprador"],
                                          bairro_comprador=form["bairro_comprador"], cep_comprador=form["cep_comprador"], cidade_comprador=form["cidade_comprador"], uf_comprador=form["uf_comprador"])
             dados_comprador.save()
