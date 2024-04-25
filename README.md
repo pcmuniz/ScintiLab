@@ -40,4 +40,5 @@ Para isso, estamos desenvolvendo processos de formulários personalizados, pensa
 <a href="#" target="_blank">Protótipo lofi</a>
 <br>
 <a href="#" target="_blank">Relatório da programação em pares</a>
-Screencast: https://www.youtube.com/watch?v=g1xdpkVw68k
+<a href="https://www.youtube.com/watch?v=g1xdpkVw68k" target="_blank">Link Screencast</a>
+
