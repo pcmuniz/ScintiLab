@@ -13,7 +13,7 @@ class OrdemServicoView(View):
     def post(self, request):
         if request.method == "POST":
             form = request.POST
-            dados_cliente = DadosCliente(nome_cliente=form["nome_cliente"], cpf_cnpj =form["id_cliente"], rg_ie=form["sub_id_cliente"], data_nascimento_cliente=form["data_nascimento-cliente"],
+            dados_cliente = DadosCliente(nome_cliente=form["nome_cliente"], cpf_cnpj =form["id_cliente"], rg_ie=form["sub_id_cliente"], data_nascimento_cliente=form["data_nascimento_cliente"],
                                          email_cliente=form["email_cliente"], celular_cliente=form["celular_cliente"], telefone_cliente=form["telefone_cliente"], endereco_cliente=form["endereco_cliente"],
                                          bairro_cliente=form["bairro_cliente"], cep_cliente=form["cep_cliente"], cidade_cliente=form["cidade_cliente"], uf_cliente=form["uf_cliente"])
             dados_cliente.save()
@@ -34,3 +34,33 @@ class OrdemServicoView(View):
 
 
         return render(request, 'app_chatbot/os.html')
+    
+
+# def OrdemServicoAtivaView(View):
+#     def get(self, request):
+#     # nomes = DadosCliente.objects.all()
+#         nomes = DadosCliente.objects.values('id', 'nome_cliente') 
+#         eletrodomesticos = DadosEquipamento.objects.values('nome_equipamento')
+#         problemas = DadosEquipamento.objects.values('defeito')
+
+#         contexto = {
+#         'nomes': nomes,
+#         'eletrodomesticos': eletrodomesticos,
+#         'problemas': problemas,
+#         }   
+
+#         return render(request, 'os_ativas.html', contexto)
+    
+class OrdemServicoAtivaView(View):
+    def get(self, request):
+        nomes = DadosCliente.objects.values('id', 'nome_cliente')
+        eletrodomesticos = DadosEquipamento.objects.values('nome_equipamento')
+        problemas = DadosEquipamento.objects.values('defeito')
+
+        contexto = {
+            'nomes': nomes,
+            'eletrodomesticos': eletrodomesticos,
+            'problemas': problemas,
+        }
+
+        return render(request, 'app_chatbot/os_ativas.html', contexto)
