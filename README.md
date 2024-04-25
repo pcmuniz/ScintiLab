@@ -42,4 +42,8 @@ Para isso, estamos desenvolvendo processos de formulários personalizados, pensa
 <a href="#" target="_blank">Relatório da programação em pares</a>
 <br>
 <a href="https://www.youtube.com/watch?v=g1xdpkVw68k" target="_blank">Link Screencast</a>
+<br> 
+<a href="https://drive.google.com/file/d/1Cj4x_oeCT7zmOTZQArjaCSFQP7g2zXIo/view?usp=sharing" target="_blank">Link Diagrama de Atividades</a>
+
+
 
