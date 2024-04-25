@@ -35,7 +35,7 @@ Para isso, estamos desenvolvendo processos de formulários personalizados, pensa
 <br>
 <a href="https://ec2.atlassian.net/jira/software/projects/SCIN/boards/3?atlOrigin=eyJpIjoiYTAyMjM2ZGQzMDQyNGFjMmJkMzkyOWIxNTMwNDk2ZTEiLCJwIjoiaiJ9" target="_blank">Link do Jira</a>
 <br>
-<a href="#" target="_blank">Protótipo lofi</a>
+<a href="https://www.figma.com/file/t1SDE8c3BFofibJgGYyzY9/ScintiLab?type=design&node-id=0-1&mode=design&t=PwQyrRNEJg618muG-0" target="_blank">Protótipo lofi</a>
 <br>
 <a href="https://drive.google.com/file/d/1xU0VYFelxazgKKj0D-L44v92Pz8SM2Y0/view?usp=sharing" target="_blank">Link Programação em Par</a>
 <br>
