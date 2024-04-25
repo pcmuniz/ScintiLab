@@ -19,37 +19,38 @@
 
 
 <body>
-
-    <div class="card-block">
-        <!-- TODO: Implementar loop -->
-        <div class="card mb-3">
-            {% for nome in nomes %}
-            {% for eletrodomestico in eletrodomesticos %}
-            {% for problema in problemas %}
-            <div class="row no-gutters">
-                <div class="col-md-10">
-                    <div class="card-body">
-                        <!-- TODO: Setar dados para getar -->
-                        <h5 class="card-title">Cód: {{ cliente.id }}</h5>
-                        <div class="card-info-topics">
-                            <p>Cliente: </p>
-                            <p>Eletrodoméstico: </p>
-                            <p>Problema: </p>
-                        </div>
-                        <div class="card-info">
-                            <!-- TODO: Retornar dados getados -->
-                            <p>{{ nome.nome_cliente }}</p>
-                            <p>{{ eletrodomestico.nome_equipamento }}</p>
-                            <p>{{ problema.defeito }}</p>
+    
+        <div class="card-block">
+            <!-- TODO: Implementar loop -->
+            <div class="card mb-3">
+                {% for nome in nomes %}
+                {% for eletrodomestico in eletrodomesticos %}
+                {% for problema in problemas %}
+                <div class="row no-gutters">
+                    <div class="col-md-10">
+                        <div class="card-body">
+                            <!-- TODO: Setar dados para getar -->
+                            <h5 class="card-title">Cód: {{ nome.id }}</h5>
+                            <div class="card-info-topics">
+                                <p>Cliente: </p>
+                                <p>Eletrodoméstico: </p>
+                                <p>Problema: </p>
+                            </div>
+                            <div class="card-info">
+                                <!-- TODO: Retornar dados getados -->
+                                <p>{{ nome.nome_cliente }}</p>
+                                <p>{{ eletrodomestico.nome_equipamento }}</p>
+                                <p>{{ problema.defeito }}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
+                {% endfor %}
+                {% endfor %}
+                {% endfor %}
             </div>
-            {% endfor %}
-            {% endfor %}
-            {% endfor %}
         </div>
-    </div>
+    
    
 
 

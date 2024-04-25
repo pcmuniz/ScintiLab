@@ -36,21 +36,6 @@ class OrdemServicoView(View):
         return render(request, 'app_chatbot/os.html')
     
 
-# def OrdemServicoAtivaView(View):
-#     def get(self, request):
-#     # nomes = DadosCliente.objects.all()
-#         nomes = DadosCliente.objects.values('id', 'nome_cliente') 
-#         eletrodomesticos = DadosEquipamento.objects.values('nome_equipamento')
-#         problemas = DadosEquipamento.objects.values('defeito')
-
-#         contexto = {
-#         'nomes': nomes,
-#         'eletrodomesticos': eletrodomesticos,
-#         'problemas': problemas,
-#         }   
-
-#         return render(request, 'os_ativas.html', contexto)
-    
 class OrdemServicoAtivaView(View):
     def get(self, request):
         nomes = DadosCliente.objects.values('id', 'nome_cliente')
