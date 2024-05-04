@@ -1,62 +1,56 @@
-const chatContainer = document.getElementById('chat-window');
-const userInput = document.getElementById('user-input');
+import Alpine from "https://cdn.skypack.dev/alpinejs@3.11.1";
 
-// Variável para armazenar o contexto da conversa
-let conversationContext = '';
+const mockTypingAfter = 1500;
+const mockResponseAfter = 3000;
+const mockOpeningMessage =
+  "Olá, sou a atendente virtual da Eceel-Tec e vou realizar o seu atendimento!\nPosso te ajudar das seguintes formas:\n1 - Consertar o meu eletrodoméstico\n2 - Acompanhar o andamento do conserto\n3 - Agendar a visita de um técnico\nDigite o número correspondente à opção desejada:";
+const mockResponsePrefix = "Você escolheu: ";
 
-// Função para adicionar mensagens do chat ao contêiner
-function addMessageToChat(message) {
-    const messageElement = document.createElement('div');
-    messageElement.innerHTML = message;
-    chatContainer.appendChild(messageElement);
-}
-
-function clearChat() {
-    chatContainer.innerHTML = '';
-}
-
-
-function processUserInput(input) {
-    switch(conversationContext) {
-        case '':
-            if (input.toLowerCase() === '1') {
-                clearChat();
-                addMessageToChat('Nesse caso, me parece que você precisa criar uma ordem de serviço para que a nossa assistência técnica possa resolver o seu problema.');
-                addMessageToChat('A ordem de serviço é um formulário no qual você deve preencher suas informações para que possamos dar continuidade ao atendimento.');
-                addMessageToChat('Deseja ir adiante?<br><br>1 - Sim, gostaria!<br>2 - Não, obrigado!');
-                addMessageToChat('Por favor, digite abaixo o número correspondente à opcão desejada.');
-                conversationContext = '';
-                userInput.value = '';
-                showChatModal();
-                
-            } else {
-                addMessageToChat('Quando a mensagem foge dos ifs');
-            }
-            break;
-
-        default:
-            addMessageToChat('Desculpe, houve um erro na conversa.');
+document.addEventListener("alpine:init", () => {
+  Alpine.data("chat", () => ({
+    newMessage: "",
+    showTyping: false,
+    waitingOnResponse: true,
+    messages: [],
+    init() {
+      this.mockResponse(mockOpeningMessage);
+    },
+    sendMessage() {
+      if (this.waitingOnResponse) return;
+      this.waitingOnResponse = true;
+      this.messages.push({ role: "user", body: this.newMessage });
+      this.newMessage = "";
+      window.scrollTo(0, 0);
+      this.mockResponse();
+    },
+    typeOutResponse(message) {
+      this.messages.push({ role: "assistant", body: "", beingTyped: true });
+      let responseMessage = this.messages[this.messages.length - 1];
+      let i = 0;
+      let interval = setInterval(() => {
+        responseMessage.body += message.charAt(i);
+        i++;
+        if (i > message.length - 1) {
+          this.waitingOnResponse = false;
+          delete responseMessage.beingTyped;
+          clearInterval(interval);
+        }
+      }, 30);
+    },
+    mockResponse(message) {
+      setTimeout(() => {
+        this.showTyping = true;
+      }, mockTypingAfter);
+      setTimeout(() => {
+        this.showTyping = false;
+        // TODO: if else
+        let responseMessage =
+          message ??
+          mockResponsePrefix + this.messages[this.messages.length - 1].body;
+        this.typeOutResponse(responseMessage);
+      }, mockResponseAfter);
     }
-}
-
-userInput.addEventListener('keypress', function(event) {
-    if (event.key === 'Enter') {
-        const userMessage = userInput.value;
-        addMessageToChat(`Você: ${userMessage}`);
-        processUserInput(userMessage);
-        userInput.value = '';
-    }
+  }));
 });
 
-function toggleChatModal() {
-    const modal = document.getElementById('chat-modal');
-    modal.style.display = modal.style.display === 'block' ? 'none' : 'block';
-}
-
-document.getElementById('chat-icon').addEventListener('click', toggleChatModal);
-
-document.querySelector('.close').addEventListener('click', toggleChatModal);
-
-addMessageToChat('Olá, Tudo bem?<br> Eu sou a assistente virtual da Eceel-tec e estou encarregada do seu atendimento.<br> Do que você precisa?');
-addMessageToChat('<br>1 - Meu eletrodoméstico está com problema<br>2 - Acompanhar ordem de serviço<br>3 - Gerar orçamento');
-addMessageToChat('<br>Por favor, digite abaixo o número correpondente à opcão desejada.');
+Alpine.start();

@@ -49,4 +49,3 @@ class DadosEquipamento(models.Model):
     acessorios = models.CharField(max_length=300, null=False)
     observacoes = models.CharField(max_length=300, null=False)
     arquivos = models.CharField(max_length=300, null=False)
-

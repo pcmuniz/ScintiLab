@@ -6,4 +6,5 @@ urlpatterns = [
     path('', views.PaginaInicialView.as_view(), name='pagina-inicial'),
     path('os/', views.OrdemServicoView.as_view(), name='pagina-os'),
     path('os-ativas/', views.OrdemServicoAtivaView.as_view(), name='pagina-os-ativas'),
+    path('chatbot/', views.ChatbotView.as_view(), name='chatbot'),
 ]
