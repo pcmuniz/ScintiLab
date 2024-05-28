@@ -49,6 +49,7 @@ Para isso, estamos desenvolvendo processos de formulários personalizados, pensa
 <h3>Diagrama de atividades</h3>
 <img width="1319" alt="diagrama" src="https://github.com/pcmuniz/ScintiLab/assets/99767869/59194ec2-c67b-41eb-88e2-b53d860bc620">
 
+## Status Report 2
 
 
 
