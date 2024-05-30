@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views import View
-from .models import CustomerData, DadosCliente, DadosCompra, DadosComprador, DadosEquipamento
+from .models import CustomerData, DadosCliente, DadosCompra, DadosComprador, DadosEquipamento, EmployeeData
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.http import require_http_methods
 from django.utils.decorators import method_decorator
@@ -32,25 +32,46 @@ class CustomerRegisterPage(View):
             form = request.POST
             email = form.get("email")
             
-        if CustomerData.objects.filter(email=email).exists():
-            return HttpResponse("Email já cadastrado.", status=400)
+            if CustomerData.objects.filter(email=email).exists():
+                return HttpResponse("Email já cadastrado.", status=400)
         
-        else:
-            customer_data = CustomerData(
-                cellphone = form["cellphone"],
-                email = form["email"],
-                name = form["name"], 
-                surname = form["surname"], 
-                password = form["password"]
-            )
-            customer_data.save()
+            else:
+                customer_data = CustomerData(
+                    cellphone = form["cellphone"],
+                    email = form["email"],
+                    name = form["name"], 
+                    surname = form["surname"], 
+                    password = form["password"]
+                )
+                customer_data.save()
 
         return render(request, 'app_chatbot/CustomerRegisterPage.html')
     
-
 class EmployeeRegisterPage(View):
     def get(self, request):
         return render(request, 'app_chatbot/EmployeeRegisterPage.html')
+    
+    def post(self, request):
+        if request.method == "POST":
+            form = request.POST
+            code = form.get("code")
+            email = form.get("email")
+
+            if EmployeeData.objects.filter(code=code).exists() or EmployeeData.objects.filter(email=email).exists():
+                return HttpResponse("Dados já cadastrados.", status=400)
+            
+            else:
+                employee_data = EmployeeData(
+                    code = form["code"],
+                    email = form["email"],
+                    name = form["code"],
+                    surname = form["code"],
+                    password = form["code"]
+                )
+                employee_data.save()
+
+        return render(request, 'app_chatbot/EmployeeRegisterPage.html')
+
 
 
 class OrdemServicoView(View):
