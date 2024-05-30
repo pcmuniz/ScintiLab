@@ -1,5 +1,13 @@
 from django.db import models
 
+class CustomerData(models.Model):
+    name = models.CharField(max_length=30, null=False)
+    surname = models.CharField(max_length=30, null=False)
+    password = models.CharField(max_length=30, null=False)
+    email = models.CharField(max_length=30, null=False)
+    cellphone = models.IntegerField(null=False)
+    
+
 class DadosCliente(models.Model):
     nome_cliente = models.CharField(max_length=30, null=False)
     cpf_cnpj = models.CharField(max_length=20, null=False)

@@ -11,7 +11,7 @@
                      <div class="offcanvas-body">
                         <ul class="navbar-nav justify-content-center flex-grow-1 pe-3">
                            <li class="nav-item">
-                              <a class="nav-link mx-lg-2" aria-current="page" href="">Cliente</a>
+                              <a class="nav-link mx-lg-2" aria-current="page" href="{% url 'customer-register-page' %}">Cliente</a>
                            </li>
                            <li class="nav-item">
                               <a class="nav-link mx-lg-2 active" href="">Contribuidor</a>
@@ -24,8 +24,16 @@
             <form method="POST">
                {% csrf_token %}
                <div class="mb-3">
-                  <label for="username">Usuário</label>
-                  <input type="text" id="username" name="username" class="form-control w-10" required />
+                  <label for="code">Código de funcionário</label>
+                  <input type="text" id="code" name="code" class="form-control w-10" required />
+               </div>
+               <div class="mb-3">
+                  <label for="email">E-mail</label>
+                  <input type="email" id="email" name="email" class="form-control w-10" required />
+               </div>
+               <div class="mb-3">
+                  <label for="name">Nome</label>
+                  <input type="text" id="name" name="name" class="form-control w-10" required />
                </div>
                <div class="mb-3">
                   <label for="password">Senha</label>
@@ -34,7 +42,7 @@
                
                <!-- <a href="#">Crie sua conta</a> -->
                <div class="text-center p-3">
-                  <button type="submit" class="btn btn-primary">Enviar</button>
+                  <button type="submit" class="btn btn-primary">Cadastrar</button>
                </div>
             </form>
          </div>

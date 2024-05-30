@@ -1,9 +1,10 @@
 from django.shortcuts import render
 from django.views import View
-from .models import DadosCliente, DadosCompra, DadosComprador, DadosEquipamento
-from django.http import JsonResponse
+from .models import CustomerData, DadosCliente, DadosCompra, DadosComprador, DadosEquipamento
+from django.http import HttpResponse, JsonResponse
 from django.views.decorators.http import require_http_methods
 from django.utils.decorators import method_decorator
+from django.contrib.auth.models import User
 
 
 class HomePage(View):
@@ -14,10 +15,6 @@ class ChatbotView(View):
     def get(self, request):
         return render(request, 'app_chatbot/chatbot.html')
     
-class OrdemServicoView(View):
-    def get(self, request):
-        return render(request, 'app_chatbot/os.html')
-
 class CustomerLoginPage(View):
     def get(self, request):
         return render(request, 'app_chatbot/CustomerLoginPage.html')
@@ -30,11 +27,35 @@ class CustomerRegisterPage(View):
     def get(self, request):
         return render(request, 'app_chatbot/CustomerRegisterPage.html')
     
+    def post(self, request):
+        if request.method == "POST":
+            form = request.POST
+            email = form.get("email")
+            
+        if CustomerData.objects.filter(email=email).exists():
+            return HttpResponse("Email já cadastrado.", status=400)
+        
+        else:
+            customer_data = CustomerData(
+                cellphone = form["cellphone"],
+                email = form["email"],
+                name = form["name"], 
+                surname = form["surname"], 
+                password = form["password"]
+            )
+            customer_data.save()
+
+        return render(request, 'app_chatbot/CustomerRegisterPage.html')
+    
+
 class EmployeeRegisterPage(View):
     def get(self, request):
         return render(request, 'app_chatbot/EmployeeRegisterPage.html')
 
 
+class OrdemServicoView(View):
+    def get(self, request):
+        return render(request, 'app_chatbot/os.html')
     
     def post(self, request):
         if request.method == "POST":
@@ -68,8 +89,6 @@ class EmployeeRegisterPage(View):
 
 
         return render(request, 'app_chatbot/os.html')
-    
-
 class OrdemServicoAtivaView(View):
     def get(self, request):
         nomes = DadosCliente.objects.values('id', 'nome_cliente')
