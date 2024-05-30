@@ -6,9 +6,9 @@ from django.views.decorators.http import require_http_methods
 from django.utils.decorators import method_decorator
 
 
-class PaginaInicialView(View):
+class HomePage(View):
     def get(self, request):
-        return render(request, 'app_chatbot/base.html')
+        return render(request, 'app_chatbot/HomePage.html')
     
 class ChatbotView(View):
     def get(self, request):
@@ -17,6 +17,24 @@ class ChatbotView(View):
 class OrdemServicoView(View):
     def get(self, request):
         return render(request, 'app_chatbot/os.html')
+
+class CustomerLoginPage(View):
+    def get(self, request):
+        return render(request, 'app_chatbot/CustomerLoginPage.html')
+    
+class EmployeeLoginPage(View):
+    def get(self, request):
+        return render(request, 'app_chatbot/EmployeeLoginPage.html')
+    
+class CustomerRegisterPage(View):
+    def get(self, request):
+        return render(request, 'app_chatbot/CustomerRegisterPage.html')
+    
+class EmployeeRegisterPage(View):
+    def get(self, request):
+        return render(request, 'app_chatbot/EmployeeRegisterPage.html')
+
+
     
     def post(self, request):
         if request.method == "POST":
