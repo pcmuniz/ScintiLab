@@ -1,51 +1,77 @@
-from django.shortcuts import render
+from pyexpat.errors import messages
+from django.shortcuts import redirect, render
 from django.views import View
+
+from .forms import CustomerLoginForm, CustomerRegisterForm
 from .models import CustomerData, DadosCliente, DadosCompra, DadosComprador, DadosEquipamento, EmployeeData
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.http import require_http_methods
 from django.utils.decorators import method_decorator
 from django.contrib.auth.models import User
-
+from django.contrib.auth import authenticate, login as auth_login
+from django.contrib.auth.hashers import check_password
 
 class HomePage(View):
     def get(self, request):
         return render(request, 'app_chatbot/HomePage.html')
     
-class ChatbotView(View):
+class CustomerPage(View):
     def get(self, request):
-        return render(request, 'app_chatbot/chatbot.html')
+        return render(request, 'app_chatbot/CustomerPage.html')
     
 class CustomerLoginPage(View):
     def get(self, request):
-        return render(request, 'app_chatbot/CustomerLoginPage.html')
-    
+        form = CustomerLoginForm()
+        return render(request, 'app_chatbot/CustomerLoginPage.html', {'form' : form})
+    # def post(self, request):
+    #     form = CustomerLoginForm(request.POST)
+
+    #     if form.is_valid():
+    #         email = form.cleaned_data['email']
+    #         password = form.cleaned_data['password']
+            
+    #         user = authenticate(username=email, password=password)
+            
+    #         if user is None:
+    #             form.add_error(None, 'Invalid email or password')  # Add a non-field error
+    #             return render(request, 'app_chatbot/CustomerLoginPage.html', {'form': form})
+            
+    #         auth_login(request, user)
+    #         return redirect('customer-page')
+        
+    #     # If form is invalid, render the login page with the form and errors
+    #     return render(request, 'app_chatbot/CustomerLoginPage.html', {'form': form})
+
+    def post(self, request):
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        try:
+            user = CustomerData.objects.get(email=email)
+        except CustomerData.DoesNotExist:
+            user = None
+            print(user)
+        if user is not None and check_password(password, user.password):
+            return redirect('/cliente')
+        else:
+            error_message = "Credenciais inválidas. Por favor, tente novamente."
+            return render(request, 'app_chatbot/CustomerLoginPage.html', {'error_message': error_message})
+
 class EmployeeLoginPage(View):
     def get(self, request):
         return render(request, 'app_chatbot/EmployeeLoginPage.html')
     
 class CustomerRegisterPage(View):
     def get(self, request):
-        return render(request, 'app_chatbot/CustomerRegisterPage.html')
+        form = CustomerRegisterForm()
+        return render(request, 'app_chatbot/CustomerRegisterPage.html', {'form' : form})
     
     def post(self, request):
-        if request.method == "POST":
-            form = request.POST
-            email = form.get("email")
-            
-            if CustomerData.objects.filter(email=email).exists():
-                return HttpResponse("Email já cadastrado.", status=400)
-        
-            else:
-                customer_data = CustomerData(
-                    cellphone = form["cellphone"],
-                    email = form["email"],
-                    name = form["name"], 
-                    surname = form["surname"], 
-                    password = form["password"]
-                )
-                customer_data.save()
+        form = CustomerRegisterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('customer-login-page')
 
-        return render(request, 'app_chatbot/CustomerRegisterPage.html')
+        return render(request, 'app_chatbot/CustomerRegisterPage.html', {'form': form})
     
 class EmployeeRegisterPage(View):
     def get(self, request):
