@@ -48,3 +48,4 @@ class ChangeOrderStatusForm(forms.ModelForm):
         widgets = {
             'status': forms.Select(choices=OrdemServico.STATUS_CHOICES)
         }
+

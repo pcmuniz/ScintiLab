@@ -151,7 +151,18 @@ class OrdemServicoAtivaView(View):
 
         return render(request, 'app_chatbot/os_ativas.html', contexto)
 
-    
+class CancelOrder(View):
+    def get(self, request, order_id):
+        ordem_servico = get_object_or_404(OrdemServico, id=order_id)
+        return render(request, 'app_chatbot/TemporaryPages/CancelOrder/cancel_order.html', {'ordem_servico': ordem_servico})
+
+    def post(self, request, order_id):
+        ordem_servico = get_object_or_404(OrdemServico, id=order_id)
+        if ordem_servico.status != 'Cancelada':
+            ordem_servico.status = 'Cancelada'
+            ordem_servico.save()
+        return redirect('order_detail', order_id=order_id) # TODO: redirect
+
 class ChangeOrderStatus(View):
     def get(self, request, order_id):
         ordem_servico = get_object_or_404(OrdemServico, id=order_id)
@@ -163,7 +174,7 @@ class ChangeOrderStatus(View):
         form = ChangeOrderStatusForm(request.POST, instance=ordem_servico)
         if form.is_valid():
             form.save()
-            return redirect('success_page')  # Redirecione para uma página de sucesso após a alteração
+            return redirect('success_page')  # TODO: redirect
         return render(request, 'app_chatbot/TemporaryPages/ChangeOrderStatus/change_order_status.html', {'form': form, 'ordem_servico': ordem_servico})
 
 def registration_view(request):
@@ -183,7 +194,7 @@ def registration_view(request):
             
             if form.is_valid():
                 form.save()
-                return redirect('registration_success')
+                return redirect('registration_success') # TODO: redirect
     else:
         person_type_form = PersonTypeForm()
     

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cancelar Ordem de Serviço</title>
+</head>
+<body>
+    <h1>Cancelar Ordem</h1>
+    <p>Tem certeza de que deseja cancelar a ordem de serviço com o protocolo: {{ ordem_servico.protocolo }}?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Cancelar</button>
+    </form>
+</body>
+</html>
