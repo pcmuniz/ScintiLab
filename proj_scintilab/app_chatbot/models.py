@@ -106,6 +106,12 @@ class OrdemServico(models.Model):
     protocolo = models.CharField(max_length=12, null=False)
     data_criacao = models.DateField(null = False)
     status = models.CharField(max_length=15, default = 'Recebida')
+    STATUS_CHOICES = [
+        ('Recebida', 'Recebida'),
+        ('Em Andamento', 'Em Andamento'),
+        ('Concluída', 'Concluída'),
+        ('Cancelada', 'Cancelada'),
+    ]
 
     def _str_(self):
         return self.id

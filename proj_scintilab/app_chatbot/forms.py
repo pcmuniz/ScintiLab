@@ -1,5 +1,5 @@
 from django import forms
-from .models import CustomerData
+from .models import CustomerData, OrdemServico
 
 class CustomerRegisterForm(forms.ModelForm):
     class Meta:
@@ -40,3 +40,11 @@ class PersonTypeForm(forms.Form):
         ('company', 'Company'),
     ]
     person_type = forms.ChoiceField(choices=PERSON_TYPE_CHOICES, widget=forms.RadioSelect)
+
+class ChangeOrderStatusForm(forms.ModelForm):
+    class Meta:
+        model = OrdemServico
+        fields = ['status']
+        widgets = {
+            'status': forms.Select(choices=OrdemServico.STATUS_CHOICES)
+        }

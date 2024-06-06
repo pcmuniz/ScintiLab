@@ -1,9 +1,9 @@
 from pyexpat.errors import messages
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.views import View
 
-from .forms import CustomerLoginForm, CustomerRegisterForm, IndividualForm, CompanyForm, PersonTypeForm
-from .models import CustomerData, DadosCliente, DadosCompra, DadosComprador, DadosEquipamento, EmployeeData
+from .forms import CustomerLoginForm, CustomerRegisterForm, IndividualForm, CompanyForm, PersonTypeForm, ChangeOrderStatusForm
+from .models import CustomerData, DadosCliente, DadosCompra, DadosComprador, DadosEquipamento, EmployeeData, OrdemServico
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.http import require_http_methods
 from django.utils.decorators import method_decorator
@@ -136,6 +136,7 @@ class OrdemServicoView(View):
 
 
         return render(request, 'app_chatbot/os.html')
+
 class OrdemServicoAtivaView(View):
     def get(self, request):
         nomes = DadosCliente.objects.values('id', 'nome_cliente')
@@ -150,6 +151,20 @@ class OrdemServicoAtivaView(View):
 
         return render(request, 'app_chatbot/os_ativas.html', contexto)
 
+    
+class ChangeOrderStatus(View):
+    def get(self, request, order_id):
+        ordem_servico = get_object_or_404(OrdemServico, id=order_id)
+        form = ChangeOrderStatusForm(instance=ordem_servico)
+        return render(request, 'app_chatbot/TemporaryPages/ChangeOrderStatus/change_order_status.html', {'form': form, 'ordem_servico': ordem_servico})
+
+    def post(self, request, order_id):
+        ordem_servico = get_object_or_404(OrdemServico, id=order_id)
+        form = ChangeOrderStatusForm(request.POST, instance=ordem_servico)
+        if form.is_valid():
+            form.save()
+            return redirect('success_page')  # Redirecione para uma página de sucesso após a alteração
+        return render(request, 'app_chatbot/TemporaryPages/ChangeOrderStatus/change_order_status.html', {'form': form, 'ordem_servico': ordem_servico})
 
 def registration_view(request):
     form = None
@@ -172,7 +187,7 @@ def registration_view(request):
     else:
         person_type_form = PersonTypeForm()
     
-    return render(request, 'app_chatbot/DynamicForm/registration.html', {
+    return render(request, 'app_chatbot/TemporaryPages/CPFxCNPJ/registration.html', {
         'person_type_form': person_type_form,
         'form': form,
         'form_type': form_type,
