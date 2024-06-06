@@ -11,5 +11,5 @@ urlpatterns = [
     path('cadastro-funcionario/', views.EmployeeRegisterPage.as_view(), name='employee-register-page'),
     path('os/', views.OrdemServicoView.as_view(), name='pagina-os'),
     path('os-ativas/', views.OrdemServicoAtivaView.as_view(), name='pagina-os-ativas'),
-
+    path('cadastro/', views.registration_view, name='cadastro'),
 ]

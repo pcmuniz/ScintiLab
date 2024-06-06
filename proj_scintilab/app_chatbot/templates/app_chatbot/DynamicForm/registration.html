@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration</title>
+    <script>
+        function showForm(type) {
+            document.getElementById('individual_form').style.display = (type === 'individual') ? 'block' : 'none';
+            document.getElementById('company_form').style.display = (type === 'company') ? 'block' : 'none';
+        }
+    </script>
+</head>
+<body>
+    <h2>Registration</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ person_type_form.as_p }}
+        <button type="submit">Select</button>
+    </form>
+
+    <div id="individual_form" style="display: none;">
+        {% if form_type == "individual" %}
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Register</button>
+            </form>
+        {% endif %}
+    </div>
+    
+    <div id="company_form" style="display: none;">
+        {% if form_type == "company" %}
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Register</button>
+            </form>
+        {% endif %}
+    </div>
+    
+    {% if form_type %}
+        <script>
+            showForm('{{ form_type }}');
+        </script>
+    {% endif %}
+</body>
+</html>

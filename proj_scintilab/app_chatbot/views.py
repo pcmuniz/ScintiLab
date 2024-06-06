@@ -2,7 +2,7 @@ from pyexpat.errors import messages
 from django.shortcuts import redirect, render
 from django.views import View
 
-from .forms import CustomerLoginForm, CustomerRegisterForm
+from .forms import CustomerLoginForm, CustomerRegisterForm, IndividualForm, CompanyForm, PersonTypeForm
 from .models import CustomerData, DadosCliente, DadosCompra, DadosComprador, DadosEquipamento, EmployeeData
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.http import require_http_methods
@@ -149,3 +149,31 @@ class OrdemServicoAtivaView(View):
         }
 
         return render(request, 'app_chatbot/os_ativas.html', contexto)
+
+
+def registration_view(request):
+    form = None
+    form_type = None
+    
+    if request.method == 'POST':
+        person_type_form = PersonTypeForm(request.POST)
+        if person_type_form.is_valid():
+            person_type = person_type_form.cleaned_data['person_type']
+            if person_type == 'individual':
+                form = IndividualForm(request.POST)
+                form_type = 'individual'
+            else:
+                form = CompanyForm(request.POST)
+                form_type = 'company'
+            
+            if form.is_valid():
+                form.save()
+                return redirect('registration_success')
+    else:
+        person_type_form = PersonTypeForm()
+    
+    return render(request, 'app_chatbot/DynamicForm/registration.html', {
+        'person_type_form': person_type_form,
+        'form': form,
+        'form_type': form_type,
+    })
