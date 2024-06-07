@@ -1,5 +1,5 @@
 from django.db import models
-
+import vonage
 
 # class Person(models.Model):
 #     email = models.EmailField()
@@ -42,7 +42,7 @@ class DadosCliente(models.Model):
     rg_ie = models.CharField(max_length=15, null=False)
     data_nascimento_cliente = models.DateField(null=False)
     email_cliente = models.CharField(max_length=30, null=False)
-    celular_cliente = models.CharField(max_length=11, null=False)
+    celular_cliente = models.CharField(max_length=15, null=False)
     telefone_cliente = models.CharField(max_length=11, null=False)
     endereco_cliente = models.CharField(max_length=60, null=False)
     bairro_cliente = models.CharField(max_length=20, null=False)
@@ -104,8 +104,11 @@ class OrdemServico(models.Model):
     dados_compra = models.ForeignKey(DadosCompra, on_delete = models.CASCADE)
     dados_equipamento = models.ForeignKey(DadosEquipamento, on_delete = models.CASCADE)
     protocolo = models.CharField(max_length=12, null=False)
-    data_criacao = models.DateField(null = False)
+    data_criacao = models.DateField(auto_now_add=True)
     status = models.CharField(max_length=15, default = 'Recebida')
+    is_finished = models.BooleanField(default=False)
+
+    # NOTE: provavelmente remover as opções Recebida e Cancelada
     STATUS_CHOICES = [
         ('Recebida', 'Recebida'),
         ('Em Andamento', 'Em Andamento'),
@@ -115,3 +118,26 @@ class OrdemServico(models.Model):
 
     def _str_(self):
         return self.id
+    
+    def sms(self, *args, **kwargs):
+        
+        if self.is_finished == True:
+            client = vonage.Client(key="4cb174e8", secret="nEngy8sUfWAIFo5d")
+            sms = vonage.Sms(client)
+
+            numero_cliente = self.dados_cliente.celular_cliente
+
+            responseData = sms.send_message(
+            {
+                "from": "Eceel-Tec",
+                "to": numero_cliente,
+                "text": "Teste novamente!",
+            }
+            )   
+
+            if responseData["messages"][0]["status"] == "0":
+                print("Message sent successfully.")
+            else:
+                print(f"Message failed with error: {responseData['messages'][0]['error-text']}")
+        
+        return super().sms(*args, **kwargs)

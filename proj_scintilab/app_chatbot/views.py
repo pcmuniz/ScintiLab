@@ -15,10 +15,12 @@ class HomePage(View):
     def get(self, request):
         return render(request, 'app_chatbot/HomePage.html')
     
+
 class CustomerPage(View):
     def get(self, request):
         return render(request, 'app_chatbot/CustomerPage.html')
     
+
 class CustomerLoginPage(View):
     def get(self, request):
         form = CustomerLoginForm()
@@ -56,10 +58,12 @@ class CustomerLoginPage(View):
             error_message = "Credenciais inválidas. Por favor, tente novamente."
             return render(request, 'app_chatbot/CustomerLoginPage.html', {'error_message': error_message})
 
+
 class EmployeeLoginPage(View):
     def get(self, request):
         return render(request, 'app_chatbot/EmployeeLoginPage.html')
     
+
 class CustomerRegisterPage(View):
     def get(self, request):
         form = CustomerRegisterForm()
@@ -73,6 +77,7 @@ class CustomerRegisterPage(View):
 
         return render(request, 'app_chatbot/CustomerRegisterPage.html', {'form': form})
     
+
 class EmployeeRegisterPage(View):
     def get(self, request):
         return render(request, 'app_chatbot/EmployeeRegisterPage.html')
@@ -137,6 +142,7 @@ class OrdemServicoView(View):
 
         return render(request, 'app_chatbot/os.html')
 
+
 class OrdemServicoAtivaView(View):
     def get(self, request):
         nomes = DadosCliente.objects.values('id', 'nome_cliente')
@@ -151,6 +157,7 @@ class OrdemServicoAtivaView(View):
 
         return render(request, 'app_chatbot/os_ativas.html', contexto)
 
+# TODO: transformar CancelOrder em função, para ser chamada tanto pelo cliente quanto pelo funcionário
 class CancelOrder(View):
     def get(self, request, order_id):
         ordem_servico = get_object_or_404(OrdemServico, id=order_id)
@@ -163,6 +170,7 @@ class CancelOrder(View):
             ordem_servico.save()
         return redirect('order_detail', order_id=order_id) # TODO: redirect
 
+
 class ChangeOrderStatus(View):
     def get(self, request, order_id):
         ordem_servico = get_object_or_404(OrdemServico, id=order_id)
@@ -173,9 +181,14 @@ class ChangeOrderStatus(View):
         ordem_servico = get_object_or_404(OrdemServico, id=order_id)
         form = ChangeOrderStatusForm(request.POST, instance=ordem_servico)
         if form.is_valid():
+            ordem_servico = form.save(commit = False)
+            if ordem_servico.status == 'Concluída':
+                ordem_servico.is_finished = True
             form.save()
+            ordem_servico.sms()
             return redirect('success_page')  # TODO: redirect
         return render(request, 'app_chatbot/TemporaryPages/ChangeOrderStatus/change_order_status.html', {'form': form, 'ordem_servico': ordem_servico})
+
 
 def registration_view(request):
     form = None
