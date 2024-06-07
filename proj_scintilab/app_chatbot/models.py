@@ -131,7 +131,7 @@ class OrdemServico(models.Model):
             {
                 "from": "Eceel-Tec",
                 "to": numero_cliente,
-                "text": "Teste novamente!",
+                "text": "Sua ordem de serviço foi concluída!",
             }
             )   
 
@@ -140,4 +140,3 @@ class OrdemServico(models.Model):
             else:
                 print(f"Message failed with error: {responseData['messages'][0]['error-text']}")
         
-        return super().sms(*args, **kwargs)

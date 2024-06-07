@@ -15,6 +15,9 @@ class HomePage(View):
     def get(self, request):
         return render(request, 'app_chatbot/HomePage.html')
     
+class Modal(View):
+    def get(self,request):
+        return render(request, 'app_chatbot/TemporaryPages/GuideModal/modal.html')
 
 class CustomerPage(View):
     def get(self, request):

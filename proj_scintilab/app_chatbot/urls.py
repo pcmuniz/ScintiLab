@@ -17,4 +17,5 @@ urlpatterns = [
     path('cadastro/', views.registration_view, name='cadastro'),
     path('change_order_status/<int:order_id>/', views.ChangeOrderStatus.as_view(), name='change_order_status'),
     path('ordem-servico/<int:order_id>/cancelar/', views.CancelOrder.as_view(), name='cancelar_ordem_servico'),
+    path('modal/', views.Modal.as_view(), name='cancelar_ordem_servico'),
 ]
