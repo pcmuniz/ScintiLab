@@ -1,7 +1,6 @@
 from pyexpat.errors import messages
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views import View
-
 from .forms import CustomerLoginForm, CustomerRegisterForm, IndividualForm, CompanyForm, PersonTypeForm, ChangeOrderStatusForm, CreateServiceOrder
 from .models import CustomerData, ClientData, PurchaseData, BuyerData, EquipmentData, EmployeeData, ServiceOrder
 from django.http import HttpResponse, JsonResponse
@@ -11,6 +10,7 @@ from django.utils.decorators import method_decorator
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login as auth_login
 from django.contrib.auth.hashers import check_password
+import uuid
 
 class HomePage(View):
     def get(self, request):
@@ -296,7 +296,10 @@ class Teste(View):
 
             equipment_data.save()
 
-
+            service_order_data = ServiceOrder(client_data = client_data, buyer_data = buyer_data, purchase_data = purchase_data,
+                                              equipment_data = equipment_data, protocol_code = str(uuid.uuid4())[:8])
+            
+            service_order_data.save()
 
             return HttpResponse('Thanks, ' + client_data.client_name)
         else:

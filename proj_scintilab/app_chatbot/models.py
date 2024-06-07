@@ -103,7 +103,7 @@ class ServiceOrder(models.Model):
     buyer_data = models.ForeignKey(BuyerData, on_delete = models.CASCADE)
     purchase_data = models.ForeignKey(PurchaseData, on_delete = models.CASCADE)
     equipment_data = models.ForeignKey(EquipmentData, on_delete = models.CASCADE)
-    protocol_code = models.CharField(max_length=12, null=False)
+    protocol_code = models.CharField(max_length=8, null=False)
     create_date = models.DateField(auto_now_add=True)
     status = models.CharField(max_length=15, default = 'Recebida')
     is_finished = models.BooleanField(default=False)
