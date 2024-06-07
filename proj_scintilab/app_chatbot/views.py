@@ -2,11 +2,9 @@ from pyexpat.errors import messages
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views import View
 
-from .forms import CustomerLoginForm, CustomerRegisterForm, IndividualForm, CompanyForm, PersonTypeForm, ChangeOrderStatusForm
-from .models import CustomerData, DadosCliente, DadosCompra, DadosComprador, DadosEquipamento, EmployeeData, OrdemServico
+from .forms import CustomerLoginForm, CustomerRegisterForm, IndividualForm, CompanyForm, PersonTypeForm, ChangeOrderStatusForm, CreateServiceOrder
+from .models import CustomerData, ClientData, PurchaseData, BuyerData, EquipmentData, EmployeeData, ServiceOrder
 from django.http import HttpResponse, JsonResponse
-from .forms import CustomerLoginForm, CustomerRegisterForm, IndividualForm, CompanyForm, PersonTypeForm, CreateServiceOrder
-from .models import CustomerData, DadosCliente, DadosCompra, DadosComprador, DadosEquipamento, EmployeeData
 from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
 from django.views.decorators.http import require_http_methods
 from django.utils.decorators import method_decorator
@@ -232,23 +230,75 @@ class Teste(View):
     def post(self, request):
         form = CreateServiceOrder(request.POST)
         if form.is_valid():
-            nome = form.cleaned_data['nome_comprador']
-            cpf_cnpj = form.cleaned_data['cpf_cnpj'] 
-            rg_ie = form.cleaned_data['rg_ie'] 
-            data_nascimento = form.cleaned_data['data_nascimento_comprador'] 
-            email = form.cleaned_data['email_comprador'] 
-            celular = form.cleaned_data['celular_comprador'] 
-            telefone = form.cleaned_data['telefone_comprador'] 
-            endereco = form.cleaned_data['endereco_comprador'] 
-            bairro = form.cleaned_data['bairro_comprador'] 
-            cep = form.cleaned_data['cep_comprador'] 
-            cidade = form.cleaned_data['cidade_comprador'] 
-            uf = form.cleaned_data['uf_comprador'] 
-            dados = DadosComprador(nome_comprador = nome, cpf_cnpj = cpf_cnpj, rg_ie = rg_ie, data_nascimento_comprador = data_nascimento, 
-                                    email_comprador = email, celular_comprador = celular, telefone_comprador = telefone, endereco_comprador = endereco,
-                                    bairro_comprador = bairro, cep_comprador = cep, cidade_comprador = cidade, uf_comprador = uf)
-            dados.save()
-            return HttpResponse('Thanks, ' + dados.nome_comprador)
+            client_name = form.cleaned_data['client_name']
+            client_cpf_cnpj = form.cleaned_data['client_cpf_cnpj']
+            client_rg_ie = form.cleaned_data['client_rg_ie']
+            client_birthdate = form.cleaned_data['client_birthdate']
+            client_email = form.cleaned_data['client_email']
+            client_cellphone = form.cleaned_data['client_cellphone']
+            client_telephone = form.cleaned_data['client_telephone']
+            client_adress = form.cleaned_data['client_adress']
+            client_neighborhood = form.cleaned_data['client_neighborhood']
+            client_zip = form.cleaned_data['client_zip']
+            client_city = form.cleaned_data['client_city']
+            client_state = form.cleaned_data['client_state']
+
+            buyer_name = form.cleaned_data['buyer_name']
+            buyer_cpf_cnpj = form.cleaned_data['buyer_cpf_cnpj']
+            buyer_rg_ie = form.cleaned_data['buyer_rg_ie']
+            buyer_birthdate = form.cleaned_data['buyer_birthdate']
+            buyer_email = form.cleaned_data['buyer_email']
+            buyer_cellphone = form.cleaned_data['buyer_cellphone']
+            buyer_telephone = form.cleaned_data['buyer_telephone']
+            buyer_adress = form.cleaned_data['buyer_adress']
+            buyer_neighborhood = form.cleaned_data['buyer_neighborhood']
+            buyer_zip = form.cleaned_data['buyer_zip']
+            buyer_city = form.cleaned_data['buyer_city']
+            buyer_state = form.cleaned_data['buyer_state']
+
+            store_name = form.cleaned_data['store_name']
+            receipt_number = form.cleaned_data['receipt_number']
+            purchase_date = form.cleaned_data['purchase_date']
+            product_code = form.cleaned_data['product_code']
+            price = form.cleaned_data['price']
+
+            equipment_name = form.cleaned_data['equipment_name']
+            brand = form.cleaned_data['brand']
+            new = form.cleaned_data['new']
+            model = form.cleaned_data['model']
+            serial_number = form.cleaned_data['serial_number']
+            user_password = form.cleaned_data['user_password']
+            defect = form.cleaned_data['defect']
+            state = form.cleaned_data['state']
+            acessories = form.cleaned_data['acessories']
+            observations = form.cleaned_data['observations']
+            files = form.cleaned_data['files']
+    
+            buyer_data = BuyerData(buyer_name = buyer_name, buyer_cpf_cnpj = buyer_cpf_cnpj, buyer_rg_ie = buyer_rg_ie,buyer_birthdate = buyer_birthdate,
+                buyer_email = buyer_email, buyer_cellphone = buyer_cellphone, buyer_telephone = buyer_telephone, buyer_adress = buyer_adress,
+                buyer_neighborhood = buyer_neighborhood,buyer_zip = buyer_zip,buyer_city = buyer_city,buyer_state = buyer_state)
+            
+            buyer_data.save()
+
+            client_data = ClientData(client_name = client_name, client_cpf_cnpj = client_cpf_cnpj, client_rg_ie = client_rg_ie,client_birthdate = client_birthdate,
+                client_email = client_email, client_cellphone = client_cellphone, client_telephone = client_telephone, client_adress = client_adress,
+                client_neighborhood = client_neighborhood,client_zip = client_zip,client_city = client_city,client_state = client_state)
+            
+            client_data.save()
+
+            purchase_data = PurchaseData(store_name = store_name, receipt_number = receipt_number, purchase_date = purchase_date,
+                product_code = product_code,price = price)
+            
+            purchase_data.save()
+
+            equipment_data = EquipmentData(equipment_name = equipment_name, brand = brand, new = new, model = model, serial_number = serial_number,
+                user_password = user_password, defect = defect, state = state, acessories = acessories,observations = observations, files = files)
+
+            equipment_data.save()
+
+
+
+            return HttpResponse('Thanks, ' + client_data.client_name)
         else:
             form = CreateServiceOrder()
 

@@ -1,5 +1,5 @@
 from django import forms
-from .models import CustomerData, OrdemServico
+from .models import CustomerData, ServiceOrder
 
 class CustomerRegisterForm(forms.ModelForm):
     class Meta:
@@ -43,22 +43,54 @@ class PersonTypeForm(forms.Form):
 
 class ChangeOrderStatusForm(forms.ModelForm):
     class Meta:
-        model = OrdemServico
+        model = ServiceOrder
         fields = ['status']
         widgets = {
-            'status': forms.Select(choices=OrdemServico.STATUS_CHOICES)
+            'status': forms.Select(choices=ServiceOrder.STATUS_CHOICES)
         }
 
 class CreateServiceOrder(forms.Form):
-    nome_comprador = forms.CharField(label="Nome Completo", max_length=30, required=True)
-    cpf_cnpj = forms.CharField(label="CPF ou CNPJ", max_length=20, required=True)
-    rg_ie = forms.CharField(label="RG ou IE", max_length=15, required=True)
-    data_nascimento_comprador = forms.DateField(label="Data de Nascimento", required=True)
-    email_comprador = forms.CharField(label="Email", max_length=30, required=True)
-    celular_comprador = forms.CharField(label="Celular", max_length=11, required=True)
-    telefone_comprador = forms.CharField(label="Telefone Fixo", max_length=11, required=True)
-    endereco_comprador = forms.CharField(label="Endereço", max_length=60, required=True)
-    bairro_comprador = forms.CharField(label="Bairro", max_length=20, required=True)
-    cep_comprador = forms.CharField(label="CEP", max_length=9, required=True)
-    cidade_comprador = forms.CharField(label="Cidade", max_length=20, required=True)
-    uf_comprador = forms.CharField(label="UF", max_length=2, required=True)
+  
+    client_name = forms.CharField(label="Nome Completo", max_length=30, required=True)
+    client_cpf_cnpj = forms.CharField(label="CPF ou CNPJ", max_length=20, required=True)
+    client_rg_ie = forms.CharField(label="RG ou IE", max_length=15, required=True)
+    client_birthdate = forms.DateField(label="Data de Nascimento", required=True)
+    client_email = forms.CharField(label="Email", max_length=30, required=True)
+    client_cellphone = forms.CharField(label="Celular", max_length=11, required=True)
+    client_telephone = forms.CharField(label="Telefone Fixo", max_length=11, required=True)
+    client_adress = forms.CharField(label="Endereço", max_length=60, required=True)
+    client_neighborhood = forms.CharField(label="Bairro", max_length=20, required=True)
+    client_zip = forms.CharField(label="CEP", max_length=9, required=True)
+    client_city = forms.CharField(label="Cidade", max_length=20, required=True)
+    client_state = forms.CharField(label="UF", max_length=2, required=True)
+
+    buyer_name = forms.CharField(label="Nome Completo", max_length=30, required=True)
+    buyer_cpf_cnpj = forms.CharField(label="CPF ou CNPJ", max_length=20, required=True)
+    buyer_rg_ie = forms.CharField(label="RG ou IE", max_length=15, required=True)
+    buyer_birthdate = forms.DateField(label="Data de Nascimento", required=True)
+    buyer_email = forms.CharField(label="Email", max_length=30, required=True)
+    buyer_cellphone = forms.CharField(label="Celular", max_length=11, required=True)
+    buyer_telephone = forms.CharField(label="Telefone Fixo", max_length=11, required=True)
+    buyer_adress = forms.CharField(label="Endereço", max_length=60, required=True)
+    buyer_neighborhood = forms.CharField(label="Bairro", max_length=20, required=True)
+    buyer_zip = forms.CharField(label="CEP", max_length=9, required=True)
+    buyer_city = forms.CharField(label="Cidade", max_length=20, required=True)
+    buyer_state = forms.CharField(label="UF", max_length=2, required=True)
+
+    store_name = forms.CharField(label="Loja", max_length=30, required=True)
+    receipt_number = forms.CharField(label="Numero da NF", max_length=44, required=True)
+    purchase_date = forms.DateField(label="Data da Compra", required=True)
+    product_code = forms.CharField(label="Código do Produto", max_length=30, required=True)
+    price = forms.CharField(label="Valor (R$)", max_length=9, required=True)
+
+    equipment_name = forms.CharField(label="Equipamento", max_length=30, required=True)
+    brand = forms.CharField(label="Marca", max_length=20, required=True)
+    new = forms.CharField(label="Lacre Intacto", max_length=3, required=True)
+    model = forms.CharField(label="Modelo", max_length=15, required=True)
+    serial_number = forms.CharField(label="Nº de Série", max_length=30, required=True)
+    user_password = forms.CharField(label="Senha de Usuário", max_length=11, required=True)
+    defect = forms.CharField(label="Defeito Reclamado", max_length=300, required=True)
+    state = forms.CharField(label="Estado do Aparelho", max_length=300, required=True)
+    acessories = forms.CharField(label="Acessórios", max_length=300, required=True)
+    observations = forms.CharField(label="Observações p/ o Técnico", max_length=300, required=True)
+    files = forms.CharField(label="Arquivos para Salvar", max_length=300, required=True)
