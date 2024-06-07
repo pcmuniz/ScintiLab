@@ -55,48 +55,48 @@ class ClientData(models.Model):
 
 
 class BuyerData(models.Model):
-    nome_comprador = models.CharField(max_length=30, null=False)
-    cpf_cnpj = models.CharField(max_length=20, null=False)
-    rg_ie = models.CharField(max_length=15, null=False)
-    data_nascimento_comprador = models.DateField(null=False)
-    email_comprador = models.CharField(max_length=30, null=False)
-    celular_comprador = models.CharField(max_length=11, null=False)
-    telefone_comprador = models.CharField(max_length=11, null=False)
-    endereco_comprador = models.CharField(max_length=60, null=False)
-    bairro_comprador = models.CharField(max_length=20, null=False)
-    cep_comprador = models.CharField(max_length=9, null=False)
-    cidade_comprador = models.CharField(max_length=20, null=False)
-    uf_comprador = models.CharField(max_length=2, null=False)
+    buyer_name = models.CharField(max_length=30, null=False)
+    buyer_cpf_cnpj = models.CharField(max_length=20, null=False)
+    buyer_rg_ie = models.CharField(max_length=15, null=False)
+    buyer_birthdate = models.DateField(null=False)
+    buyer_email = models.CharField(max_length=30, null=False)
+    buyer_cellphone = models.CharField(max_length=11, null=False)
+    buyer_telephone = models.CharField(max_length=11, null=False)
+    buyer_adress = models.CharField(max_length=60, null=False)
+    buyer_neighborhood = models.CharField(max_length=20, null=False)
+    buyer_zip = models.CharField(max_length=9, null=False)
+    buyer_city = models.CharField(max_length=20, null=False)
+    buyer_state = models.CharField(max_length=2, null=False)
 
     def __str__(self):
-        return '[' + str(self.id) + '] ' + self.nome_comprador
+        return '[' + str(self.id) + '] ' + self.buyer_name
 
 
 class PurchaseData(models.Model):
-    nome_loja = models.CharField(max_length=30, null=False)
-    num_nf = models.CharField(max_length=44, null=False)
-    data_compra = models.DateField(null=False)
-    cod_produto = models.CharField(max_length=30, null=False)
-    valor = models.CharField(max_length=8, null=False)
+    store_name = models.CharField(max_length=30, null=False)
+    receipt_number = models.CharField(max_length=44, null=False)
+    purchase_date = models.DateField(null=False)
+    product_code = models.CharField(max_length=30, null=False)
+    price = models.CharField(max_length=8, null=False)
 
     def __str__(self):
-        return '[' + str(self.id) + '] ' + self.nome_loja
+        return '[' + str(self.id) + '] ' + self.store_name
 
 class EquipmentData(models.Model):
-    nome_equipamento = models.CharField(max_length=30, null=False)
-    marca = models.CharField(max_length=20, null=False)
-    lacrado = models.CharField(max_length=3, null=False)
-    modelo = models.CharField(max_length=15, null=False)
-    num_serie = models.CharField(max_length=30, null=False)
-    senha_usuario = models.CharField(max_length=11, null=False)
-    defeito = models.CharField(max_length=300, null=False)
-    estado = models.CharField(max_length=300, null=False)
-    acessorios = models.CharField(max_length=300, null=False)
-    observacoes = models.CharField(max_length=300, null=False)
-    arquivos = models.CharField(max_length=300, null=False)
+    equipment_name = models.CharField(max_length=30, null=False)
+    brand = models.CharField(max_length=20, null=False)
+    new = models.CharField(max_length=3, null=False)
+    model = models.CharField(max_length=15, null=False)
+    serial_number = models.CharField(max_length=30, null=False)
+    user_password = models.CharField(max_length=11, null=False)
+    defect = models.CharField(max_length=300, null=False)
+    state = models.CharField(max_length=300, null=False)
+    acessories = models.CharField(max_length=300, null=False)
+    observations = models.CharField(max_length=300, null=False)
+    files = models.CharField(max_length=300, null=False)
 
     def __str__(self):
-        return '[' + str(self.id) + '] ' + self.nome_equipamento
+        return '[' + str(self.id) + '] ' + self.equipment_name
 
 class ServiceOrder(models.Model):
     client_data = models.ForeignKey(ClientData, on_delete = models.CASCADE)
