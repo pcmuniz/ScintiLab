@@ -5,6 +5,9 @@ from django.views import View
 from .forms import CustomerLoginForm, CustomerRegisterForm, IndividualForm, CompanyForm, PersonTypeForm, ChangeOrderStatusForm
 from .models import CustomerData, DadosCliente, DadosCompra, DadosComprador, DadosEquipamento, EmployeeData, OrdemServico
 from django.http import HttpResponse, JsonResponse
+from .forms import CustomerLoginForm, CustomerRegisterForm, IndividualForm, CompanyForm, PersonTypeForm, CreateServiceOrder
+from .models import CustomerData, DadosCliente, DadosCompra, DadosComprador, DadosEquipamento, EmployeeData
+from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
 from django.views.decorators.http import require_http_methods
 from django.utils.decorators import method_decorator
 from django.contrib.auth.models import User
@@ -219,3 +222,34 @@ def registration_view(request):
         'form': form,
         'form_type': form_type,
     })
+
+class Teste(View):
+    def get(self, request):
+        form = CreateServiceOrder()
+        ctx = {'form': form}
+        return render(request, 'app_chatbot/teste.html', ctx)
+    
+    def post(self, request):
+        form = CreateServiceOrder(request.POST)
+        if form.is_valid():
+            nome = form.cleaned_data['nome_comprador']
+            cpf_cnpj = form.cleaned_data['cpf_cnpj'] 
+            rg_ie = form.cleaned_data['rg_ie'] 
+            data_nascimento = form.cleaned_data['data_nascimento_comprador'] 
+            email = form.cleaned_data['email_comprador'] 
+            celular = form.cleaned_data['celular_comprador'] 
+            telefone = form.cleaned_data['telefone_comprador'] 
+            endereco = form.cleaned_data['endereco_comprador'] 
+            bairro = form.cleaned_data['bairro_comprador'] 
+            cep = form.cleaned_data['cep_comprador'] 
+            cidade = form.cleaned_data['cidade_comprador'] 
+            uf = form.cleaned_data['uf_comprador'] 
+            dados = DadosComprador(nome_comprador = nome, cpf_cnpj = cpf_cnpj, rg_ie = rg_ie, data_nascimento_comprador = data_nascimento, 
+                                    email_comprador = email, celular_comprador = celular, telefone_comprador = telefone, endereco_comprador = endereco,
+                                    bairro_comprador = bairro, cep_comprador = cep, cidade_comprador = cidade, uf_comprador = uf)
+            dados.save()
+            return HttpResponse('Thanks, ' + dados.nome_comprador)
+        else:
+            form = CreateServiceOrder()
+
+        return redirect('pagina-os-ativas')

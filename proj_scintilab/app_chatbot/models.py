@@ -36,25 +36,25 @@ class EmployeeData(models.Model):
     surname = models.CharField(max_length=30, null=False)
     password = models.CharField(max_length=30, null=False)
 
-class DadosCliente(models.Model):
-    nome_cliente = models.CharField(max_length=30, null=False)
-    cpf_cnpj = models.CharField(max_length=20, null=False)
-    rg_ie = models.CharField(max_length=15, null=False)
-    data_nascimento_cliente = models.DateField(null=False)
-    email_cliente = models.CharField(max_length=30, null=False)
-    celular_cliente = models.CharField(max_length=15, null=False)
-    telefone_cliente = models.CharField(max_length=11, null=False)
-    endereco_cliente = models.CharField(max_length=60, null=False)
-    bairro_cliente = models.CharField(max_length=20, null=False)
-    cep_cliente = models.CharField(max_length=9, null=False)
-    cidade_cliente = models.CharField(max_length=20, null=False)
-    uf_cliente = models.CharField(max_length=2, null=False)
+class ClientData(models.Model):
+    client_name = models.CharField(max_length=30, null=False)
+    client_cpf_cnpj = models.CharField(max_length=20, null=False)
+    client_rg_ie = models.CharField(max_length=15, null=False)
+    client_birthdate = models.DateField(null=False)
+    client_email = models.CharField(max_length=30, null=False)
+    client_cellphone = models.CharField(max_length=11, null=False)
+    client_telephone = models.CharField(max_length=11, null=False)
+    client_adress = models.CharField(max_length=60, null=False)
+    client_neighborhood = models.CharField(max_length=20, null=False)
+    client_zip = models.CharField(max_length=9, null=False)
+    client_city = models.CharField(max_length=20, null=False)
+    client_state = models.CharField(max_length=2, null=False)
 
     def __str__(self):
-        return '[' + str(self.id) + '] ' + self.nome_cliente
+        return '[' + str(self.id) + '] ' + self.client_name
 
 
-class DadosComprador(models.Model):
+class BuyerData(models.Model):
     nome_comprador = models.CharField(max_length=30, null=False)
     cpf_cnpj = models.CharField(max_length=20, null=False)
     rg_ie = models.CharField(max_length=15, null=False)
@@ -72,7 +72,7 @@ class DadosComprador(models.Model):
         return '[' + str(self.id) + '] ' + self.nome_comprador
 
 
-class DadosCompra(models.Model):
+class PurchaseData(models.Model):
     nome_loja = models.CharField(max_length=30, null=False)
     num_nf = models.CharField(max_length=44, null=False)
     data_compra = models.DateField(null=False)
@@ -82,7 +82,7 @@ class DadosCompra(models.Model):
     def __str__(self):
         return '[' + str(self.id) + '] ' + self.nome_loja
 
-class DadosEquipamento(models.Model):
+class EquipmentData(models.Model):
     nome_equipamento = models.CharField(max_length=30, null=False)
     marca = models.CharField(max_length=20, null=False)
     lacrado = models.CharField(max_length=3, null=False)
@@ -98,13 +98,13 @@ class DadosEquipamento(models.Model):
     def __str__(self):
         return '[' + str(self.id) + '] ' + self.nome_equipamento
 
-class OrdemServico(models.Model):
-    dados_cliente = models.ForeignKey(DadosCliente, on_delete = models.CASCADE)
-    dados_comprador = models.ForeignKey(DadosComprador, on_delete = models.CASCADE)
-    dados_compra = models.ForeignKey(DadosCompra, on_delete = models.CASCADE)
-    dados_equipamento = models.ForeignKey(DadosEquipamento, on_delete = models.CASCADE)
-    protocolo = models.CharField(max_length=12, null=False)
-    data_criacao = models.DateField(auto_now_add=True)
+class ServiceOrder(models.Model):
+    client_data = models.ForeignKey(ClientData, on_delete = models.CASCADE)
+    buyer_data = models.ForeignKey(BuyerData, on_delete = models.CASCADE)
+    purchase_data = models.ForeignKey(PurchaseData, on_delete = models.CASCADE)
+    equipment_data = models.ForeignKey(EquipmentData, on_delete = models.CASCADE)
+    protocol_code = models.CharField(max_length=12, null=False)
+    create_date = models.DateField(auto_now_add=True)
     status = models.CharField(max_length=15, default = 'Recebida')
     is_finished = models.BooleanField(default=False)
 
