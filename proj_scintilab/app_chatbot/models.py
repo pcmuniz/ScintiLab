@@ -1,5 +1,5 @@
 from django.db import models
-# import vonage
+import vonage
 
 # class Person(models.Model):
 #     email = models.EmailField()
