@@ -1,5 +1,6 @@
 from django import forms
 from .models import CustomerData, ServiceOrder
+from django.core.exceptions import ValidationError
 
 class CustomerRegisterForm(forms.ModelForm):
     class Meta:
@@ -94,3 +95,10 @@ class CreateServiceOrder(forms.Form):
     acessories = forms.CharField(label="Acessórios", max_length=300, required=True)
     observations = forms.CharField(label="Observações p/ o Técnico", max_length=300, required=True)
     files = forms.CharField(label="Arquivos para Salvar", max_length=300, required=True)
+
+    def clean_name(self):
+        name = self.cleaned_data['client_name']
+        if name == 'CR7':
+            raise ValidationError('O nome nao pode ser esse')
+        else:
+            return name

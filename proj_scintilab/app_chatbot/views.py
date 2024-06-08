@@ -227,7 +227,7 @@ class Teste(View):
     def get(self, request):
         form = CreateServiceOrder()
         ctx = {'form': form}
-        return render(request, 'app_chatbot/teste.html', ctx)
+        return render(request, 'app_chatbot/teste_formulario.html', ctx)
     
     def post(self, request):
         form = CreateServiceOrder(request.POST)
@@ -304,8 +304,17 @@ class Teste(View):
             
             service_order_data.save()
 
-            return HttpResponse('Thanks, ' + client_data.client_name)
+            return HttpResponse('Thanks, ' + client_data.client_name + '. Write down your protocol code: ' + service_order_data.protocol_code)
         else:
             form = CreateServiceOrder()
 
         return redirect('pagina-os-ativas')
+    
+class Teste2(View):
+    def get(self, request):
+        service_order = ServiceOrder.objects.all()
+        return render(request, 'app_chatbot/teste_os_ativas.html', {'serviceorder': service_order})
+    
+    def post(self, request):
+        service_order = ServiceOrder.objects.all()
+        return render(request, 'app_chatbot/teste_os_ativas.html', {'serviceorder': service_order})

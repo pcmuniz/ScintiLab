@@ -1,0 +1,17 @@
+<h1>Hello!</h1>
+<form method="post">
+    {% csrf_token %}
+    <select name="fornecedor_escolhido">
+    <option selected disabled>Escolha o Fornecedor</option>
+    <option>Todos</option>
+    {% for fornecedor in fornecedores %}
+    <option>{{ fornecedor.nome_empresa}}</option>
+    {% endfor %}
+    </select>
+
+    <button type="submit">Filtrar</button>
+</form>
+
+    {% for order in serviceorder %}
+        <p>Cliente: {{order.client_name}} | Protocolo: {{order.protocol_code}}</p>
+    {% endfor%}
