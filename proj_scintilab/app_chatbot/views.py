@@ -116,27 +116,27 @@ class OrdemServicoView(View):
     def post(self, request):
         if request.method == "POST":
             form = request.POST
-            dados_cliente = DadosCliente(
+            dados_cliente = ClientData(
                 nome_cliente=form["nome_cliente"], cpf_cnpj =form["id_cliente"], rg_ie=form["sub_id_cliente"], data_nascimento_cliente=form["data_nascimento_cliente"],
                 email_cliente=form["email_cliente"], celular_cliente=form["celular_cliente"], telefone_cliente=form["telefone_cliente"], endereco_cliente=form["endereco_cliente"],
                 bairro_cliente=form["bairro_cliente"], cep_cliente=form["cep_cliente"], cidade_cliente=form["cidade_cliente"], uf_cliente=form["uf_cliente"]
                 )
             dados_cliente.save()
 
-            dados_comprador = DadosComprador(
+            dados_comprador = BuyerData(
                 nome_comprador=form["nome_comprador"], cpf_cnpj =form["id_comprador"], rg_ie=form["sub_id_comprador"], data_nascimento_comprador=form["data_nascimento_comprador"],
                 email_comprador=form["email_comprador"], celular_comprador=form["celular_comprador"], telefone_comprador=form["telefone_comprador"], endereco_comprador=form["endereco_comprador"],
                 bairro_comprador=form["bairro_comprador"], cep_comprador=form["cep_comprador"], cidade_comprador=form["cidade_comprador"], uf_comprador=form["uf_comprador"]
                 )
             dados_comprador.save()
 
-            dados_compra = DadosCompra(
+            dados_compra = PurchaseData(
                 nome_loja =form["loja"], num_nf=form["nf"], data_compra=form["data_compra"],
                 cod_produto=form["cod_produto"], valor=form["valor"]
                 )
             dados_compra.save()
 
-            dados_equipamento = DadosEquipamento(
+            dados_equipamento = EquipmentData(
                 nome_equipamento=form["equipamento"], marca =form["marca"], lacrado=form["estado_lacre"], modelo=form["modelo"],
                 num_serie=form["num_serie"], senha_usuario=form["senha_usuario"], defeito=form["texto_defeito"], estado=form["estado_aparelho"],
                 acessorios=form["acessorios"], observacoes=form["observacoes"], arquivos=form["arquivos"]
@@ -149,26 +149,28 @@ class OrdemServicoView(View):
 
 class OrdemServicoAtivaView(View):
     def get(self, request):
-        nomes = DadosCliente.objects.values('id', 'nome_cliente')
-        eletrodomesticos = DadosEquipamento.objects.values('nome_equipamento')
-        problemas = DadosEquipamento.objects.values('defeito')
+        return render(request, 'app_chatbot/os_ativas.html')
+    
+    def post(self, request):
+        service_order = ServiceOrder.objects.all()
+        protocol_code = request.POST['protocol_code']
 
-        contexto = {
-            'nomes': nomes,
-            'eletrodomesticos': eletrodomesticos,
-            'problemas': problemas,
-        }
+        for order in service_order:
+            if protocol_code == order.protocol_code:
+                return render(request, 'app_chatbot/os_ativas.html', {'protocol_code': order})
+            
+        return HttpResponse("Hello!")
 
-        return render(request, 'app_chatbot/os_ativas.html', contexto)
+          
 
 # TODO: transformar CancelOrder em função, para ser chamada tanto pelo cliente quanto pelo funcionário
 class CancelOrder(View):
     def get(self, request, order_id):
-        ordem_servico = get_object_or_404(OrdemServico, id=order_id)
+        ordem_servico = get_object_or_404(ServiceOrder, id=order_id)
         return render(request, 'app_chatbot/TemporaryPages/CancelOrder/cancel_order.html', {'ordem_servico': ordem_servico})
 
     def post(self, request, order_id):
-        ordem_servico = get_object_or_404(OrdemServico, id=order_id)
+        ordem_servico = get_object_or_404(ServiceOrder, id=order_id)
         if ordem_servico.status != 'Cancelada':
             ordem_servico.status = 'Cancelada'
             ordem_servico.save()
@@ -177,12 +179,12 @@ class CancelOrder(View):
 
 class ChangeOrderStatus(View):
     def get(self, request, order_id):
-        ordem_servico = get_object_or_404(OrdemServico, id=order_id)
+        ordem_servico = get_object_or_404(ServiceOrder, id=order_id)
         form = ChangeOrderStatusForm(instance=ordem_servico)
         return render(request, 'app_chatbot/TemporaryPages/ChangeOrderStatus/change_order_status.html', {'form': form, 'ordem_servico': ordem_servico})
 
     def post(self, request, order_id):
-        ordem_servico = get_object_or_404(OrdemServico, id=order_id)
+        ordem_servico = get_object_or_404(ServiceOrder, id=order_id)
         form = ChangeOrderStatusForm(request.POST, instance=ordem_servico)
         if form.is_valid():
             ordem_servico = form.save(commit = False)
@@ -296,8 +298,9 @@ class Teste(View):
 
             equipment_data.save()
 
+            protocol_code = (str(uuid.uuid4())[:8]).upper()
             service_order_data = ServiceOrder(client_data = client_data, buyer_data = buyer_data, purchase_data = purchase_data,
-                                              equipment_data = equipment_data, protocol_code = str(uuid.uuid4())[:8])
+                                              equipment_data = equipment_data, protocol_code = protocol_code)
             
             service_order_data.save()
 
