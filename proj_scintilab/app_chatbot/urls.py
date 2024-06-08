@@ -19,4 +19,5 @@ urlpatterns = [
     path('ordem-servico/<int:order_id>/cancelar/', views.CancelOrder.as_view(), name='cancelar_ordem_servico'),
     path('modal/', views.Modal.as_view(), name='cancelar_ordem_servico'),
     path('teste/', views.Teste.as_view(), name='teste'),
+    path('teste2/', views.Teste2.as_view(), name='teste-2'),
 ]
