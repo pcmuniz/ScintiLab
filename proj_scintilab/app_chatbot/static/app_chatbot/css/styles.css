@@ -99,6 +99,26 @@ z-index: 1; /* ft2.svg */
   z-index: 2;
 }
 
+.svg-container #cp-0 {
+  z-index: 2;
+  top: 15px; 
+  left: 150px;
+  width: 950px;
+  height: 500px;
+  font-size: 30px;
+  
+}
+
+.svg-container #cp-1 {
+  z-index: 2;
+  top: 100px; 
+  left: 218px;
+  width: 950px;
+  height: 500px;
+  font-size: 40px;
+  
+}
+
 .svg-container img:nth-child(3) {
 z-index: 3; /* hand.svg */
 width: 700px; 
@@ -207,4 +227,37 @@ font-family: 'Inter';
   top: 120px;
   left: 430px;
 }
+
+.big-btn {
+  background-color: #d3d3d3;
+  color: #132D49;
+  font-size: 15px;
+  z-index: 2;
+  position: absolute;
+  display: block;
+  width: 400px;
+  height: 250px;
+  border: none;
+  border-radius: 80px;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.big-btn:hover {
+  background-color: #132D49; /* Cor de fundo quando o mouse está sobre o botão */
+  color: #d3d3d3; /* Cor do texto quando o mouse está sobre o botão */
+}
+
+#bb-0 {
+  top: 190px;
+  left: 200px;
+}
+
+#bb-1 {
+  left: 645px;
+  top: 190px;
+}
+
 
