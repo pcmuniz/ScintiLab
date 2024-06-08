@@ -122,6 +122,24 @@ color: #132D49;
   font-size: 49px; 
 }
 
+#cl-p0 {
+  top: 50px; 
+  left: 530px;
+  font-size: 49px; 
+}
+
+#cl-p1 {
+  top: 280px; 
+  left: 30px;
+  font-size: 15px; 
+}
+
+#el-p0 {
+  top: 250px; 
+  left: 70px;
+  font-size: 15px; 
+}
+
 #cr-p2 {
   top: 250px; 
   left: 70px;
@@ -189,3 +207,4 @@ font-family: 'Inter';
   top: 120px;
   left: 430px;
 }
+
