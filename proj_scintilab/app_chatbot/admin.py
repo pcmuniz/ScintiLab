@@ -1,9 +1,8 @@
 from django.contrib import admin
-from .models import DadosCliente, DadosComprador, DadosCompra, DadosEquipamento
-# , OrdemServico
+from .models import ClientData, BuyerData, PurchaseData, EquipmentData, ServiceOrder
 
-admin.site.register(DadosCliente)
-admin.site.register(DadosComprador)
-admin.site.register(DadosCompra)
-admin.site.register(DadosEquipamento)
-# admin.site.register(OrdemServico)
+admin.site.register(ClientData)
+admin.site.register(BuyerData)
+admin.site.register(PurchaseData)
+admin.site.register(EquipmentData)
+admin.site.register(ServiceOrder)

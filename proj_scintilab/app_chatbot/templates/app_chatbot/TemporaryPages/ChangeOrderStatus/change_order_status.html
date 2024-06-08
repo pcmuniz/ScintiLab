@@ -1,0 +1,16 @@
+<!-- change_order_status.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Change Order Status</title>
+</head>
+<body>
+    <h1>Alterar Status da Ordem de Serviço</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Salvar</button>
+    </form>
+</body>
+</html>

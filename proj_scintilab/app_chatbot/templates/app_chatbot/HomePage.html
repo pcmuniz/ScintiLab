@@ -1,0 +1,20 @@
+{% extends 'app_chatbot/base.html' %}
+{% block title %}Cliente{% endblock title %}
+{% block block-id %}id="b-flex"{% endblock block-id %}
+{% block navbar %}{% endblock navbar %}
+{% load static %}
+
+{% block content %}
+
+<div class="svg-container">
+    <img src="{% static 'app_chatbot/img/ft1.svg' %}" alt="SVG Image 1">
+    <img src="{% static 'app_chatbot/img/ft2.svg' %}" alt="SVG Image 2">
+    <img src="{% static 'app_chatbot/img/hand.svg' %}" alt="SVG Image 3">
+    <p class="custom-font">Seus serviços da Eceel-</p>
+    <p class="custom-fonta">Tec em <b><b>um só lugar.</b></b></p>
+    <span class="custom-span">Solicite e acompanhe o conserto do seu aparelho de onde estiver</span>
+    <a href="{% url 'customer-register-page' %}" class="btn btn-lg custom-btn">Fazer Login</a>
+    <p class="custom-ask">Primeira vez aqui? <a href="{% url 'customer-register-page' %}">Crie uma conta</a></p>   
+</div>
+
+{% endblock content %}

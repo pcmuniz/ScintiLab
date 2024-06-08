@@ -1,44 +1,31 @@
 {% extends 'app_chatbot/base.html' %}
+{% block title %}Cliente{% endblock title %}
+{% block block-id %}id="b-flex"{% endblock block-id %}
+{% block navbar %}{% endblock navbar %}
+{% load static %}
 
 {% block content %}
-    <div class="container">
-      <div class="row justify-content-center mt-5">
-         <div class="col-md-6 border border-success rounded bg-light">
-            <h2 class="text-center p-3">Login</h2>
-            <nav class="navbar navbar-expand-lg sticky-top">
-               <div class="container-fluid">
-                  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"aria-labelledby="offcanvasNavbarLabel">
-                     <div class="offcanvas-body">
-                        <ul class="navbar-nav justify-content-center flex-grow-1 pe-3">
-                           <li class="nav-item">
-                              <a class="nav-link mx-lg-2 active" aria-current="page" href="">Cliente</a>
-                           </li>
-                           <li class="nav-item">
-                              <a class="nav-link mx-lg-2" href="{% url 'employee-login-page' %}">Contribuidor</a>
-                           </li>
-                        </ul>
-                     </div>
-                  </div>
-               </div>
-            </nav>
-            <form method="POST">
-               {% csrf_token %}
-               <div class="mb-3">
-                  <label for="username">E-mail</label>
-                  <input type="text" id="username" name="username" class="form-control w-10" maxlength="30" required />
-               </div>
-               <div class="mb-3">
-                  <label for="password">Senha</label>
-                  <input type="password" id="password" name="password" class="form-control w-10" maxlength="30" required />
-               </div>
-               <a href="{% url 'customer-register-page' %}">Crie sua conta</a>
-               <div class="text-center p-3">
-                  <button type="submit" class="btn btn-primary">Entrar</button>
-               </div>
-            </form>
-         </div>
-      </div>
+<div class="svg-container">
+   <img src="{% static 'app_chatbot/img/bg.svg' %}" alt="SVG Image 1">
+   <img src="{% static 'app_chatbot/img/card.svg' %}" alt="SVG Image 2" id="cr-p0">
+   <p class="custom-font" id="cl-p0"><b>Login</b></p>
+   <div class="container mt-5 custom-register-form">
+      <form method="post">
+        {% csrf_token %}
+        <div class="form-group p-1">
+          <label for="formGroupExampleInput">E-mail</label>
+          <input type="text" class="form-control small-input" name="example_input">
+        </div>
+        <div class="form-group p-1">
+          <label for="formGroupExampleInput2">Senha</label>
+          <input type="text" class="form-control small-input" name="another_input">
+        </div>
+        <button type="submit" class="btn btn-lg custom-btn" id="customer-register-btn">Criar conta</button>
+      </form>
+      <p class="custom-font" id="cr-p2">Primeira vez aqui? <a href="{% url 'customer-register-page' %}">Criar conta</a></p>
+      <p class="custom-font" id="cl-p1" >É funcionário? <a href="{% url 'employee-login-page' %}">Entrar como funcionário</a></p>
    </div>
+</div>
 {% endblock content %}
 
 
