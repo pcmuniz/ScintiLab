@@ -26,44 +26,24 @@
                 <a class="navbar-brand" href="#">
                     <img src="{% static 'app_chatbot/img/logo_eceel-tec.png' %}" width="180" height="60" class="d-inline-block align-top" alt="">
                 </a>
-                <a href="{% url 'pagina-inicial' %}" class="btn btn-primary ms-auto">Ir para Home</a>
+                <a href="{% url 'home-page' %}" class="btn btn-primary ms-auto">Ir para Home</a>
             </div>
         </nav>
     </header>
     
-        <div class="card-block">
-            <!-- TODO: Implementar loop -->
-            <div class="card mb-3">
-                {% for nome in nomes %}
-                {% for eletrodomestico in eletrodomesticos %}
-                {% for problema in problemas %}
-                <div class="row no-gutters">
-                    <div class="col-md-10">
-                        <div class="card-body">
-                            <!-- TODO: Setar dados para getar -->
-                            <h5 class="card-title">Cód: {{ nome.id }}</h5>
-                            <div class="card-info-topics">
-                                <p>Cliente: </p>
-                                <p>Eletrodoméstico: </p>
-                                <p>Problema: </p>
-                            </div>
-                            <div class="card-info">
-                                <!-- TODO: Retornar dados getados -->
-                                <p>{{ nome.nome_cliente }}</p>
-                                <p>{{ eletrodomestico.nome_equipamento }}</p>
-                                <p>{{ problema.defeito }}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {% endfor %}
-                {% endfor %}
-                {% endfor %}
-            </div>
+    <form class="row g-3" method="post">
+        {% csrf_token %}
+        <div class="col-auto">
+          <input type="text" class="form-control" name="protocol_code" placeholder="Digite o código do Protocolo">
         </div>
-    
-   
-
+        <div class="col-auto">
+          <button type="submit" class="btn btn-primary mb-3">Confirm identity</button>
+        </div>
+    </form>
+    <h1> Protocolo: {{ protocol_code.protocol_code }} </h1> 
+    <h1> Status: {{ protocol_code.status }} </h1> 
+    <h1> Cliente: {{ protocol_code.client_name }} </h1> 
+    <h1> Data Entrada: {{ protocol_code.create_date }} </h1> 
 
 
 
@@ -77,6 +57,5 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 </body>
-
 
 </html>

@@ -108,6 +108,10 @@ class ServiceOrder(models.Model):
     status = models.CharField(max_length=15, default = 'Recebida')
     is_finished = models.BooleanField(default=False)
 
+    @property
+    def client_name(self):
+        return self.client_data.client_name
+
     # NOTE: provavelmente remover as opções Recebida e Cancelada
     STATUS_CHOICES = [
         ('Recebida', 'Recebida'),
