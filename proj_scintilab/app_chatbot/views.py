@@ -313,8 +313,30 @@ class Teste(View):
 class Teste2(View):
     def get(self, request):
         service_order = ServiceOrder.objects.all()
-        return render(request, 'app_chatbot/teste_os_ativas.html', {'serviceorder': service_order})
+        service_order_date = ServiceOrder.objects.values('create_date').distinct()
+        service_order_status = ServiceOrder.objects.values('status').distinct()
+        filtro = False
+        return render(request, 'app_chatbot/teste_os_ativas.html', {'service_order': service_order, 'service_order_date': service_order_date,
+                                                                    'service_order_status': service_order_status,'filtro': filtro})
     
     def post(self, request):
         service_order = ServiceOrder.objects.all()
-        return render(request, 'app_chatbot/teste_os_ativas.html', {'serviceorder': service_order})
+        service_order_date = ServiceOrder.objects.values('create_date').distinct()
+        service_order_status = ServiceOrder.objects.values('status').distinct()
+        choosen_status = request.POST['choosen_status']
+        choosen_date = request.POST['choosen_date']
+        filtro = True
+        y = [x.create_date for x in service_order]
+        print(type(y[0]))
+        print(y[0])
+        print(type(service_order_date[0]['create_date']))
+        print(service_order_date[0]['create_date'])
+        # i = 0
+        # for i in range(11):
+        #     if service_order[i]['create_date'] == service_order_date[0]['create_date']:
+        #         print('Sim')
+        #     print('nao')
+            
+        return render(request, 'app_chatbot/teste_os_ativas.html', {'service_order': service_order, 'service_order_date': service_order_date,
+                                                                    'service_order_status': service_order_status,'choosen_status': choosen_status, 
+                                                                    'choosen_date': choosen_date, 'filtro': filtro})
