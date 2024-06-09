@@ -11,6 +11,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login as auth_login
 from django.contrib.auth.hashers import check_password
 import uuid
+from datetime import datetime
 
 class HomePage(View):
     def get(self, request):
@@ -323,19 +324,14 @@ class Teste2(View):
         service_order = ServiceOrder.objects.all()
         service_order_date = ServiceOrder.objects.values('create_date').distinct()
         service_order_status = ServiceOrder.objects.values('status').distinct()
-        choosen_status = request.POST['choosen_status']
-        choosen_date = request.POST['choosen_date']
         filtro = True
-        y = [x.create_date for x in service_order]
-        print(type(y[0]))
-        print(y[0])
-        print(type(service_order_date[0]['create_date']))
-        print(service_order_date[0]['create_date'])
-        # i = 0
-        # for i in range(11):
-        #     if service_order[i]['create_date'] == service_order_date[0]['create_date']:
-        #         print('Sim')
-        #     print('nao')
+        choosen_status = request.POST['choosen_status']
+        choosen_date_post= request.POST['choosen_date']
+
+        if choosen_date_post == 'Todos':
+            choosen_date = choosen_date_post
+        else:
+            choosen_date = datetime.strptime(choosen_date_post, '%d/%m/%Y').date()        
             
         return render(request, 'app_chatbot/teste_os_ativas.html', {'service_order': service_order, 'service_order_date': service_order_date,
                                                                     'service_order_status': service_order_status,'choosen_status': choosen_status, 
