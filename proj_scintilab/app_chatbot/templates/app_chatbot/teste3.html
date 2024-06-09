@@ -1,0 +1,205 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Ordem de Serviço</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="{% static 'app_chatbot/css/styles.css' %}"> -->
+
+</head>
+<style>
+.custom-tabs .nav-link {
+    border: 1px solid transparent;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    color: #495057;
+    background-color: #f8f9fa;
+    margin-right: 0.125rem;
+    padding: 0.5rem 1rem;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.custom-tabs .nav-link.active {
+    color: #495057;
+    background-color: #ffffff;
+    border-color: #dee2e6 #dee2e6 #ffffff;
+    cursor: default;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.custom-tabs .nav-link:hover {
+    border-color: #dee2e6 #dee2e6 #e9ecef;
+    background-color: #e9ecef;
+}
+
+.tab-content {
+    border: 1px solid #dee2e6;
+    border-top: 0;
+    padding: 1rem;
+    border-radius: 0 0 1rem 1rem;
+}
+</style>
+
+<body>
+
+<div class="container mt-5">
+    <ul class="nav nav-tabs custom-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="dados-cliente-tab" data-toggle="tab" href="#dados-cliente" role="tab" aria-controls="dados-cliente" aria-selected="true">Dados do Cliente</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="dados-comprador-tab" data-toggle="tab" href="#dados-comprador" role="tab" aria-controls="dados-comprador" aria-selected="false">Dados do Comprador</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="dados-aparelho-tab" data-toggle="tab" href="#dados-aparelho" role="tab" aria-controls="dados-aparelho" aria-selected="false">Dados do Aparelho</a>
+        </li>
+        
+    </ul>
+
+    <form method="post">
+        {% csrf_token %}
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="dados-cliente" role="tabpanel" aria-labelledby="dados-cliente-tab">
+                <div class="form-group mt-3">
+                    {{ form.client_name.label_tag }} {{ form.client_name }}
+                </div>
+                <div class="form-group">
+                    {{ form.client_cpf_cnpj.label_tag }} {{ form.client_cpf_cnpj }}
+                </div>
+                <div class="form-group">
+                    {{ form.client_rg_ie.label_tag }} {{ form.client_rg_ie }}
+                </div>
+                <div class="form-group">
+                    {{ form.client_birthdate.label_tag }} {{ form.client_birthdate }}
+                </div>
+                <div class="form-group">
+                    {{ form.client_email.label_tag }} {{ form.client_email }}
+                </div>
+                <div class="form-group">
+                    {{ form.client_cellphone.label_tag }} {{ form.client_cellphone }}
+                </div>
+                <div class="form-group">
+                    {{ form.client_telephone.label_tag }} {{ form.client_telephone }}
+                </div>
+                <div class="form-group">
+                    {{ form.client_adress.label_tag }} {{ form.client_adress }}
+                </div>
+                <div class="form-group">
+                    {{ form.client_neighborhood.label_tag }} {{ form.client_neighborhood }}
+                </div>
+                <div class="form-group">
+                    {{ form.client_zip.label_tag }} {{ form.client_zip }}
+                </div>
+                <div class="form-group">
+                    {{ form.client_city.label_tag }} {{ form.client_city }}
+                </div>
+                <div class="form-group">
+                    {{ form.client_state.label_tag }} {{ form.client_state }}
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="dados-comprador" role="tabpanel" aria-labelledby="dados-comprador-tab">
+                <div class="form-group mt-3">
+                    {{ form.buyer_name.label_tag }} {{ form.buyer_name }}
+                </div>
+                <div class="form-group">
+                    {{ form.buyer_cpf_cnpj.label_tag }} {{ form.buyer_cpf_cnpj }}
+                </div>
+                <div class="form-group">
+                    {{ form.buyer_rg_ie.label_tag }} {{ form.buyer_rg_ie }}
+                </div>
+                <div class="form-group">
+                    {{ form.buyer_birthdate.label_tag }} {{ form.buyer_birthdate }}
+                </div>
+                <div class="form-group">
+                    {{ form.buyer_email.label_tag }} {{ form.buyer_email }}
+                </div>
+                <div class="form-group">
+                    {{ form.buyer_cellphone.label_tag }} {{ form.buyer_cellphone }}
+                </div>
+                <div class="form-group">
+                    {{ form.buyer_telephone.label_tag }} {{ form.buyer_telephone }}
+                </div>
+                <div class="form-group">
+                    {{ form.buyer_adress.label_tag }} {{ form.buyer_adress }}
+                </div>
+                <div class="form-group">
+                    {{ form.buyer_neighborhood.label_tag }} {{ form.buyer_neighborhood }}
+                </div>
+                <div class="form-group">
+                    {{ form.buyer_zip.label_tag }} {{ form.buyer_zip }}
+                </div>
+                <div class="form-group">
+                    {{ form.buyer_city.label_tag }} {{ form.buyer_city }}
+                </div>
+                <div class="form-group">
+                    {{ form.buyer_state.label_tag }} {{ form.buyer_state }}
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="dados-aparelho" role="tabpanel" aria-labelledby="dados-aparelho-tab">
+                <div class="form-group mt-3">
+                    {{ form.store_name.label_tag }} {{ form.store_name }}
+                </div>
+                <div class="form-group">
+                    {{ form.receipt_number.label_tag }} {{ form.receipt_number }}
+                </div>
+                <div class="form-group">
+                    {{ form.purchase_date.label_tag }} {{ form.purchase_date }}
+                </div>
+                <div class="form-group">
+                    {{ form.product_code.label_tag }} {{ form.product_code }}
+                </div>
+                <div class="form-group">
+                    {{ form.price.label_tag }} {{ form.price }}
+                </div>
+                <div class="form-group">
+                    {{ form.equipment_name.label_tag }} {{ form.equipment_name }}
+                </div>
+                <div class="form-group">
+                    {{ form.brand.label_tag }} {{ form.brand }}
+                </div>
+                <div class="form-group">
+                    {{ form.new.label_tag }} {{ form.new }}
+                </div>
+                <div class="form-group">
+                    {{ form.model.label_tag }} {{ form.model }}
+                </div>
+                <div class="form-group">
+                    {{ form.serial_number.label_tag }} {{ form.serial_number }}
+                </div>
+                <div class="form-group">
+                    {{ form.user_password.label_tag }} {{ form.user_password }}
+                </div>
+                <div class="form-group">
+                    {{ form.defect.label_tag }} {{ form.defect }}
+                </div>
+                <div class="form-group">
+                    {{ form.state.label_tag }} {{ form.state }}
+                </div>
+                <div class="form-group">
+                    {{ form.acessories.label_tag }} {{ form.acessories }}
+                </div>
+                <div class="form-group">
+                    {{ form.observations.label_tag }} {{ form.observations }}
+                </div>
+                <div class="form-group">
+                    {{ form.files.label_tag }} {{ form.files }}
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-4">Enviar</button>
+    </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
