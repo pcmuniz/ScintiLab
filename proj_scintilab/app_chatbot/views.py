@@ -340,3 +340,106 @@ class Teste2(View):
         return render(request, 'app_chatbot/teste_os_ativas.html', {'service_order': service_order, 'service_order_date': service_order_date,
                                                                     'service_order_status': service_order_status,'choosen_status': choosen_status, 
                                                                     'choosen_date': choosen_date, 'filtro': filtro})
+    
+
+# class Teste3(View):
+#     def get(self, request):
+#         return render(request, 'app_chatbot/teste3.html')
+    
+#     def post(request):
+#         if request.method == 'POST':
+#             form = CreateServiceOrder(request.POST)
+#             if form.is_valid():
+#                 # Process form data
+#                 pass
+#         else:
+#             form = CreateServiceOrder()
+
+#         return render(request, 'app_chatbot/teste3.html', {'form': form})
+
+class Teste3(View):
+    def get(self, request):
+        form = CreateServiceOrder()
+        ctx = {'form': form}
+        return render(request, 'app_chatbot/teste3.html', ctx)
+    
+    def post(self, request):
+        form = CreateServiceOrder(request.POST)
+        if form.is_valid():
+            client_name = form.cleaned_data['client_name']
+            client_cpf_cnpj = form.cleaned_data['client_cpf_cnpj']
+            client_rg_ie = form.cleaned_data['client_rg_ie']
+            client_birthdate = form.cleaned_data['client_birthdate']
+            client_email = form.cleaned_data['client_email']
+            client_cellphone = form.cleaned_data['client_cellphone']
+            client_telephone = form.cleaned_data['client_telephone']
+            client_adress = form.cleaned_data['client_adress']
+            client_neighborhood = form.cleaned_data['client_neighborhood']
+            client_zip = form.cleaned_data['client_zip']
+            client_city = form.cleaned_data['client_city']
+            client_state = form.cleaned_data['client_state']
+
+            buyer_name = form.cleaned_data['buyer_name']
+            buyer_cpf_cnpj = form.cleaned_data['buyer_cpf_cnpj']
+            buyer_rg_ie = form.cleaned_data['buyer_rg_ie']
+            buyer_birthdate = form.cleaned_data['buyer_birthdate']
+            buyer_email = form.cleaned_data['buyer_email']
+            buyer_cellphone = form.cleaned_data['buyer_cellphone']
+            buyer_telephone = form.cleaned_data['buyer_telephone']
+            buyer_adress = form.cleaned_data['buyer_adress']
+            buyer_neighborhood = form.cleaned_data['buyer_neighborhood']
+            buyer_zip = form.cleaned_data['buyer_zip']
+            buyer_city = form.cleaned_data['buyer_city']
+            buyer_state = form.cleaned_data['buyer_state']
+
+            store_name = form.cleaned_data['store_name']
+            receipt_number = form.cleaned_data['receipt_number']
+            purchase_date = form.cleaned_data['purchase_date']
+            product_code = form.cleaned_data['product_code']
+            price = form.cleaned_data['price']
+
+            equipment_name = form.cleaned_data['equipment_name']
+            brand = form.cleaned_data['brand']
+            new = form.cleaned_data['new']
+            model = form.cleaned_data['model']
+            serial_number = form.cleaned_data['serial_number']
+            user_password = form.cleaned_data['user_password']
+            defect = form.cleaned_data['defect']
+            state = form.cleaned_data['state']
+            acessories = form.cleaned_data['acessories']
+            observations = form.cleaned_data['observations']
+            files = form.cleaned_data['files']
+    
+            buyer_data = BuyerData(buyer_name = buyer_name, buyer_cpf_cnpj = buyer_cpf_cnpj, buyer_rg_ie = buyer_rg_ie,buyer_birthdate = buyer_birthdate,
+                buyer_email = buyer_email, buyer_cellphone = buyer_cellphone, buyer_telephone = buyer_telephone, buyer_adress = buyer_adress,
+                buyer_neighborhood = buyer_neighborhood,buyer_zip = buyer_zip,buyer_city = buyer_city,buyer_state = buyer_state)
+            
+            buyer_data.save()
+
+            client_data = ClientData(client_name = client_name, client_cpf_cnpj = client_cpf_cnpj, client_rg_ie = client_rg_ie,client_birthdate = client_birthdate,
+                client_email = client_email, client_cellphone = client_cellphone, client_telephone = client_telephone, client_adress = client_adress,
+                client_neighborhood = client_neighborhood,client_zip = client_zip,client_city = client_city,client_state = client_state)
+            
+            client_data.save()
+
+            purchase_data = PurchaseData(store_name = store_name, receipt_number = receipt_number, purchase_date = purchase_date,
+                product_code = product_code,price = price)
+            
+            purchase_data.save()
+
+            equipment_data = EquipmentData(equipment_name = equipment_name, brand = brand, new = new, model = model, serial_number = serial_number,
+                user_password = user_password, defect = defect, state = state, acessories = acessories,observations = observations, files = files)
+
+            equipment_data.save()
+
+            protocol_code = (str(uuid.uuid4())[:8]).upper()
+            service_order_data = ServiceOrder(client_data = client_data, buyer_data = buyer_data, purchase_data = purchase_data,
+                                              equipment_data = equipment_data, protocol_code = protocol_code)
+            
+            service_order_data.save()
+
+            return HttpResponse('Thanks, ' + client_data.client_name + '. Write down your protocol code: ' + service_order_data.protocol_code)
+        else:
+            form = CreateServiceOrder()
+
+        return redirect('pagina-os-ativas')
