@@ -1,17 +1,42 @@
-<h1>Hello!</h1>
-<form method="post">
+<h1>Hello, stalker!</h1>
+<form method="POST">
     {% csrf_token %}
-    <select name="fornecedor_escolhido">
-    <option selected disabled>Escolha o Fornecedor</option>
-    <option>Todos</option>
-    {% for fornecedor in fornecedores %}
-    <option>{{ fornecedor.nome_empresa}}</option>
-    {% endfor %}
+
+    <select name="choosen_date">
+        <option selected disabled>Escolha a Data</option>
+        <option>Todos</option>
+        {% for order in service_order_date %}
+        <option>{{ order.create_date | date:"d/m/Y"}}</option>
+        {% endfor %}
+    </select>
+
+    <select name="choosen_status">
+        <option selected disabled>Escolha o Status</option>
+        <option>Todos</option>
+        {% for order in service_order_status %}
+        <option>{{ order.status }}</option>
+        {% endfor %}
     </select>
 
     <button type="submit">Filtrar</button>
+
 </form>
 
-    {% for order in serviceorder %}
-        <p>Cliente: {{order.client_name}} | Protocolo: {{order.protocol_code}}</p>
-    {% endfor%}
+{% if filtro == 0 %}
+    {% for order in service_order %}
+        <p>Cliente: {{ order.client_name }} | Protocolo: {{ order.protocol_code }} | Status: {{order.status}} | Entrada: {{order.create_date | date:"d/m/Y"}}</p>
+    {% endfor %}
+{% else %}
+<h3>Filtro: {{choosen_date}} || {{choosen_status}}</h3>
+    {% for order in service_order %}
+        {% if choosen_date == 'Todos' and choosen_status == 'Todos' %}
+            <p>Cliente: {{ order.client_name }} | Protocolo: {{ order.protocol_code }} | Status: {{order.status}}</p>
+        {% elif choosen_date == order.create_date and choosen_status == 'Todos' %}
+            <p>Cliente: {{ order.client_name }} | Protocolo: {{ order.protocol_code }} | Status: {{order.status}}</p>
+        {% elif choosen_date == 'Todos' and choosen_status ==  order.status %}
+            <p>Cliente: {{ order.client_name }} | Protocolo: {{ order.protocol_code }} | Status: {{order.status}}</p>
+        {% elif choosen_date == order.create_date and choosen_status ==  order.status %}
+            <p>Cliente: {{ order.client_name }} | Protocolo: {{ order.protocol_code }} | Status: {{order.status}}</p>
+        {% endif %}
+    {% endfor %}
+{% endif %}
