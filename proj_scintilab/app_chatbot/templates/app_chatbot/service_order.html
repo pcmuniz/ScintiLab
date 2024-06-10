@@ -1,0 +1,384 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Ordem de Serviço</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'app_chatbot/css/styles.css' %}">
+
+</head>
+<style>
+.custom-btn {
+    position: relative  ;
+    top: -1px;
+    left: 450px;
+}
+
+.custom-tabs .nav-link {
+    border: 1px solid transparent;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    color: #495057;
+    background-color: #f8f9fa;
+    margin-right: 0.125rem;
+    padding: 0.5rem 6.9rem;
+    /* 7.13802rem */
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.custom-tabs .nav-link.active {
+    color: #495057;
+    background-color: #ffffff;
+    border-color: #dee2e6 #dee2e6 #ffffff;
+    cursor: default;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.custom-tabs .nav-link:hover {
+    border-color: #dee2e6 #dee2e6 #e9ecef;
+    background-color: #e9ecef;
+}
+
+.tab-content {
+    border: 1px solid #dee2e6;
+    border-top: 0;
+    padding: 1rem;
+    border-radius: 0 0 1rem 1rem;
+    background-color: #ffffff;
+}
+
+.container {
+    position: relative;
+}
+.chama {
+    position: relative;
+    top: 100px;
+    background-color: #ffffff;
+    border-radius: 40px;
+    border: 2px solid #2BD968;
+}
+
+#img {
+    position: relative;
+    left: -38%;
+    top: -10px;
+}
+
+
+h1 {
+    text-align: center;
+}
+</style>
+
+<body>
+<div class="chama">
+    <div class="container mt-5">
+        <h1>
+            <a href="{% url 'customer-page' %}">
+                <img src="{% static 'app_chatbot/img/back.svg' %}" alt="Voltar" id="img">
+            </a>
+            Cadastro
+        </h1>
+        <ul class="nav nav-tabs custom-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="dados-cliente-tab" data-toggle="tab" href="#dados-cliente" role="tab" aria-controls="dados-cliente" aria-selected="true">Dados do Cliente</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="dados-comprador-tab" data-toggle="tab" href="#dados-comprador" role="tab" aria-controls="dados-comprador" aria-selected="false">Dados do Comprador</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="dados-aparelho-tab" data-toggle="tab" href="#dados-aparelho" role="tab" aria-controls="dados-aparelho" aria-selected="false">Dados do Aparelho</a>
+            </li>
+        </ul>
+    
+        <form method="post">
+            {% csrf_token %}
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="dados-cliente" role="tabpanel" aria-labelledby="dados-cliente-tab">
+                    <h3><b>Informações pessoais</b></h3>
+                    <div class="form-group mt-3">
+                        <label for="id_client_name">Nome do cliente</label>
+                        {{ form.client_name }}
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <label for="id_client_cpf_cnpj">CPF/CNPJ</label>
+                            {{ form.client_cpf_cnpj }}
+                        </div>
+                        <div class="form-group col">
+                            <label for="id_client_rg_ie">RG/IE</label>
+                            {{ form.client_rg_ie }}
+                        </div>
+                        <div class="form-group col">
+                            <label for="id_client_birthdate">Data de Nascimento</label>
+                            {{ form.client_birthdate }}
+                        </div>
+                    </div>
+                    <h3><b>Informações para contato</b></h3>
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <label for="id_client_email">E-mail</label>
+                            {{ form.client_email }}
+                        </div>
+                        <div class="form-group col">
+                            <label for="id_client_cellphone">Celular</label>
+                            {{ form.client_cellphone }}
+                        </div>
+                        <div class="form-group col">
+                            <label for="id_client_telephone">Telefone fixo</label>
+                            {{ form.client_telephone }}
+                        </div>
+                    </div>
+                    <h3><b>Informações de endereço</b></h3>
+                    <div class="form-group">
+                        <label for="id_client_adress">Rua</label>
+                        {{ form.client_adress }}
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <label for="id_client_neighbourhood">Bairro</label>
+                            {{ form.client_neighborhood }}
+                        </div>
+                        <div class="form-group col">
+                            <label for="id_client_zip">CEP</label>
+                            {{ form.client_zip }}
+                        </div>
+                        <div class="form-group col">
+                            <label for="id_client_city">Cidade</label>
+                            {{ form.client_city }}
+                        </div>
+                        <div class="form-group col">
+                            <label for="id_client_state">Estado</label>
+                            <select id="id_client_state" name="client_state" class="form-control">
+                                <option value="" {% if not form.client_state.value %}selected{% endif %}>Selecione o estado</option>
+                                <option value="AC" {% if form.client_state.value == "AC" %}selected{% endif %}>Acre (AC)</option>
+                                <option value="AL" {% if form.client_state.value == "AL" %}selected{% endif %}>Alagoas (AL)</option>
+                                <option value="AP" {% if form.client_state.value == "AP" %}selected{% endif %}>Amapá (AP)</option>
+                                <option value="AM" {% if form.client_state.value == "AM" %}selected{% endif %}>Amazonas (AM)</option>
+                                <option value="BA" {% if form.client_state.value == "BA" %}selected{% endif %}>Bahia (BA)</option>
+                                <option value="CE" {% if form.client_state.value == "CE" %}selected{% endif %}>Ceará (CE)</option>
+                                <option value="DF" {% if form.client_state.value == "DF" %}selected{% endif %}>Distrito Federal (DF)</option>
+                                <option value="ES" {% if form.client_state.value == "ES" %}selected{% endif %}>Espírito Santo (ES)</option>
+                                <option value="GO" {% if form.client_state.value == "GO" %}selected{% endif %}>Goiás (GO)</option>
+                                <option value="MA" {% if form.client_state.value == "MA" %}selected{% endif %}>Maranhão (MA)</option>
+                                <option value="MT" {% if form.client_state.value == "MT" %}selected{% endif %}>Mato Grosso (MT)</option>
+                                <option value="MS" {% if form.client_state.value == "MS" %}selected{% endif %}>Mato Grosso do Sul (MS)</option>
+                                <option value="MG" {% if form.client_state.value == "MG" %}selected{% endif %}>Minas Gerais (MG)</option>
+                                <option value="PA" {% if form.client_state.value == "PA" %}selected{% endif %}>Pará (PA)</option>
+                                <option value="PB" {% if form.client_state.value == "PB" %}selected{% endif %}>Paraíba (PB)</option>
+                                <option value="PR" {% if form.client_state.value == "PR" %}selected{% endif %}>Paraná (PR)</option>
+                                <option value="PE" {% if form.client_state.value == "PE" %}selected{% endif %}>Pernambuco (PE)</option>
+                                <option value="PI" {% if form.client_state.value == "PI" %}selected{% endif %}>Piauí (PI)</option>
+                                <option value="RJ" {% if form.client_state.value == "RJ" %}selected{% endif %}>Rio de Janeiro (RJ)</option>
+                                <option value="RN" {% if form.client_state.value == "RN" %}selected{% endif %}>Rio Grande do Norte (RN)</option>
+                                <option value="RS" {% if form.client_state.value == "RS" %}selected{% endif %}>Rio Grande do Sul (RS)</option>
+                                <option value="RO" {% if form.client_state.value == "RO" %}selected{% endif %}>Rondônia (RO)</option>
+                                <option value="RR" {% if form.client_state.value == "RR" %}selected{% endif %}>Roraima (RR)</option>
+                                <option value="SC" {% if form.client_state.value == "SC" %}selected{% endif %}>Santa Catarina (SC)</option>
+                                <option value="SP" {% if form.client_state.value == "SP" %}selected{% endif %}>São Paulo (SP)</option>
+                                <option value="SE" {% if form.client_state.value == "SE" %}selected{% endif %}>Sergipe (SE)</option>
+                                <option value="TO" {% if form.client_state.value == "TO" %}selected{% endif %}>Tocantins (TO)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="tab-pane fade" id="dados-comprador" role="tabpanel" aria-labelledby="dados-comprador-tab">
+                    <h3><b>Informações pessoais</b></h3>
+                    <div class="form-group mt-3">
+                        <label for="id_buyer_name">Nome do comprador</label>
+                        {{ form.buyer_name }}
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <label for="id_buyer_cpf_cnpj">CPF/CNPJ</label>
+                            {{ form.buyer_cpf_cnpj }}
+                        </div>
+                        <div class="form-group col">
+                            <label for="id_buyer_rg_ie">RG/IE</label>
+                            {{ form.buyer_rg_ie }}
+                        </div>
+                        <div class="form-group col">
+                            <label for="id_buyer_birthdate">Data de nascimento</label>
+                            {{ form.buyer_birthdate }}
+                        </div>
+                    </div>
+                    <h3><b>Informações para contato</b></h3>
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <label for="id_buyer_email">E-mail</label>
+                            {{ form.buyer_email }}
+                        </div>
+                        <div class="form-group col">
+                            <label for="id_buyer_cellphone">Celular</label>
+                            {{ form.buyer_cellphone }}
+                        </div>
+                        <div class="form-group col">
+                            <label for="id_buyer_telephone">Telefone fixo</label>
+                            {{ form.buyer_telephone }}
+                        </div>
+                    </div>
+                    <h3><b>Informações de endereço</b></h3>
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <label for="id_buyer_adress">Rua</label>
+                            {{ form.buyer_adress }}
+                        </div>
+                        <div class="form-group col">
+                            <label for="id_buyer_neighborhood">Bairro</label>
+                            {{ form.buyer_neighborhood }}
+                        </div>
+                        <div class="form-group col">
+                            <label for="id_buyer_zip">CEP</label>
+                            {{ form.buyer_zip }}
+                        </div>
+                        <div class="form-group col">
+                            <label for="id_buyer_city">Cidade</label>
+                            {{ form.buyer_city }}
+                        </div>
+                        <div class="form-group col">
+                            <label for="id_buyer_state">Estado</label>
+                            <select id="id_buyer_state" name="buyer_state" class="form-control">
+                                <option value="" selected>Selecione o estado</option>
+                                <option value="AC" {% if form.buyer_state.value == "AC" %}selected{% endif %}>Acre (AC)</option>
+                                <option value="AL" {% if form.buyer_state.value == "AL" %}selected{% endif %}>Alagoas (AL)</option>
+                                <option value="AP" {% if form.buyer_state.value == "AP" %}selected{% endif %}>Amapá (AP)</option>
+                                <option value="AM" {% if form.buyer_state.value == "AM" %}selected{% endif %}>Amazonas (AM)</option>
+                                <option value="BA" {% if form.buyer_state.value == "BA" %}selected{% endif %}>Bahia (BA)</option>
+                                <option value="CE" {% if form.buyer_state.value == "CE" %}selected{% endif %}>Ceará (CE)</option>
+                                <option value="DF" {% if form.buyer_state.value == "DF" %}selected{% endif %}>Distrito Federal (DF)</option>
+                                <option value="ES" {% if form.buyer_state.value == "ES" %}selected{% endif %}>Espírito Santo (ES)</option>
+                                <option value="GO" {% if form.buyer_state.value == "GO" %}selected{% endif %}>Goiás (GO)</option>
+                                <option value="MA" {% if form.buyer_state.value == "MA" %}selected{% endif %}>Maranhão (MA)</option>
+                                <option value="MT" {% if form.buyer_state.value == "MT" %}selected{% endif %}>Mato Grosso (MT)</option>
+                                <option value="MS" {% if form.buyer_state.value == "MS" %}selected{% endif %}>Mato Grosso do Sul (MS)</option>
+                                <option value="MG" {% if form.buyer_state.value == "MG" %}selected{% endif %}>Minas Gerais (MG)</option>
+                                <option value="PA" {% if form.buyer_state.value == "PA" %}selected{% endif %}>Pará (PA)</option>
+                                <option value="PB" {% if form.buyer_state.value == "PB" %}selected{% endif %}>Paraíba (PB)</option>
+                                <option value="PR" {% if form.buyer_state.value == "PR" %}selected{% endif %}>Paraná (PR)</option>
+                                <option value="PE" {% if form.buyer_state.value == "PE" %}selected{% endif %}>Pernambuco (PE)</option>
+                                <option value="PI" {% if form.buyer_state.value == "PI" %}selected{% endif %}>Piauí (PI)</option>
+                                <option value="RJ" {% if form.buyer_state.value == "RJ" %}selected{% endif %}>Rio de Janeiro (RJ)</option>
+                                <option value="RN" {% if form.buyer_state.value == "RN" %}selected{% endif %}>Rio Grande do Norte (RN)</option>
+                                <option value="RS" {% if form.buyer_state.value == "RS" %}selected{% endif %}>Rio Grande do Sul (RS)</option>
+                                <option value="RO" {% if form.buyer_state.value == "RO" %}selected{% endif %}>Rondônia (RO)</option>
+                                <option value="RR" {% if form.buyer_state.value == "RR" %}selected{% endif %}>Roraima (RR)</option>
+                                <option value="SC" {% if form.buyer_state.value == "SC" %}selected{% endif %}>Santa Catarina (SC)</option>
+                                <option value="SP" {% if form.buyer_state.value == "SP" %}selected{% endif %}>São Paulo (SP)</option>
+                                <option value="SE" {% if form.buyer_state.value == "SE" %}selected{% endif %}>Sergipe (SE)</option>
+                                <option value="TO" {% if form.buyer_state.value == "TO" %}selected{% endif %}>Tocantins (TO)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="tab-pane fade" id="dados-aparelho" role="tabpanel" aria-labelledby="dados-aparelho-tab">
+                    <h3><b>Dados da compra</b></h3>
+                    <div class="form-group mt-3">
+                        <label for="id_store_name">Nome da loja</label>
+                        {{ form.store_name }}
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <label for="id_receipt_number">Número da NF</label>
+                            {{ form.receipt_number }}
+                        </div>
+                        <div class="form-group col">
+                            <label for="id_purchase_date">Data da compra</label>
+                            {{ form.purchase_date }}
+                        </div>
+                        <div class="form-group col">
+                            <label for="id_product_code">Código do produto</label>
+                            {{ form.product_code }}
+                        </div>
+                        <div class="form-group col">
+                            <label for="id_price">Preço</label>
+                            {{ form.price }}
+                        </div>
+                    </div>
+                    <h3><b>Dados do equipamento</b></h3>
+                    <div class="form-row">
+
+                        <div class="form-group col">
+                            <label for="id_equipment_name">Equipamento</label>
+                            {{ form.equipment_name }}
+                        </div>
+                        <div class="form-group col">
+                            <label for="id_model">Modelo</label>
+                            {{ form.model }}
+                        </div>
+                        <div class="form-group col">
+                            <label for="id_brand">Marca</label>
+                            {{ form.brand }}
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <label for="id_serial_number">Nº de série</label>
+                            {{ form.serial_number }}
+                        </div>
+                        <div class="form-group col">
+                            <label for="id_user_password">Senha de usuário</label>
+                            {{ form.user_password }}
+                        </div>
+                        <div class="form-group col">
+                            <label for="id_defect">Defeito relatado</label>
+                            {{ form.defect }}
+                        </div>
+
+                    </div>
+                    <div class="form-row">
+
+                        <div class="form-group col">
+                            <label for="id_new">Estado do lacre</label>
+                            <select id="id_new" class="form-control">
+                                <option value="" selected>Selecione o estado do lacre</option>
+                                <option value="Sim" {% if form.new == "Sim" %}selected{% endif %}>Intacto</option>
+                                <option value="Não" {% if form.new == "Sim" %}selected{% endif %}>Rompido</option>
+                            </select>
+                        </div>
+                        <div class="form-group col">
+                            <label for="id_state">Estado do aparelho</label>
+                            <select id="id_new" name="label" class="form-control">
+                                <option value="" selected>Selecione o estado do aparelho</option>
+                                <option value="Novo - sem funcionar" {% if form.state == "Sim" %}selected{% endif %}>Novo - sem funcionar</option>
+                                <option value="Novo - funcionando" {% if form.state == "Sim" %}selected{% endif %}>Novo - funcionando</option>
+                                <option value="Antigo - sem funcionar" {% if form.state == "Sim" %}selected{% endif %}>Antigo - sem funcionar</option>
+                                <option value="Antigo - funcionar" {% if form.state == "Sim" %}selected{% endif %}>Antigo - funcionando</option>
+                            </select>
+    
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <label for="id_acessories">Acessórios</label>
+                            {{ form.acessories }}
+                        </div>
+                        <div class="form-group col">
+                            <label for="id_files">Arquivos para salvar</label>
+                            {{ form.files }}
+                        </div>
+                        <div class="form-group col">
+                            <label for="id_observations">Observações</label>
+                            {{ form.observations }}
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <button type="submit" class="btn custom-btn">Enviar</button>
+        </form>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
