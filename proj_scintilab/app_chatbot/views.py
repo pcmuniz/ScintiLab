@@ -13,7 +13,7 @@ class HomePage(View):
     def get(self, request):
         return render(request, 'app_chatbot/HomePage.html')
     
-    
+
 class Modal(View):
     def get(self,request):
         return render(request, 'app_chatbot/TemporaryPages/GuideModal/modal.html')
@@ -147,7 +147,7 @@ class ServiceOrderView(View):
     def get(self, request):
         form = CreateServiceOrder()
         ctx = {'form': form}
-        return render(request, 'app_chatbot/teste3.html', ctx)
+        return render(request, 'app_chatbot/service_order.html', ctx)
     
     def post(self, request):
         form = CreateServiceOrder(request.POST)
