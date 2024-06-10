@@ -26,58 +26,6 @@ class CustomerOrders(View):
     def get(self, request):
         return render(request, 'app_chatbot/CustomerOrdersPage.html')
 
-class CustomerLoginPage(View):
-    def get(self, request):
-        form = CustomerLoginForm()
-        return render(request, 'app_chatbot/CustomerLoginPage.html', {'form' : form})
-    # def post(self, request):
-    #     form = CustomerLoginForm(request.POST)
-
-    #     if form.is_valid():
-    #         email = form.cleaned_data['email']
-    #         password = form.cleaned_data['password']
-            
-    #         user = authenticate(username=email, password=password)
-            
-    #         if user is None:
-    #             form.add_error(None, 'Invalid email or password')  # Add a non-field error
-    #             return render(request, 'app_chatbot/CustomerLoginPage.html', {'form': form})
-            
-    #         auth_login(request, user)
-    #         return redirect('customer-page')
-        
-    #     # If form is invalid, render the login page with the form and errors
-    #     return render(request, 'app_chatbot/CustomerLoginPage.html', {'form': form})
-
-    def post(self, request):
-        email = request.POST.get('email')
-        password = request.POST.get('password')
-        try:
-            user = CustomerData.objects.get(email=email)
-        except CustomerData.DoesNotExist:
-            user = None
-            print(user)
-        if user is not None and check_password(password, user.password):
-            return redirect('/cliente')
-        else:
-            error_message = "Credenciais inválidas. Por favor, tente novamente."
-            return render(request, 'app_chatbot/CustomerLoginPage.html', {'error_message': error_message})
-    
-
-class CustomerRegisterPage(View):
-    def get(self, request):
-        form = CustomerRegisterForm()
-        return render(request, 'app_chatbot/CustomerRegisterPage.html', {'form' : form})
-    
-    def post(self, request):
-        form = CustomerRegisterForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('customer-login-page')
-
-        return render(request, 'app_chatbot/CustomerRegisterPage.html', {'form': form})
-    
-
 class OrdemServicoView(View):
     def get(self, request):
         return render(request, 'app_chatbot/os.html')
