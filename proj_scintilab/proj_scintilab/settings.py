@@ -80,6 +80,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'app_chatbot',
     "whitenoise.runserver_nostatic",
+    'crispy_forms',
+    'crispy_bootstrap4',
 ]
 
 MIDDLEWARE = [
@@ -162,3 +164,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = 'teste-2'
 
 LOGIN_URL = 'login'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

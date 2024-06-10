@@ -3,15 +3,10 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.views import View
 from .forms import CustomerLoginForm, CustomerRegisterForm, IndividualForm, CompanyForm, PersonTypeForm, ChangeOrderStatusForm, CreateServiceOrder
 from .models import CustomerData, ClientData, PurchaseData, BuyerData, EquipmentData, EmployeeData, ServiceOrder
-from django.http import HttpResponse, JsonResponse
-from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
-from django.views.decorators.http import require_http_methods
-from django.utils.decorators import method_decorator
-from django.contrib.auth.models import User
+from django.http import HttpResponse
 from django.contrib.auth import authenticate, login as auth_login
 from django.contrib.auth.hashers import check_password
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.decorators import login_required
 import uuid
 from datetime import datetime
 
@@ -30,63 +25,6 @@ class CustomerPage(View):
 class CustomerOrders(View):
     def get(self, request):
         return render(request, 'app_chatbot/CustomerOrdersPage.html')
-
-class CustomerLoginPage(View):
-    def get(self, request):
-        form = CustomerLoginForm()
-        return render(request, 'app_chatbot/CustomerLoginPage.html', {'form' : form})
-    # def post(self, request):
-    #     form = CustomerLoginForm(request.POST)
-
-    #     if form.is_valid():
-    #         email = form.cleaned_data['email']
-    #         password = form.cleaned_data['password']
-            
-    #         user = authenticate(username=email, password=password)
-            
-    #         if user is None:
-    #             form.add_error(None, 'Invalid email or password')  # Add a non-field error
-    #             return render(request, 'app_chatbot/CustomerLoginPage.html', {'form': form})
-            
-    #         auth_login(request, user)
-    #         return redirect('customer-page')
-        
-    #     # If form is invalid, render the login page with the form and errors
-    #     return render(request, 'app_chatbot/CustomerLoginPage.html', {'form': form})
-
-    def post(self, request):
-        email = request.POST.get('email')
-        password = request.POST.get('password')
-        try:
-            user = CustomerData.objects.get(email=email)
-        except CustomerData.DoesNotExist:
-            user = None
-            print(user)
-        if user is not None and check_password(password, user.password):
-            return redirect('/cliente')
-        else:
-            error_message = "Credenciais inválidas. Por favor, tente novamente."
-            return render(request, 'app_chatbot/CustomerLoginPage.html', {'error_message': error_message})
-
-
-class EmployeeLoginPage(View):
-    def get(self, request):
-        return render(request, 'app_chatbot/EmployeeLoginPage.html')
-    
-
-class CustomerRegisterPage(View):
-    def get(self, request):
-        form = CustomerRegisterForm()
-        return render(request, 'app_chatbot/CustomerRegisterPage.html', {'form' : form})
-    
-    def post(self, request):
-        form = CustomerRegisterForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('customer-login-page')
-
-        return render(request, 'app_chatbot/CustomerRegisterPage.html', {'form': form})
-    
 
 class OrdemServicoView(View):
     def get(self, request):
