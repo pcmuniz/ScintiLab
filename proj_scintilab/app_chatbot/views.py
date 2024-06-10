@@ -9,6 +9,10 @@ from django.contrib.auth.forms import UserCreationForm
 import uuid
 from datetime import datetime
 
+class EmployeePage(View):
+    def get(self, request):
+        return render(request, 'app_chatbot/EmployeePage.html')
+
 class HomePage(View):
     def get(self, request):
         return render(request, 'app_chatbot/HomePage.html')
@@ -27,7 +31,7 @@ class CustomerPage(View):
 class CustomerOrders(View):
     def get(self, request):
         # return render(request, 'app_chatbot/CustomerOrdersPage.html')
-        return render(request, 'app_chatbot/os_ativas.html')
+        return render(request, 'app_chatbot/CustomerOrdersPage.html')
 
 
 class OrdemServicoView(View):

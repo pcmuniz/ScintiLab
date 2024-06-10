@@ -7,6 +7,8 @@ from . import views
 urlpatterns = [
     path('', views.HomePage.as_view(), name='home-page'),
     path('cliente/', views.CustomerPage.as_view(), name='customer-page'),
+    path('funcionario/', views.EmployeePage.as_view(), name='employee-page'),
+
     # path('cliente/ordens/', views.CustomerOrders.as_view(), name='customer-orders'),
     # path('cliente/', views.CustomerPage.as_view(), name='customer-page'),
     # path('logout-cliente/', views.CustomerLogoutPage.as_view(), name='customer-logout-page'),

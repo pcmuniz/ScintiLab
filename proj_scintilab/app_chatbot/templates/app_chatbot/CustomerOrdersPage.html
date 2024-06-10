@@ -1,152 +1,216 @@
+{% load static %}
+
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meus Serviços</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #0b3d91;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 200vh;
-            margin: 0;
-        }
-        .container {
-            background-color: #fff;
-            border-radius: 15px;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 80%;
-            max-width: 900px;
-        }
-        .header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        .header h1 {
-            font-size: 24px;
-            margin: 0;
-        }
-        .header .search {
-            display: flex;
-            align-items: center;
-        }
-        .header .search input {
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px 0 0 5px;
-            outline: none;
-            width: 200px;
-        }
-        .header .search button {
-            padding: 10px;
-            border: none;
-            background-color: #00c853;
-            color: #fff;
-            border-radius: 0 5px 5px 0;
-            cursor: pointer;
-        }
-        .services {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 20px;
-        }
-        .service-card {
-            background-color: #f5f5f5;
-            border-radius: 10px;
-            padding: 15px;
-            width: calc(33.333% - 10px);
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-        }
-        .service-card .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .service-card .header .status {
-            padding: 5px 10px;
-            border-radius: 5px;
-            color: #fff;
-        }
-        .status.finalizada {
-            background-color: #00c853;
-        }
-        .status.cancelada {
-            background-color: #d32f2f;
-        }
-        .status.recebida {
-            background-color: #37474f;
-        }
-        .status.andamento {
-            background-color: #ffb300;
-        }
-        .service-card .details {
-            margin-top: 10px;
-        }
-        .service-card .details p {
-            margin: 5px 0;
-        }
-        .service-card .details .label {
-            font-weight: bold;
-            color: #757575;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <button>←</button>
-            <h1>Meus serviços</h1>
-            <div class="search">
-                <input type="text" placeholder="Pesquisar...">
-                <button>🔍</button>
-            </div>
+<style>
+
+* {
+    font-family: 'Inter';
+}
+
+
+body {
+    margin: 1;
+    font-family: Arial, sans-serif;
+    background-color: #0f2b46;
+    color: #333;
+}
+
+.container {
+    display: flex;
+    height: 80vh;
+    justify-content: center; /* Centraliza a container horizontalmente */
+    align-items: center; /* Centraliza a container verticalmente */
+}
+
+.logo {
+    width: 50px;
+    margin-bottom: 20px;
+}
+
+.back-button {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.content {
+    background-color: #fff;
+    width: 90%;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    position: relative;
+    border: 2px solid #4caf50;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    position: relative;
+    left: 480px;
+}
+
+.search-bar input {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.search-button {
+    background-color: #4caf50;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-left: 5px;
+}
+
+main {
+    display: flex;
+    justify-content: center; /* Centraliza o conteúdo horizontalmente */
+    align-items: center; /* Centraliza o conteúdo verticalmente */
+    height: 100%; /* Garante que o main ocupe todo o espaço vertical */
+}
+
+.card {
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    padding: 10px;
+    box-sizing: border-box;
+    width: 400px;
+}
+
+.card-header {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.received .card-header {
+    background-color: #e0f7fa;
+    color: #00796b;
+}
+
+.in-progress .card-header {
+    background-color: #fff3e0;
+    color: #e65100;
+}
+
+.finished .card-header {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+}
+
+.cancelled .card-header {
+    background-color: #ffebee;
+    color: #c62828;
+}
+
+.center {
+    text-align: center;
+}
+
+.font {
+    font-size: 40px;
+    color: #132D49;
+}
+
+#img{
+    position: relative;
+    left: -35%;
+}
+
+#img1 {
+    height: 23px;
+    position: relative;
+    left: 265px;
+    top: 3px;
+}
+
+</style>
+<div class="container">
+    <div class="sidebar">
+        <img src="logo.png" alt="Logo" class="logo">
+    </div>
+    <div class="content">
+        <div class="center">
+            <h1 class="font">
+                <a href="{% url 'customer-page' %}">
+                    <img src="{% static 'app_chatbot/img/back.svg' %}" alt="Voltar" id="img">
+                </a>
+                Meus serviços</h1>
         </div>
-        <div class="services">
-            <div class="service-card">
-                <div class="header">
-                    <span>CÓD:XXXXXXXXXX</span>
-                    <span class="status finalizada">Finalizada</span>
+
+        <header>
+            <div class="search-bar">
+                <input type="text" placeholder="Digite o código... ">
+                <button class="search-button">&#x1F50E;</button>
+            </div>
+        </header>
+        <main>
+            <div class="card received">
+                <div class="card-header">Recebida
+                    <img src="{% static 'app_chatbot/img/cancel.svg' %}" alt="Voltar" id="img1">
                 </div>
-                <div class="details">
-                    <p class="label">Nome:</p>
-                    <p>----------</p>
-                    <p class="label">Aparelho:</p>
-                    <p>----------</p>
-                    <p class="label">Problema:</p>
-                    <p>----------</p>
+                <div class="card-body">
+                    <p><strong>Cód: XXXXXXXX</strong></p>
+                    <p>Nome: --------</p>
+                    <p>Aparelho: --------</p>
+                    <p>Problema: --------</p>
                 </div>
             </div>
-            <div class="service-card">
-                <div class="header">
-                    <span>CÓD:XXXXXXXXXX</span>
-                    <span class="status andamento">Em andamento</span>
-                </div>
-                <div class="details">
-                    <p class="label">Nome:</p>
-                    <p>----------</p>
-                    <p class="label">Aparelho:</p>
-                    <p>----------</p>
-                    <p class="label">Problema:</p>
-                    <p>----------</p>
+            <!-- <div class="card in-progress">
+                <div class="card-header">Em andamento</div>
+                <div class="card-body">
+                    <p><strong>Cód: XXXXXXXX</strong></p>
+                    <p>Nome: --------</p>
+                    <p>Aparelho: --------</p>
+                    <p>Problema: --------</p>
                 </div>
             </div>
-            <div class="service-card">
-                <div class="header">
-                    <span>CÓD:XXXXXXXXXX</span>
-                    <span class="status andamento">Em andamento</span>
-                </div>
-                <div class="details">
-                    <p class="label">Nome:</p>
-                    <p>----------</p>
-                    <p class="label">Aparelho:</p>
-                    <p>----------</p>
-                    <p class="label">Problema:</p>
-                    <p>----------</p>
+            <div class="card finished">
+                <div class="card-header">Finalizado</div>
+                <div class="card-body">
+                    <p><strong>Cód: XXXXXXXX</strong></p>
+                    <p>Nome: --------</p>
+                    <p>Aparelho: --------</p>
+                    <p>Problema: --------</p>
                 </div>
             </div>
+            <div class="card cancelled">
+                <div class="card-header">Cancelada</div>
+                <div class="card-body">
+                    <p><strong>Cód: XXXXXXXX</strong></p>
+                    <p>Nome: --------</p>
+                    <p>Aparelho: --------</p>
+                    <p>Problema: --------</p>
+                </div>
+            </div> -->
+        </main>
+    </div>
+</div>
+</body>
+</html>
