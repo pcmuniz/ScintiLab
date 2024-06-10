@@ -1,4 +1,7 @@
-<h1>Hello, stalker!</h1>
+<body style="background-color: #132D49;"> 
+
+
+<h1>Ordens de Serviço</h1>
 <form method="POST">
     {% csrf_token %}
 
@@ -30,19 +33,21 @@
 
 {% if filtro == 0 %}
     {% for order in service_order %}
-        <p>Cliente: {{ order.client_name }} | Protocolo: {{ order.protocol_code }} | Status: {{order.status}} | Entrada: {{order.create_date | date:"d/m/Y"}}</p>
+        <p>Data Entrada: {{order.create_date | date:"d/m/Y"}} | Protocolo: {{ order.protocol_code }} | Cliente: {{ order.client_name }} |  Status: {{order.status}}</p>
     {% endfor %}
 {% else %}
 <h3>Filtro: {{choosen_date}} || {{choosen_status}}</h3>
     {% for order in service_order %}
         {% if choosen_date == 'Todos' and choosen_status == 'Todos' %}
-            <p>Cliente: {{ order.client_name }} | Protocolo: {{ order.protocol_code }} | Status: {{order.status}}</p>
+            <p>Data Entrada: {{order.create_date | date:"d/m/Y"}} | Protocolo: {{ order.protocol_code }} | Cliente: {{ order.client_name }} |  Status: {{order.status}}</p>
         {% elif choosen_date == order.create_date and choosen_status == 'Todos' %}
-            <p>Cliente: {{ order.client_name }} | Protocolo: {{ order.protocol_code }} | Status: {{order.status}}</p>
+            <p>Data Entrada: {{order.create_date | date:"d/m/Y"}} | Protocolo: {{ order.protocol_code }} | Cliente: {{ order.client_name }} |  Status: {{order.status}}</p>
         {% elif choosen_date == 'Todos' and choosen_status ==  order.status %}
-            <p>Cliente: {{ order.client_name }} | Protocolo: {{ order.protocol_code }} | Status: {{order.status}}</p>
+            <p>Data Entrada: {{order.create_date | date:"d/m/Y"}} | Protocolo: {{ order.protocol_code }} | Cliente: {{ order.client_name }} |  Status: {{order.status}}</p>
         {% elif choosen_date == order.create_date and choosen_status ==  order.status %}
-            <p>Cliente: {{ order.client_name }} | Protocolo: {{ order.protocol_code }} | Status: {{order.status}}</p>
+            <p>Data Entrada: {{order.create_date | date:"d/m/Y"}} | Protocolo: {{ order.protocol_code }} | Cliente: {{ order.client_name }} |  Status: {{order.status}}</p>
         {% endif %}
     {% endfor %}
 {% endif %}
+
+</body>
