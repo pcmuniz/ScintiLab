@@ -1,11 +1,10 @@
 from pyexpat.errors import messages
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views import View
-from .forms import CustomerLoginForm, CustomerRegisterForm, IndividualForm, CompanyForm, PersonTypeForm, ChangeOrderStatusForm, CreateServiceOrder
+from .forms import ChangeOrderStatusForm, CreateServiceOrder
 from .models import CustomerData, ClientData, PurchaseData, BuyerData, EquipmentData, EmployeeData, ServiceOrder
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login as auth_login
-from django.contrib.auth.hashers import check_password
 from django.contrib.auth.forms import UserCreationForm
 import uuid
 from datetime import datetime
@@ -14,17 +13,22 @@ class HomePage(View):
     def get(self, request):
         return render(request, 'app_chatbot/HomePage.html')
     
+    
 class Modal(View):
     def get(self,request):
         return render(request, 'app_chatbot/TemporaryPages/GuideModal/modal.html')
 
+
 class CustomerPage(View):
     def get(self, request):
         return render(request, 'app_chatbot/CustomerPage.html')
-    
+
+
 class CustomerOrders(View):
     def get(self, request):
-        return render(request, 'app_chatbot/CustomerOrdersPage.html')
+        # return render(request, 'app_chatbot/CustomerOrdersPage.html')
+        return render(request, 'app_chatbot/os_ativas.html')
+
 
 class OrdemServicoView(View):
     def get(self, request):
@@ -77,8 +81,7 @@ class OrdemServicoAtivaView(View):
                 return render(request, 'app_chatbot/os_ativas.html', {'protocol_code': order})
             
         return HttpResponse("Hello!")
-
-          
+         
 
 # TODO: transformar CancelOrder em função, para ser chamada tanto pelo cliente quanto pelo funcionário
 class CancelOrder(View):
