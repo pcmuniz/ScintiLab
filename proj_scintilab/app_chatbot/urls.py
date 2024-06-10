@@ -7,14 +7,10 @@ from . import views
 urlpatterns = [
     path('', views.HomePage.as_view(), name='home-page'),
     path('cliente/', views.CustomerPage.as_view(), name='customer-page'),
-    path('login-cliente/', views.CustomerLoginPage.as_view(), name='customer-login-page'),
-    path('cadastro-cliente/', views.CustomerRegisterPage.as_view(), name='customer-register-page'),
     path('cliente/ordens/', views.CustomerOrders.as_view(), name='customer-orders'),
     # path('cliente/', views.CustomerPage.as_view(), name='customer-page'),
     # path('logout-cliente/', views.CustomerLogoutPage.as_view(), name='customer-logout-page'),
-    # path('cadastro-cliente/', views.CustomerRegisterPage.as_view(), name='customer-register-page'),
     # path('logout-funcionario/', views.EmployeeLogoutPage.as_view(), name='employee-logout-page'),
-    # path('cadastro-funcionario/', views.EmployeeRegisterPage.as_view(), name='employee-register-page'),
 
     # Abaixo são as URL's para teste de funcionalidade focado no backend
     # São provisórias!
