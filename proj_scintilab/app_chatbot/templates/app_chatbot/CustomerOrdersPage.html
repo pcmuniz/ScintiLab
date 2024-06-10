@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meus Serviços</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0b3d91;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #fff;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 900px;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .header h1 {
+            font-size: 24px;
+            margin: 0;
+        }
+        .header .search {
+            display: flex;
+            align-items: center;
+        }
+        .header .search input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px 0 0 5px;
+            outline: none;
+            width: 200px;
+        }
+        .header .search button {
+            padding: 10px;
+            border: none;
+            background-color: #00c853;
+            color: #fff;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+        }
+        .services {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .service-card {
+            background-color: #f5f5f5;
+            border-radius: 10px;
+            padding: 15px;
+            width: calc(33.333% - 10px);
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+        .service-card .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .service-card .header .status {
+            padding: 5px 10px;
+            border-radius: 5px;
+            color: #fff;
+        }
+        .status.finalizada {
+            background-color: #00c853;
+        }
+        .status.cancelada {
+            background-color: #d32f2f;
+        }
+        .status.recebida {
+            background-color: #37474f;
+        }
+        .status.andamento {
+            background-color: #ffb300;
+        }
+        .service-card .details {
+            margin-top: 10px;
+        }
+        .service-card .details p {
+            margin: 5px 0;
+        }
+        .service-card .details .label {
+            font-weight: bold;
+            color: #757575;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <button>←</button>
+            <h1>Meus serviços</h1>
+            <div class="search">
+                <input type="text" placeholder="Pesquisar...">
+                <button>🔍</button>
+            </div>
+        </div>
+        <div class="services">
+            <div class="service-card">
+                <div class="header">
+                    <span>CÓD:XXXXXXXXXX</span>
+                    <span class="status finalizada">Finalizada</span>
+                </div>
+                <div class="details">
+                    <p class="label">Nome:</p>
+                    <p>----------</p>
+                    <p class="label">Aparelho:</p>
+                    <p>----------</p>
+                    <p class="label">Problema:</p>
+                    <p>----------</p>
+                </div>
+            </div>
+            <div class="service-card">
+                <div class="header">
+                    <span>CÓD:XXXXXXXXXX</span>
+                    <span class="status andamento">Em andamento</span>
+                </div>
+                <div class="details">
+                    <p class="label">Nome:</p>
+                    <p>----------</p>
+                    <p class="label">Aparelho:</p>
+                    <p>----------</p>
+                    <p class="label">Problema:</p>
+                    <p>----------</p>
+                </div>
+            </div>
+            <div class="service-card">
+                <div class="header">
+                    <span>CÓD:XXXXXXXXXX</span>
+                    <span class="status andamento">Em andamento</span>
+                </div>
+                <div class="details">
+                    <p class="label">Nome:</p>
+                    <p>----------</p>
+                    <p class="label">Aparelho:</p>
+                    <p>----------</p>
+                    <p class="label">Problema:</p>
+                    <p>----------</p>
+                </div>
+            </div>
