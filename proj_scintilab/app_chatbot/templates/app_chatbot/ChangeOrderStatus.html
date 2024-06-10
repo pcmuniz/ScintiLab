@@ -23,6 +23,8 @@ body {
     max-width: 1200px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     position: relative;
+    border: 2px solid #4caf50;
+
 }
 .status-wrapper {
     display: flex;
@@ -113,25 +115,70 @@ h1 {
 }
 .help-icon img {
     height: 40px;
+    cursor: pointer;
 }
-
-#img{
+#img {
     position: relative;
     left: -28%;
 }
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5);
+}
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 10px;
+}
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+.faq-question {
+    cursor: pointer;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+}
+.faq-answer {
+    display: none;
+    padding: 10px;
+    margin-top: 5px;
+    border-left: 3px solid #1a73e8;
+    background-color: #f1f1f1;
+}
 </style>
 </head>
-
 <body>
     <div class="container">
-
         <h1>
             <a href="{% url 'employee-page' %}">
                 <img src="{% static 'app_chatbot/img/back.svg' %}" alt="Voltar" id="img">
             </a>
-
-            Ordem de serviço XXXXXXXX</h1>
-
+            Ordem de serviço XXXXXXXX
+        </h1>
         <div class="status-wrapper">
             <div class="status-circle active"></div>
             <div class="status-circle"></div>
@@ -159,5 +206,53 @@ h1 {
             </tbody>
         </table>
     </div>
+    <div class="help-icon" onclick="openModal()">
+        <img src="{% static 'app_chatbot/img/help.svg' %}" alt="Ajuda">
+    </div>
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Dúvidas Frequentes</h2>
+            <div class="faq">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleAnswer(this)">Quais tipos de aparelho vocês consertam?</div>
+                    <div class="faq-answer">Consertamos uma ampla variedade de aparelhos, incluindo smartphones, tablets, laptops, e muito mais.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleAnswer(this)">É possível enviar meu aparelho por correio?</div>
+                    <div class="faq-answer">Sim, é possível enviar seu aparelho por correio para conserto. Entre em contato conosco para mais detalhes.</div>
+                </div>
+            </div>
+            <button class="btn back" onclick="closeModal()">Voltar</button>
+        </div>
+    </div>
+
+    <script>
+        var modal = document.getElementById("myModal");
+
+        function openModal() {
+            modal.style.display = "block";
+        }
+
+        function closeModal() {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        function toggleAnswer(element) {
+            var answer = element.nextElementSibling;
+            if (answer.style.display === "block") {
+                answer.style.display = "none";
+            } else {
+                answer.style.display = "block";
+            }
+        }
+    </script>
 </body>
 </html>
