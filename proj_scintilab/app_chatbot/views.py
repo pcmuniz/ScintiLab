@@ -1,11 +1,10 @@
 from pyexpat.errors import messages
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views import View
-from .forms import CustomerLoginForm, CustomerRegisterForm, IndividualForm, CompanyForm, PersonTypeForm, ChangeOrderStatusForm, CreateServiceOrder
+from .forms import ChangeOrderStatusForm, CreateServiceOrder
 from .models import CustomerData, ClientData, PurchaseData, BuyerData, EquipmentData, EmployeeData, ServiceOrder
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login as auth_login
-from django.contrib.auth.hashers import check_password
 from django.contrib.auth.forms import UserCreationForm
 import uuid
 from datetime import datetime
@@ -14,17 +13,22 @@ class HomePage(View):
     def get(self, request):
         return render(request, 'app_chatbot/HomePage.html')
     
+
 class Modal(View):
     def get(self,request):
         return render(request, 'app_chatbot/TemporaryPages/GuideModal/modal.html')
 
+
 class CustomerPage(View):
     def get(self, request):
         return render(request, 'app_chatbot/CustomerPage.html')
-    
+
+
 class CustomerOrders(View):
     def get(self, request):
-        return render(request, 'app_chatbot/CustomerOrdersPage.html')
+        # return render(request, 'app_chatbot/CustomerOrdersPage.html')
+        return render(request, 'app_chatbot/os_ativas.html')
+
 
 class OrdemServicoView(View):
     def get(self, request):
@@ -77,8 +81,7 @@ class OrdemServicoAtivaView(View):
                 return render(request, 'app_chatbot/os_ativas.html', {'protocol_code': order})
             
         return HttpResponse("Hello!")
-
-          
+         
 
 # TODO: transformar CancelOrder em função, para ser chamada tanto pelo cliente quanto pelo funcionário
 class CancelOrder(View):
@@ -111,123 +114,9 @@ class ChangeOrderStatus(View):
             ordem_servico.sms()
             return redirect('success_page')  # TODO: redirect
         return render(request, 'app_chatbot/TemporaryPages/ChangeOrderStatus/change_order_status.html', {'form': form, 'ordem_servico': ordem_servico})
-
-
-def registration_view(request):
-    form = None
-    form_type = None
-    
-    if request.method == 'POST':
-        person_type_form = PersonTypeForm(request.POST)
-        if person_type_form.is_valid():
-            person_type = person_type_form.cleaned_data['person_type']
-            if person_type == 'individual':
-                form = IndividualForm(request.POST)
-                form_type = 'individual'
-            else:
-                form = CompanyForm(request.POST)
-                form_type = 'company'
-            
-            if form.is_valid():
-                form.save()
-                return redirect('registration_success') # TODO: redirect
-    else:
-        person_type_form = PersonTypeForm()
-    
-    return render(request, 'app_chatbot/TemporaryPages/CPFxCNPJ/registration.html', {
-        'person_type_form': person_type_form,
-        'form': form,
-        'form_type': form_type,
-    })
-
-class Teste(View):
-    def get(self, request):
-        form = CreateServiceOrder()
-        ctx = {'form': form}
-        return render(request, 'app_chatbot/teste_formulario.html', ctx)
-    
-    def post(self, request):
-        form = CreateServiceOrder(request.POST)
-        if form.is_valid():
-            client_name = form.cleaned_data['client_name']
-            client_cpf_cnpj = form.cleaned_data['client_cpf_cnpj']
-            client_rg_ie = form.cleaned_data['client_rg_ie']
-            client_birthdate = form.cleaned_data['client_birthdate']
-            client_email = form.cleaned_data['client_email']
-            client_cellphone = form.cleaned_data['client_cellphone']
-            client_telephone = form.cleaned_data['client_telephone']
-            client_adress = form.cleaned_data['client_adress']
-            client_neighborhood = form.cleaned_data['client_neighborhood']
-            client_zip = form.cleaned_data['client_zip']
-            client_city = form.cleaned_data['client_city']
-            client_state = form.cleaned_data['client_state']
-
-            buyer_name = form.cleaned_data['buyer_name']
-            buyer_cpf_cnpj = form.cleaned_data['buyer_cpf_cnpj']
-            buyer_rg_ie = form.cleaned_data['buyer_rg_ie']
-            buyer_birthdate = form.cleaned_data['buyer_birthdate']
-            buyer_email = form.cleaned_data['buyer_email']
-            buyer_cellphone = form.cleaned_data['buyer_cellphone']
-            buyer_telephone = form.cleaned_data['buyer_telephone']
-            buyer_adress = form.cleaned_data['buyer_adress']
-            buyer_neighborhood = form.cleaned_data['buyer_neighborhood']
-            buyer_zip = form.cleaned_data['buyer_zip']
-            buyer_city = form.cleaned_data['buyer_city']
-            buyer_state = form.cleaned_data['buyer_state']
-
-            store_name = form.cleaned_data['store_name']
-            receipt_number = form.cleaned_data['receipt_number']
-            purchase_date = form.cleaned_data['purchase_date']
-            product_code = form.cleaned_data['product_code']
-            price = form.cleaned_data['price']
-
-            equipment_name = form.cleaned_data['equipment_name']
-            brand = form.cleaned_data['brand']
-            new = form.cleaned_data['new']
-            model = form.cleaned_data['model']
-            serial_number = form.cleaned_data['serial_number']
-            user_password = form.cleaned_data['user_password']
-            defect = form.cleaned_data['defect']
-            state = form.cleaned_data['state']
-            acessories = form.cleaned_data['acessories']
-            observations = form.cleaned_data['observations']
-            files = form.cleaned_data['files']
-    
-            buyer_data = BuyerData(buyer_name = buyer_name, buyer_cpf_cnpj = buyer_cpf_cnpj, buyer_rg_ie = buyer_rg_ie,buyer_birthdate = buyer_birthdate,
-                buyer_email = buyer_email, buyer_cellphone = buyer_cellphone, buyer_telephone = buyer_telephone, buyer_adress = buyer_adress,
-                buyer_neighborhood = buyer_neighborhood,buyer_zip = buyer_zip,buyer_city = buyer_city,buyer_state = buyer_state)
-            
-            buyer_data.save()
-
-            client_data = ClientData(client_name = client_name, client_cpf_cnpj = client_cpf_cnpj, client_rg_ie = client_rg_ie,client_birthdate = client_birthdate,
-                client_email = client_email, client_cellphone = client_cellphone, client_telephone = client_telephone, client_adress = client_adress,
-                client_neighborhood = client_neighborhood,client_zip = client_zip,client_city = client_city,client_state = client_state)
-            
-            client_data.save()
-
-            purchase_data = PurchaseData(store_name = store_name, receipt_number = receipt_number, purchase_date = purchase_date,
-                product_code = product_code,price = price)
-            
-            purchase_data.save()
-
-            equipment_data = EquipmentData(equipment_name = equipment_name, brand = brand, new = new, model = model, serial_number = serial_number,
-                user_password = user_password, defect = defect, state = state, acessories = acessories,observations = observations, files = files)
-
-            equipment_data.save()
-
-            protocol_code = (str(uuid.uuid4())[:8]).upper()
-            service_order_data = ServiceOrder(client_data = client_data, buyer_data = buyer_data, purchase_data = purchase_data,
-                                              equipment_data = equipment_data, protocol_code = protocol_code)
-            
-            service_order_data.save()
-
-            return HttpResponse('Thanks, ' + client_data.client_name + '. Write down your protocol code: ' + service_order_data.protocol_code)
-        else:
-            form = CreateServiceOrder()
-
-        return redirect('pagina-os-ativas')
  
-class Teste2(View):
+
+class ServiceOrderListView(View):
     def get(self, request):
         service_order = ServiceOrder.objects.all()
         service_order_date = ServiceOrder.objects.values('create_date').distinct()
@@ -252,28 +141,13 @@ class Teste2(View):
         return render(request, 'app_chatbot/teste_os_ativas.html', {'service_order': service_order, 'service_order_date': service_order_date,
                                                                     'service_order_status': service_order_status,'choosen_status': choosen_status, 
                                                                     'choosen_date': choosen_date, 'filtro': filtro})
-    
 
-# class Teste3(View):
-#     def get(self, request):
-#         return render(request, 'app_chatbot/teste3.html')
-    
-#     def post(request):
-#         if request.method == 'POST':
-#             form = CreateServiceOrder(request.POST)
-#             if form.is_valid():
-#                 # Process form data
-#                 pass
-#         else:
-#             form = CreateServiceOrder()
 
-#         return render(request, 'app_chatbot/teste3.html', {'form': form})
-
-class Teste3(View):
+class ServiceOrderView(View):
     def get(self, request):
         form = CreateServiceOrder()
         ctx = {'form': form}
-        return render(request, 'app_chatbot/teste3.html', ctx)
+        return render(request, 'app_chatbot/service_order.html', ctx)
     
     def post(self, request):
         form = CreateServiceOrder(request.POST)
@@ -355,17 +229,3 @@ class Teste3(View):
             form = CreateServiceOrder()
 
         return redirect('pagina-os-ativas')
-
-class Teste8(View):
-    def get(self, request):
-        form = UserCreationForm()
-        return render(request, 'app_chatbot/teste.html', {'form': form})
-    
-    def post(self, request):
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data['username']
-            print(username)
-            return redirect('login')
-        return render(request, 'app_chatbot/teste.html', {'form': form})
