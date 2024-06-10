@@ -13,16 +13,15 @@
       <form method="post">
         {% csrf_token %}
         <div class="form-group p-1">
-          <label for="formGroupExampleInput">Código de funcionário</label>
+          <label for="formGroupExampleInput">Usuário</label>
           <input type="text" class="form-control small-input" name="example_input">
         </div>
         <div class="form-group p-1">
           <label for="formGroupExampleInput2">Senha</label>
           <input type="text" class="form-control small-input" name="another_input">
         </div>
-        <button type="submit" class="btn btn-lg custom-btn" id="customer-register-btn">Criar conta</button>
+        <button type="submit" class="btn btn-lg custom-btn" id="customer-register-btn">Entrar</button>
       </form>
-      <p class="custom-font" id="el-p0" >É cliente? <a href="{% url 'customer-login-page' %}">Entrar como cliente</a></p>
    </div>
 </div>
 {% endblock content %}

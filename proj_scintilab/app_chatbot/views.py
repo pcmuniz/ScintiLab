@@ -3,15 +3,10 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.views import View
 from .forms import CustomerLoginForm, CustomerRegisterForm, IndividualForm, CompanyForm, PersonTypeForm, ChangeOrderStatusForm, CreateServiceOrder
 from .models import CustomerData, ClientData, PurchaseData, BuyerData, EquipmentData, EmployeeData, ServiceOrder
-from django.http import HttpResponse, JsonResponse
-from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
-from django.views.decorators.http import require_http_methods
-from django.utils.decorators import method_decorator
-from django.contrib.auth.models import User
+from django.http import HttpResponse
 from django.contrib.auth import authenticate, login as auth_login
 from django.contrib.auth.hashers import check_password
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.decorators import login_required
 import uuid
 from datetime import datetime
 
@@ -67,11 +62,6 @@ class CustomerLoginPage(View):
         else:
             error_message = "Credenciais inválidas. Por favor, tente novamente."
             return render(request, 'app_chatbot/CustomerLoginPage.html', {'error_message': error_message})
-
-
-class EmployeeLoginPage(View):
-    def get(self, request):
-        return render(request, 'app_chatbot/EmployeeLoginPage.html')
     
 
 class CustomerRegisterPage(View):

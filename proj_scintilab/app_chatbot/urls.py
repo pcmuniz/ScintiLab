@@ -9,7 +9,6 @@ urlpatterns = [
     path('cliente/', views.CustomerPage.as_view(), name='customer-page'),
     path('login-cliente/', views.CustomerLoginPage.as_view(), name='customer-login-page'),
     path('cadastro-cliente/', views.CustomerRegisterPage.as_view(), name='customer-register-page'),
-    path('login-funcionario/', views.EmployeeLoginPage.as_view(), name='employee-login-page'),
     path('cliente/ordens/', views.CustomerOrders.as_view(), name='customer-orders'),
     # path('cliente/', views.CustomerPage.as_view(), name='customer-page'),
     # path('logout-cliente/', views.CustomerLogoutPage.as_view(), name='customer-logout-page'),
