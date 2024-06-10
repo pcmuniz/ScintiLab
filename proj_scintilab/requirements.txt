@@ -10,5 +10,4 @@ whitenoise==6.6.0
 
 virtualenv
 vonage
-crispy_forms
 crispy_bootstrap4
