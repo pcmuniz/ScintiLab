@@ -10,6 +10,8 @@ from django.utils.decorators import method_decorator
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login as auth_login
 from django.contrib.auth.hashers import check_password
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
 import uuid
 from datetime import datetime
 
@@ -25,6 +27,9 @@ class CustomerPage(View):
     def get(self, request):
         return render(request, 'app_chatbot/CustomerPage.html')
     
+class CustomerOrders(View):
+    def get(self, request):
+        return render(request, 'app_chatbot/CustomerOrdersPage.html')
 
 class CustomerLoginPage(View):
     def get(self, request):
@@ -82,33 +87,6 @@ class CustomerRegisterPage(View):
 
         return render(request, 'app_chatbot/CustomerRegisterPage.html', {'form': form})
     
-
-class EmployeeRegisterPage(View):
-    def get(self, request):
-        return render(request, 'app_chatbot/EmployeeRegisterPage.html')
-    
-    def post(self, request):
-        if request.method == "POST":
-            form = request.POST
-            code = form.get("code")
-            email = form.get("email")
-
-            if EmployeeData.objects.filter(code=code).exists() or EmployeeData.objects.filter(email=email).exists():
-                return HttpResponse("Dados já cadastrados.", status=400)
-            
-            else:
-                employee_data = EmployeeData(
-                    code = form["code"],
-                    email = form["email"],
-                    name = form["code"],
-                    surname = form["code"],
-                    password = form["code"]
-                )
-                employee_data.save()
-
-        return render(request, 'app_chatbot/EmployeeRegisterPage.html')
-
-
 
 class OrdemServicoView(View):
     def get(self, request):
@@ -310,7 +288,7 @@ class Teste(View):
             form = CreateServiceOrder()
 
         return redirect('pagina-os-ativas')
-    
+ 
 class Teste2(View):
     def get(self, request):
         service_order = ServiceOrder.objects.all()
@@ -439,3 +417,17 @@ class Teste3(View):
             form = CreateServiceOrder()
 
         return redirect('pagina-os-ativas')
+
+class Teste8(View):
+    def get(self, request):
+        form = UserCreationForm()
+        return render(request, 'app_chatbot/teste.html', {'form': form})
+    
+    def post(self, request):
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data['username']
+            print(username)
+            return redirect('login')
+        return render(request, 'app_chatbot/teste.html', {'form': form})

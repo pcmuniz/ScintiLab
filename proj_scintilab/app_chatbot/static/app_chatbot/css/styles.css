@@ -206,7 +206,7 @@ font-family: 'Inter';
 }
 
 .big-btn {
-  background-color: #d3d3d3;
+  background-color: #E7EAEC;
   color: #132D49;
   font-size: 15px;
   z-index: 2;
@@ -223,8 +223,8 @@ font-family: 'Inter';
 }
 
 .big-btn:hover {
-  background-color: #132D49; /* Cor de fundo quando o mouse está sobre o botão */
-  color: #d3d3d3; /* Cor do texto quando o mouse está sobre o botão */
+  background-color: #132D49;
+  color: #d3d3d3;
 }
 
 #bb-0 {
@@ -232,9 +232,32 @@ font-family: 'Inter';
   left: 200px;
 }
 
+#bb-0-img {
+  position: absolute;
+  top: 25px;
+  left: 0;
+  width: 100%; /* A imagem ocupa toda a largura do botão */
+  height: 90%; /* A imagem ocupa toda a altura do botão */
+  pointer-events: none; /* A imagem não irá capturar eventos de clique */
+}
+
 #bb-1 {
   left: 645px;
   top: 190px;
 }
 
+#bb-1-img {
+  position: absolute;
+  top: 25px;
+  left: 0;
+  width: 100%; /* A imagem ocupa toda a largura do botão */
+  height: 100%; /* A imagem ocupa toda a altura do botão */
+  pointer-events: none; /* A imagem não irá capturar eventos de clique */
+}
 
+.btn-text {
+  position: relative;
+  top: -90px; /* Move o texto para cima ou para baixo conforme necessário */
+  font-weight: bold;
+  font-size: 18px;
+}

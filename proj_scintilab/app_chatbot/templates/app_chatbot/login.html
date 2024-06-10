@@ -1,0 +1,8 @@
+<h1>Hello, stranger!</h1>
+<form method="POST">
+    {% csrf_token %}
+    <legend>Enter Agora!</legend>
+    {{ form.as_p }}
+    <button type="submit">Entrar</button>
+    <small>Ainda não tem uma conta? <a href="{% url 'teste-8' %}">Registre-se</a> </small>
+</form>
