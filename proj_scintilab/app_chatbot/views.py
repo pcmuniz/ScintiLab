@@ -10,6 +10,8 @@ from django.utils.decorators import method_decorator
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login as auth_login
 from django.contrib.auth.hashers import check_password
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
 import uuid
 from datetime import datetime
 
@@ -286,7 +288,7 @@ class Teste(View):
             form = CreateServiceOrder()
 
         return redirect('pagina-os-ativas')
-    
+ 
 class Teste2(View):
     def get(self, request):
         service_order = ServiceOrder.objects.all()
@@ -415,3 +417,17 @@ class Teste3(View):
             form = CreateServiceOrder()
 
         return redirect('pagina-os-ativas')
+
+class Teste8(View):
+    def get(self, request):
+        form = UserCreationForm()
+        return render(request, 'app_chatbot/teste.html', {'form': form})
+    
+    def post(self, request):
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data['username']
+            print(username)
+            return redirect('login')
+        return render(request, 'app_chatbot/teste.html', {'form': form})
