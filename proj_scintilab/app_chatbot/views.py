@@ -113,7 +113,7 @@ class ChangeOrderStatus(View):
         return render(request, 'app_chatbot/TemporaryPages/ChangeOrderStatus/change_order_status.html', {'form': form, 'ordem_servico': ordem_servico})
  
 
-class ServiceOrderList(View):
+class ServiceOrderListView(View):
     def get(self, request):
         service_order = ServiceOrder.objects.all()
         service_order_date = ServiceOrder.objects.values('create_date').distinct()
@@ -140,7 +140,7 @@ class ServiceOrderList(View):
                                                                     'choosen_date': choosen_date, 'filtro': filtro})
 
 
-class ServiceOrder(View):
+class ServiceOrderView(View):
     def get(self, request):
         form = CreateServiceOrder()
         ctx = {'form': form}

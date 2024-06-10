@@ -19,8 +19,8 @@ urlpatterns = [
     path('ordem-servico/<int:order_id>/cancelar/', views.CancelOrder.as_view(), name='cancelar_ordem_servico'),
     path('modal/', views.Modal.as_view(), name='cancelar_ordem_servico'),
 
-    path('lista-os/', login_required(views.ServiceOrderList.as_view()), name = 'service_order_list'),
-    path('abrir-os/', views.ServiceOrder.as_view(), name='service_order'),
+    path('lista-os/', login_required(views.ServiceOrderListView.as_view()), name = 'service_order_list'),
+    path('abrir-os/', views.ServiceOrderView.as_view(), name='service_order'),
     path('login/', auth_views.LoginView.as_view(template_name='app_chatbot/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name='app_chatbot/logout.html'), name='logout'),
 
