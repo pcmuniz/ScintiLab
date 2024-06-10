@@ -13,6 +13,10 @@ class EmployeePage(View):
     def get(self, request):
         return render(request, 'app_chatbot/EmployeePage.html')
 
+class ChangeOrderStatus2(View):
+    def get(self, request):
+        return render(request, 'app_chatbot/ChangeOrderStatus.html')
+
 class HomePage(View):
     def get(self, request):
         return render(request, 'app_chatbot/HomePage.html')

@@ -17,6 +17,7 @@ urlpatterns = [
     # Abaixo são as URL's para teste de funcionalidade focado no backend
     # São provisórias!
     path('cliente/ordens/', views.CustomerOrders.as_view(), name='customer-orders'),
+    path('cstatus/', views.ChangeOrderStatus2.as_view(), name='change-order-status'),
 
     path('change_order_status/<int:order_id>/', views.ChangeOrderStatus.as_view(), name='change_order_status'),
     path('ordem-servico/<int:order_id>/cancelar/', views.CancelOrder.as_view(), name='cancelar_ordem_servico'),
