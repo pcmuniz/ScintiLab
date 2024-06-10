@@ -8,7 +8,7 @@ urlpatterns = [
     path('login-cliente/', views.CustomerLoginPage.as_view(), name='customer-login-page'),
     path('cadastro-cliente/', views.CustomerRegisterPage.as_view(), name='customer-register-page'),
     path('login-funcionario/', views.EmployeeLoginPage.as_view(), name='employee-login-page'),
-    path('cadastro-funcionario/', views.EmployeeRegisterPage.as_view(), name='employee-register-page'),
+    path('cliente/ordens/', views.CustomerOrders.as_view(), name='customer-orders'),
 
     # Abaixo são as URL's para teste de funcionalidade focado no backend
     # São provisórias!
