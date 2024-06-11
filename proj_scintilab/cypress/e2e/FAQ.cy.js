@@ -1,4 +1,4 @@
-describe('funcionário vai visualizar as ordens de serviço ativas', () => {
+describe('cliente visualizar as perguntas frequentes', () => {
     it('cenario1', () => {
         //steps do cenario1
     })
