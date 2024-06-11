@@ -239,8 +239,9 @@ class ServiceOrderView(View):
             
             service_order_data.save()
 
-            return HttpResponse('Thanks, ' + client_data.client_name + '. Write down your protocol code: ' + service_order_data.protocol_code)
+            return redirect('customer-page')
+            # return HttpResponse('Thanks, ' + client_data.client_name + '. Write down your protocol code: ' + service_order_data.protocol_code)
         else:
             form = CreateServiceOrder()
 
-        return redirect('pagina-os-ativas')
+        return render(request, 'app_chatbot/service_order.html', {'form': form})
