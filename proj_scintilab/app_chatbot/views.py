@@ -2,9 +2,10 @@ from pyexpat.errors import messages
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views import View
 from .forms import ChangeOrderStatusForm, CreateServiceOrder
-from .models import ClientData, PurchaseData, BuyerData, EquipmentData, ServiceOrder
+from .models import CustomerData, ClientData, PurchaseData, BuyerData, EquipmentData, EmployeeData, ServiceOrder
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login as auth_login
+from django.contrib.auth.forms import UserCreationForm
 import uuid
 from datetime import datetime
 
@@ -231,11 +232,8 @@ class ServiceOrderView(View):
             
             service_order_data.save()
 
-            print(service_order_data.protocol_code)
-            return redirect('custome-page')
             return HttpResponse('Thanks, ' + client_data.client_name + '. Write down your protocol code: ' + service_order_data.protocol_code)
         else:
             form = CreateServiceOrder()
 
-        # return render(request, 'app_chatbot/service_order.html', {'form': form})
-        return render(request, 'app_chatbot/service_order.html', {'form': form})
+        return redirect('customer-page')
