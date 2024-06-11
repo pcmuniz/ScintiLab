@@ -107,6 +107,9 @@ main {
 .card-header {
     font-size: 18px;
     margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .received .card-header {
@@ -138,16 +141,24 @@ main {
     color: #132D49;
 }
 
-#img{
+#img {
     position: relative;
     left: -35%;
 }
 
 #img1 {
     height: 23px;
-    position: relative;
-    left: 265px;
-    top: 3px;
+}
+
+button.img-button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+button.img-button img {
+    height: 23px;
 }
 
 </style>
@@ -161,7 +172,8 @@ main {
                 <a href="{% url 'customer-page' %}">
                     <img src="{% static 'app_chatbot/img/back.svg' %}" alt="Voltar" id="img">
                 </a>
-                Meus serviços</h1>
+                Meus serviços
+            </h1>
         </div>
 
         <header>
@@ -179,13 +191,18 @@ main {
                     <div class="card received">
                 {% elif order.status == 'Em Andamento' %}
                     <div class="card in-progress">
-                {% elif order.status == 'Concluida' %}
+                {% elif order.status == 'Concluída' %}
                     <div class="card finished">
                 {% elif order.status == 'Cancelada' %}
                     <div class="card cancelled">
                 {% endif %}
                         <div class="card-header">{{order.status}}
-                            <img src="{% static 'app_chatbot/img/cancel.svg' %}" alt="Voltar" id="img1">
+                            <form method="POST" action="{% url 'cancel_order' order.id %}">
+                                {% csrf_token %}
+                                <button class="img-button" type="submit">
+                                    <img src="{% static 'app_chatbot/img/cancel.svg' %}" alt="Cancelar" id="img1">
+                                </button>
+                            </form>
                         </div>
                         <div class="card-body">
                             <p><strong>Cód: {{ order.protocol_code }}</strong></p>
@@ -194,10 +211,10 @@ main {
                             <p>Problema: {{ order.equipment_data.defect }}</p>
                         </div>
                     </div>
-                    {% else %}
-                        <p>Nenhum serviço encontrado</p>
-                    {% endif %}
-            </main>
+                {% else %}
+                    <p>Nenhum serviço encontrado</p>
+                {% endif %}
+        </main>
     </div>  
 </div>
 </body>

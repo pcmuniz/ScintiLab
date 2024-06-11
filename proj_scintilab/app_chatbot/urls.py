@@ -19,6 +19,7 @@ urlpatterns = [
     path('cstatus/', views.ChangeOrderStatus2.as_view(), name='change-order-status'),
 
     path('change_order_status/<int:order_id>/', views.ChangeOrderStatus.as_view(), name='change_order_status'),
-    path('ordem-servico/<int:order_id>/cancelar/', views.CancelOrder.as_view(), name='cancelar_ordem_servico'),
+    # path('ordem-servico/<int:order_id>/cancelar/', views.CancelOrder.as_view(), name='cancelar_ordem_servico'),
+    path('cancel-order/<int:order_id>/', views.CancelOrder.as_view(), name='cancel_order'),
     path('modal/', views.Modal.as_view(), name='cancelar_ordem_servico'),
 ]

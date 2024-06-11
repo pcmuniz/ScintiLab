@@ -42,7 +42,7 @@ class ClientData(models.Model):
     client_rg_ie = models.CharField(max_length=15, null=False)
     client_birthdate = models.DateField(null=False)
     client_email = models.CharField(max_length=30, null=False)
-    client_cellphone = models.CharField(max_length=11, null=False)
+    client_cellphone = models.CharField(max_length=13, null=False)
     client_telephone = models.CharField(max_length=11, null=False)
     client_adress = models.CharField(max_length=60, null=False)
     client_neighborhood = models.CharField(max_length=20, null=False)
