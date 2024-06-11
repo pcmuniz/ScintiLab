@@ -222,7 +222,19 @@ img {
                                     <td>{{order.protocol_code}}</td>
                                     <td>{{order.status}}</td>
                                     <td>{{order.equipment_name}}</td>
-                                    <td>editar</td>
+                                    <td>
+                                        <div class="button-container">
+                                            <button class="btn" type="button">
+                                                <img src="{% static 'app_chatbot/img/lupa.svg' %}" alt="Ver detalhes" id="img-2">
+                                            </button>
+                                            <form method="POST" action="{% url 'cancel_order_employee' order.id %}">
+                                                {% csrf_token %}
+                                                <button class="btn" type="submit">
+                                                    <img src="{% static 'app_chatbot/img/cancel.svg' %}" alt="Cancelar">
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </td>
                                 </tr>
                             </tbody>
                         {% elif choosen_date == order.create_date and choosen_status == 'Todos' %}
@@ -233,7 +245,19 @@ img {
                                     <td>{{order.protocol_code}}</td>
                                     <td>{{order.status}}</td>
                                     <td>{{order.equipment_name}}</td>
-                                    <td>editar</td>
+                                    <td>
+                                        <div class="button-container">
+                                            <button class="btn" type="button">
+                                                <img src="{% static 'app_chatbot/img/lupa.svg' %}" alt="Ver detalhes" id="img-2">
+                                            </button>
+                                            <form method="POST" action="{% url 'cancel_order_employee' order.id %}">
+                                                {% csrf_token %}
+                                                <button class="btn" type="submit">
+                                                    <img src="{% static 'app_chatbot/img/cancel.svg' %}" alt="Cancelar">
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </td>
                                 </tr>
                             </tbody>
                         {% elif choosen_date == 'Todos' and choosen_status ==  order.status %}
@@ -244,7 +268,19 @@ img {
                                     <td>{{order.protocol_code}}</td>
                                     <td>{{order.status}}</td>
                                     <td>{{order.equipment_name}}</td>
-                                    <td>editar</td>
+                                    <td>
+                                        <div class="button-container">
+                                            <button class="btn" type="button">
+                                                <img src="{% static 'app_chatbot/img/lupa.svg' %}" alt="Ver detalhes" id="img-2">
+                                            </button>
+                                            <form method="POST" action="{% url 'cancel_order_employee' order.id %}">
+                                                {% csrf_token %}
+                                                <button class="btn" type="submit">
+                                                    <img src="{% static 'app_chatbot/img/cancel.svg' %}" alt="Cancelar">
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </td>
                                 </tr>
                             </tbody>
                         {% elif choosen_date == order.create_date and choosen_status ==  order.status %}
@@ -255,7 +291,19 @@ img {
                                     <td>{{order.protocol_code}}</td>
                                     <td>{{order.status}}</td>
                                     <td>{{order.equipment_name}}</td>
-                                    <td>editar</td>
+                                    <td>
+                                        <div class="button-container">
+                                            <button class="btn" type="button">
+                                                <img src="{% static 'app_chatbot/img/lupa.svg' %}" alt="Ver detalhes" id="img-2">
+                                            </button>
+                                            <form method="POST" action="{% url 'cancel_order_employee' order.id %}">
+                                                {% csrf_token %}
+                                                <button class="btn" type="submit">
+                                                    <img src="{% static 'app_chatbot/img/cancel.svg' %}" alt="Cancelar">
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </td>
                                 </tr>
                             </tbody>
                         {% endif %}
