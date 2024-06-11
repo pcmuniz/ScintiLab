@@ -33,6 +33,14 @@ class CustomerOrders(View):
     def get(self, request):
         # return render(request, 'app_chatbot/CustomerOrdersPage.html')
         return render(request, 'app_chatbot/CustomerOrdersPage.html')
+    def post(self, request):
+        protocol_code = request.POST.get('protocol_code')
+        order = ServiceOrder.objects.filter(protocol_code=protocol_code).first()
+        
+        context = {
+            'order': order,
+        }
+        return render(request, 'app_chatbot/CustomerOrdersPage.html', context)
 
 
 class OrdemServicoView(View):
