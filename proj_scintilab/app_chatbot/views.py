@@ -2,10 +2,9 @@ from pyexpat.errors import messages
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views import View
 from .forms import ChangeOrderStatusForm, CreateServiceOrder
-from .models import CustomerData, ClientData, PurchaseData, BuyerData, EquipmentData, EmployeeData, ServiceOrder
+from .models import ClientData, PurchaseData, BuyerData, EquipmentData, ServiceOrder
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login as auth_login
-from django.contrib.auth.forms import UserCreationForm
 import uuid
 from datetime import datetime
 

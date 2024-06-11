@@ -22,20 +22,6 @@ import vonage
 #     def __str__(self):
 #         return self.company_name
 
-class CustomerData(models.Model):
-    name = models.CharField(max_length=30, null=False)
-    surname = models.CharField(max_length=30, null=False)
-    password = models.CharField(max_length=30, null=False)
-    email = models.CharField(max_length=30, null=False)
-    cellphone = models.IntegerField(null=False)
-    
-class EmployeeData(models.Model):
-    code = models.IntegerField(null=False)
-    email = models.CharField(max_length=30, null=False)
-    name = models.CharField(max_length=30, null=False)
-    surname = models.CharField(max_length=30, null=False)
-    password = models.CharField(max_length=30, null=False)
-
 class ClientData(models.Model):
     client_name = models.CharField(max_length=30, null=False)
     client_cpf_cnpj = models.CharField(max_length=20, null=False)
