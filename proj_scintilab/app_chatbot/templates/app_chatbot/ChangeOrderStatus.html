@@ -1,11 +1,22 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ordem de Serviço</title>
+
 <style>
+* {
+    font-family: 'Inter';
+}
+
+h1 {
+    font-size: 40px;
+    color: #132D49;
+}
+
 body {
     font-family: Arial, sans-serif;
     background-color: #0c254b;
@@ -60,6 +71,20 @@ body {
 .status-circle.cancel {
     background-color: #f44336;
 }
+
+.status-labels {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: -10px; /* Ajuste a margem conforme necessário */
+}
+.status-label {
+    width: 20%;
+    text-align: center;
+    font-size: 14px;
+    color: #0c254b;
+}
+
 h1 {
     text-align: center;
     margin-bottom: 20px;
@@ -169,39 +194,79 @@ h1 {
     border-left: 3px solid #1a73e8;
     background-color: #f1f1f1;
 }
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
+}
+
+#centralized-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4caf50;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+}
+
 </style>
 </head>
 <body>
     <div class="container">
+    {% if ordem_servico %}
         <h1>
             <a href="{% url 'service_order_list' %}">
                 <img src="{% static 'app_chatbot/img/back.svg' %}" alt="Voltar" id="img">
             </a>
-            Ordem de serviço XXXXXXXX
+            Protocolo: {{ordem_servico.protocol_code}}
         </h1>
         <div class="status-wrapper">
+            {% if ordem_servico.status == 'Recebida' %}
             <div class="status-circle active"></div>
             <div class="status-circle"></div>
             <div class="status-circle"></div>
+            {% elif ordem_servico.status == 'Em Andamento' %}
+            <div class="status-circle"></div>
+            <div class="status-circle active"></div>
+            <div class="status-circle"></div>
+            {% elif ordem_servico.status == 'Concluída' %}
+            <div class="status-circle"></div>
+            <div class="status-circle"></div>
+            <div class="status-circle active"></div>
+            {% endif %}
+        </div>
+        <div class="status-labels">
+            <div class="status-label">Recebida</div>
+            <div class="status-label">Em Andamento</div>
+            <div class="status-label">Concluída</div>
         </div>
         <div class="status-buttons">
-            <button class="btn next">Avançar status</button>
-            <button class="btn back">Voltar status</button>
-            <button class="btn cancel">Cancelar</button>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <div class="button-container">
+                    <button type="submit" id="centralized-btn">Salvar</button>
+                </div>
+            </form>
         </div>
         <table class="data-table">
             <thead>
                 <tr>
                     <th>Nome</th>
-                    <th>Aparelho</th>
+                    <th>Equipamento</th>
                     <th>Problema</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>Cliente 1</td>
-                    <td>Modelo X</td>
-                    <td>Descrição do problema</td>
+                    <td>{{ordem_servico.client_name}}</td>
+                    <td>{{ordem_servico.equipment_name}}</td>
+                    <td>{{ordem_servico.equipment_data.defect}}</td>
+    {% endif %}
                 </tr>
             </tbody>
         </table>

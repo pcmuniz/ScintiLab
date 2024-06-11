@@ -120,7 +120,7 @@ class ServiceOrder(models.Model):
             client = vonage.Client(key="4cb174e8", secret="nEngy8sUfWAIFo5d")
             sms = vonage.Sms(client)
 
-            numero_cliente = self.dados_cliente.celular_cliente
+            numero_cliente = self.client_data.client_cellphone
 
             responseData = sms.send_message(
             {

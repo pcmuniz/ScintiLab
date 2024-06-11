@@ -9,8 +9,22 @@ import uuid
 from datetime import datetime
 
 class ChangeOrderStatus2(View):
-    def get(self, request):
-        return render(request, 'app_chatbot/ChangeOrderStatus.html')
+    def get(self, request, order_id):
+        ordem_servico = get_object_or_404(ServiceOrder, id=order_id)
+        form = ChangeOrderStatusForm(instance=ordem_servico)
+        return render(request, 'app_chatbot/ChangeOrderStatus.html', {'form': form, 'ordem_servico': ordem_servico})
+    
+    def post(self, request, order_id):
+        ordem_servico = get_object_or_404(ServiceOrder, id=order_id)
+        form = ChangeOrderStatusForm(request.POST, instance=ordem_servico)
+        if form.is_valid():
+            ordem_servico = form.save(commit = False)
+            if ordem_servico.status == 'Concluída':
+                ordem_servico.is_finished = True
+            form.save()
+            ordem_servico.sms()
+            return redirect('service_order_list')  # TODO: redirect
+        return render(request, 'app_chatbot/ChangeOrderStatus.html', {'form': form, 'ordem_servico': ordem_servico})
 
 
 class HomePageView(View):
