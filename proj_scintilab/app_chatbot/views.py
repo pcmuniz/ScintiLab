@@ -236,4 +236,4 @@ class ServiceOrderView(View):
         else:
             form = CreateServiceOrder()
 
-        return redirect('pagina-os-ativas')
+        return redirect('customer-page')
