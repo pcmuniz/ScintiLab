@@ -47,6 +47,23 @@ Para isso, estamos desenvolvendo processos de formulários personalizados, pensa
 <img width="1319" alt="tracker" src="https://github.com/pcmuniz/ScintiLab/assets/99767869/26f4df80-17ac-4baf-a018-8a74920bb89e">
 
 <h3>Diagrama de atividades</h3>
+
+## Status Report 2
+ <br>
+  <a href="https://docs.google.com/document/d/1gKXneyY8k2mToiWCbWmxslwMKK1UqDDC7RRs9JaPtPg/edit?usp=drive_link" target="_blank">Relatório da programação em pares</a>
+  <br>
+
+
+
+
+
+
+
+
+
+
+
+
 <img width="1319" alt="diagrama" src="https://github.com/pcmuniz/ScintiLab/assets/99767869/59194ec2-c67b-41eb-88e2-b53d860bc620">
 
 ## Status Report 2
