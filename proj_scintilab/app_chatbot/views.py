@@ -97,13 +97,21 @@ class OrdemServicoAtivaView(View):
          
 
 # TODO: transformar CancelOrder em função, para ser chamada tanto pelo cliente quanto pelo funcionário
-class CancelOrder(View):
+class CancelOrderClient(View):
     def post(self, request, order_id):
         ordem_servico = get_object_or_404(ServiceOrder, id=order_id)
         if ordem_servico.status != 'Cancelada':
             ordem_servico.status = 'Cancelada'
             ordem_servico.save()
         return redirect('customer-orders')
+
+class CancelOrderEmployee(View):
+    def post(self, request, order_id):
+        ordem_servico = get_object_or_404(ServiceOrder, id=order_id)
+        if ordem_servico.status != 'Cancelada':
+            ordem_servico.status = 'Cancelada'
+            ordem_servico.save()
+        return redirect('service_order_list')
 
 class ChangeOrderStatus(View):
     def get(self, request, order_id):

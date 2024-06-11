@@ -20,6 +20,7 @@ urlpatterns = [
 
     path('change_order_status/<int:order_id>/', views.ChangeOrderStatus.as_view(), name='change_order_status'),
     # path('ordem-servico/<int:order_id>/cancelar/', views.CancelOrder.as_view(), name='cancelar_ordem_servico'),
-    path('cancel-order/<int:order_id>/', views.CancelOrder.as_view(), name='cancel_order'),
+    path('cancel-order-c/<int:order_id>/', views.CancelOrderClient.as_view(), name='cancel_order_client'),
+    path('cancel-order-e/<int:order_id>/', views.CancelOrderEmployee.as_view(), name='cancel_order_employee'),
     path('modal/', views.Modal.as_view(), name='cancelar_ordem_servico'),
 ]
