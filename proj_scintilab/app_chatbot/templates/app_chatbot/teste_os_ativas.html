@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -37,7 +38,7 @@ body{
     padding: 20px;
     border: 2px solid #4caf50;
     position: relative;
-    top: 100px;
+    top: 140px;
 
 }
 
@@ -95,12 +96,31 @@ table tbody tr:nth-child(even) {
     background-color: #f9f9f9;
 }
 
-
-
 h1{
     display: flex;
     justify-content: center;
     padding-right: 30px;
+}
+
+img {
+    height: 23px;
+}
+
+#img-2 {
+    padding-left: 3px;
+    position: relative;
+    top: 2px;
+}
+
+.btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.button-container {
+    display: flex;
+    gap: 10px; /* Espaçamento entre os botões */
 }
 
 </style>
@@ -156,7 +176,19 @@ h1{
                             <td>{{order.protocol_code}}</td>
                             <td>{{order.status}}</td>
                             <td>{{order.equipment_name}}</td>
-                            <td>editar</td>
+                            <td>
+                                <div class="button-container">
+                                    <button class="btn" type="button">
+                                        <img src="{% static 'app_chatbot/img/lupa.svg' %}" alt="Ver detalhes" id="img-2">
+                                    </button>
+                                    <form method="POST" action="{% url 'cancel_order_employee' order.id %}">
+                                        {% csrf_token %}
+                                        <button class="btn" type="submit">
+                                            <img src="{% static 'app_chatbot/img/cancel.svg' %}" alt="Cancelar">
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
                         </tr>
                     </tbody>
                     {% endfor %}

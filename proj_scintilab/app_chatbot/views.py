@@ -96,13 +96,21 @@ class OrdemServicoAtivaView(View):
          
 
 # TODO: transformar CancelOrder em função, para ser chamada tanto pelo cliente quanto pelo funcionário
-class CancelOrder(View):
+class CancelOrderClient(View):
     def post(self, request, order_id):
         ordem_servico = get_object_or_404(ServiceOrder, id=order_id)
         if ordem_servico.status != 'Cancelada':
             ordem_servico.status = 'Cancelada'
             ordem_servico.save()
         return redirect('customer-orders')
+
+class CancelOrderEmployee(View):
+    def post(self, request, order_id):
+        ordem_servico = get_object_or_404(ServiceOrder, id=order_id)
+        if ordem_servico.status != 'Cancelada':
+            ordem_servico.status = 'Cancelada'
+            ordem_servico.save()
+        return redirect('service_order_list')
 
 class ChangeOrderStatus(View):
     def get(self, request, order_id):
@@ -231,11 +239,8 @@ class ServiceOrderView(View):
             
             service_order_data.save()
 
-            print(service_order_data.protocol_code)
-            return redirect('custome-page')
             return HttpResponse('Thanks, ' + client_data.client_name + '. Write down your protocol code: ' + service_order_data.protocol_code)
         else:
             form = CreateServiceOrder()
 
-        # return render(request, 'app_chatbot/service_order.html', {'form': form})
-        return render(request, 'app_chatbot/service_order.html', {'form': form})
+        return redirect('pagina-os-ativas')

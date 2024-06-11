@@ -197,7 +197,7 @@ button.img-button img {
                     <div class="card cancelled">
                 {% endif %}
                         <div class="card-header">{{order.status}}
-                            <form method="POST" action="{% url 'cancel_order' order.id %}">
+                            <form method="POST" action="{% url 'cancel_order_client' order.id %}">
                                 {% csrf_token %}
                                 <button class="img-button" type="submit">
                                     <img src="{% static 'app_chatbot/img/cancel.svg' %}" alt="Cancelar" id="img1">
