@@ -152,8 +152,8 @@ h1 {
                             {{ form.client_city }}
                         </div>
                         <div class="form-group col">
-                            <label for="id_client_state">Estado</label>
-                            <select id="id_client_state" name="client_state" class="form-control">
+                            <label for="client_state">Estado</label>
+                            <select name="client_state" class="form-control" requeired>
                                 <option value="" {% if not form.client_state.value %}selected{% endif %}>Selecione o estado</option>
                                 <option value="AC" {% if form.client_state.value == "AC" %}selected{% endif %}>Acre (AC)</option>
                                 <option value="AL" {% if form.client_state.value == "AL" %}selected{% endif %}>Alagoas (AL)</option>
@@ -241,8 +241,8 @@ h1 {
                             {{ form.buyer_city }}
                         </div>
                         <div class="form-group col">
-                            <label for="id_buyer_state">Estado</label>
-                            <select id="id_buyer_state" name="buyer_state" class="form-control">
+                            <label for="buyer_state">Estado</label>
+                            <select  name="buyer_state" class="form-control" requeired>
                                 <option value="" selected>Selecione o estado</option>
                                 <option value="AC" {% if form.buyer_state.value == "AC" %}selected{% endif %}>Acre (AC)</option>
                                 <option value="AL" {% if form.buyer_state.value == "AL" %}selected{% endif %}>Alagoas (AL)</option>
@@ -334,16 +334,16 @@ h1 {
                     <div class="form-row">
 
                         <div class="form-group col">
-                            <label for="id_new">Estado do lacre</label>
-                            <select id="id_new" class="form-control">
+                            <label for="new">Estado do lacre</label>
+                            <select name="new" class="form-control" required>
                                 <option value="" selected>Selecione o estado do lacre</option>
                                 <option value="Sim" {% if form.new == "Sim" %}selected{% endif %}>Intacto</option>
                                 <option value="Não" {% if form.new == "Sim" %}selected{% endif %}>Rompido</option>
                             </select>
                         </div>
                         <div class="form-group col">
-                            <label for="id_state">Estado do aparelho</label>
-                            <select id="id_new" name="label" class="form-control">
+                            <label for="state">Estado do aparelho</label>
+                            <select  name="state" class="form-control" requeired>
                                 <option value="" selected>Selecione o estado do aparelho</option>
                                 <option value="Novo - sem funcionar" {% if form.state == "Sim" %}selected{% endif %}>Novo - sem funcionar</option>
                                 <option value="Novo - funcionando" {% if form.state == "Sim" %}selected{% endif %}>Novo - funcionando</option>
