@@ -66,6 +66,7 @@ Para isso, estamos desenvolvendo processos de formulários personalizados, pensa
 <img width="1319" alt="backlog_sr2" src="">
 <h3>Issue Tracker</h3>
 <img width="1319" alt="tracker_sr2" src="">
-<h3>Diagrama de atividades</h3>
+<br>
+  <a href="https://drive.google.com/file/d/1Cj4x_oeCT7zmOTZQArjaCSFQP7g2zXIo/view?usp=drive_link" target="_blank">Diagrama de atividades</a>
 <img width="1319" alt="diagrama_sr2" src="">
 </details>
