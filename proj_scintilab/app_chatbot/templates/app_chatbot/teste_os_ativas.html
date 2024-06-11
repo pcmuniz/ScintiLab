@@ -141,7 +141,8 @@ h1{
                         <th>Cliente</th>
                         <th>Protocolo</th>
                         <th>Status</th>
-                        <th>Modelo</th>
+                        <th>Equipamento</th>
+                        <th></th>
                     </tr>
                 </thead>
                 {% if filtro == 0 %}
@@ -152,7 +153,8 @@ h1{
                             <td>{{order.client_name}}</td>
                             <td>{{order.protocol_code}}</td>
                             <td>{{order.status}}</td>
-                            <td>{{order.status}}</td>
+                            <td>{{order.equipment_name}}</td>
+                            <td>editar</td>
                         </tr>
                     </tbody>
                     {% endfor %}
@@ -166,7 +168,8 @@ h1{
                                     <td>{{order.client_name}}</td>
                                     <td>{{order.protocol_code}}</td>
                                     <td>{{order.status}}</td>
-                                    <td>{{order.status}}</td>
+                                    <td>{{order.equipment_name}}</td>
+                                    <td>editar</td>
                                 </tr>
                             </tbody>
                         {% elif choosen_date == order.create_date and choosen_status == 'Todos' %}
@@ -176,7 +179,8 @@ h1{
                                     <td>{{order.client_name}}</td>
                                     <td>{{order.protocol_code}}</td>
                                     <td>{{order.status}}</td>
-                                    <td>{{order.status}}</td>
+                                    <td>{{order.equipment_name}}</td>
+                                    <td>editar</td>
                                 </tr>
                             </tbody>
                         {% elif choosen_date == 'Todos' and choosen_status ==  order.status %}
@@ -186,7 +190,8 @@ h1{
                                     <td>{{order.client_name}}</td>
                                     <td>{{order.protocol_code}}</td>
                                     <td>{{order.status}}</td>
-                                    <td>{{order.status}}</td>
+                                    <td>{{order.equipment_name}}</td>
+                                    <td>editar</td>
                                 </tr>
                             </tbody>
                         {% elif choosen_date == order.create_date and choosen_status ==  order.status %}
@@ -196,7 +201,8 @@ h1{
                                     <td>{{order.client_name}}</td>
                                     <td>{{order.protocol_code}}</td>
                                     <td>{{order.status}}</td>
-                                    <td>{{order.status}}</td>
+                                    <td>{{order.equipment_name}}</td>
+                                    <td>editar</td>
                                 </tr>
                             </tbody>
                         {% endif %}
