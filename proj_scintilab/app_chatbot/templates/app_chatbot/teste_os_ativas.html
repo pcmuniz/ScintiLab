@@ -106,10 +106,20 @@ img {
     height: 23px;
 }
 
+#img-1 {
+    position: relative;
+    top: 3px;
+}
+
 #img-2 {
     padding-left: 3px;
     position: relative;
     top: 2px;
+}
+
+#img-3 {
+    position: relative;
+    top: 4px;
 }
 
 .btn {
@@ -120,7 +130,7 @@ img {
 
 .button-container {
     display: flex;
-    gap: 10px; /* Espaçamento entre os botões */
+    gap: 10px;
 }
 
 </style>
@@ -178,15 +188,24 @@ img {
                             <td>{{order.equipment_name}}</td>
                             <td>
                                 <div class="button-container">
+
                                     <button class="btn" type="button">
-                                        <img src="{% static 'app_chatbot/img/lupa.svg' %}" alt="Ver detalhes" id="img-2">
+                                        <img src="{% static 'app_chatbot/img/lupa.svg' %}" alt="Ícone de lupa" id="img-1">
                                     </button>
+
+                                    <form method="GET" action="{% url 'change-order-status' order.id %}">
+                                        <button class="btn" type="submit">
+                                            <img src="{% static 'app_chatbot/img/edit.svg' %}" alt="Ícone de editar" id="img-2">
+                                        </button>
+                                    </form>
+
                                     <form method="POST" action="{% url 'cancel_order_employee' order.id %}">
                                         {% csrf_token %}
                                         <button class="btn" type="submit">
-                                            <img src="{% static 'app_chatbot/img/cancel.svg' %}" alt="Cancelar">
+                                            <img src="{% static 'app_chatbot/img/cancel.svg' %}" alt="Ícone de cancelar" id="img-3">
                                         </button>
                                     </form>
+
                                 </div>
                             </td>
                         </tr>
