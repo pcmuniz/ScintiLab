@@ -14,7 +14,7 @@ class ChangeOrderStatus2(View):
         return render(request, 'app_chatbot/ChangeOrderStatus.html')
 
 
-class HomePage(View):
+class HomePageView(View):
     def get(self, request):
         return render(request, 'app_chatbot/HomePage.html')
     
@@ -24,7 +24,7 @@ class Modal(View):
         return render(request, 'app_chatbot/TemporaryPages/GuideModal/modal.html')
 
 
-class CustomerPage(View):
+class CustomerPageView(View):
     def get(self, request):
         return render(request, 'app_chatbot/CustomerPage.html')
 

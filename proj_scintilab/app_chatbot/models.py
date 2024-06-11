@@ -111,6 +111,11 @@ class ServiceOrder(models.Model):
     @property
     def client_name(self):
         return self.client_data.client_name
+    
+    @property
+    def equipment_name(self):
+        return self.equipment_data.equipment_name
+    
 
     # NOTE: provavelmente remover as opções Recebida e Cancelada
     STATUS_CHOICES = [

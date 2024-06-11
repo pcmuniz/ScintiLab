@@ -96,26 +96,15 @@ table tbody tr:nth-child(even) {
 
 
 h1{
-    position: relative;
-    left: 100px;
+    display: flex;
+    justify-content: center;
+    padding-right: 30px;
 }
 
 </style>
     <div class="container">
         <main>
             <div class="main-header">
-                <div class="title">
-                    <h1>Tabela de Serviços</h1>
-                </div>
-                <!-- <div class="filter">
-                    Filtrar por:
-                    <select>
-                        <option value="recente">Mais recente</option>
-                    </select>
-                    <select>
-                        <option value="recente">Mais recente</option>
-                    </select>
-                </div> -->
                 <form method="POST">
                     {% csrf_token %}
                 
@@ -137,6 +126,9 @@ h1{
                 
                     <button type="submit">Filtrar</button>
                 </form>
+                <div class="title">
+                    <h1>Tabela de Serviços</h1>
+                </div>
                 <form method="post" action="{% url 'logout' %}">
                     {% csrf_token %}
                     <button type="submit">Sair</button>
@@ -149,7 +141,8 @@ h1{
                         <th>Cliente</th>
                         <th>Protocolo</th>
                         <th>Status</th>
-                        <th>Modelo</th>
+                        <th>Equipamento</th>
+                        <th></th>
                     </tr>
                 </thead>
                 {% if filtro == 0 %}
@@ -160,7 +153,8 @@ h1{
                             <td>{{order.client_name}}</td>
                             <td>{{order.protocol_code}}</td>
                             <td>{{order.status}}</td>
-                            <td>{{order.status}}</td>
+                            <td>{{order.equipment_name}}</td>
+                            <td>editar</td>
                         </tr>
                     </tbody>
                     {% endfor %}
@@ -174,7 +168,8 @@ h1{
                                     <td>{{order.client_name}}</td>
                                     <td>{{order.protocol_code}}</td>
                                     <td>{{order.status}}</td>
-                                    <td>{{order.status}}</td>
+                                    <td>{{order.equipment_name}}</td>
+                                    <td>editar</td>
                                 </tr>
                             </tbody>
                         {% elif choosen_date == order.create_date and choosen_status == 'Todos' %}
@@ -184,7 +179,8 @@ h1{
                                     <td>{{order.client_name}}</td>
                                     <td>{{order.protocol_code}}</td>
                                     <td>{{order.status}}</td>
-                                    <td>{{order.status}}</td>
+                                    <td>{{order.equipment_name}}</td>
+                                    <td>editar</td>
                                 </tr>
                             </tbody>
                         {% elif choosen_date == 'Todos' and choosen_status ==  order.status %}
@@ -194,7 +190,8 @@ h1{
                                     <td>{{order.client_name}}</td>
                                     <td>{{order.protocol_code}}</td>
                                     <td>{{order.status}}</td>
-                                    <td>{{order.status}}</td>
+                                    <td>{{order.equipment_name}}</td>
+                                    <td>editar</td>
                                 </tr>
                             </tbody>
                         {% elif choosen_date == order.create_date and choosen_status ==  order.status %}
@@ -204,7 +201,8 @@ h1{
                                     <td>{{order.client_name}}</td>
                                     <td>{{order.protocol_code}}</td>
                                     <td>{{order.status}}</td>
-                                    <td>{{order.status}}</td>
+                                    <td>{{order.equipment_name}}</td>
+                                    <td>editar</td>
                                 </tr>
                             </tbody>
                         {% endif %}
