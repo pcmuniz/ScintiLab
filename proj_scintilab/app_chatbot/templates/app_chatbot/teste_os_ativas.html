@@ -96,26 +96,15 @@ table tbody tr:nth-child(even) {
 
 
 h1{
-    position: relative;
-    left: 100px;
+    display: flex;
+    justify-content: center;
+    padding-right: 30px;
 }
 
 </style>
     <div class="container">
         <main>
             <div class="main-header">
-                <div class="title">
-                    <h1>Tabela de Serviços</h1>
-                </div>
-                <!-- <div class="filter">
-                    Filtrar por:
-                    <select>
-                        <option value="recente">Mais recente</option>
-                    </select>
-                    <select>
-                        <option value="recente">Mais recente</option>
-                    </select>
-                </div> -->
                 <form method="POST">
                     {% csrf_token %}
                 
@@ -137,6 +126,9 @@ h1{
                 
                     <button type="submit">Filtrar</button>
                 </form>
+                <div class="title">
+                    <h1>Tabela de Serviços</h1>
+                </div>
                 <form method="post" action="{% url 'logout' %}">
                     {% csrf_token %}
                     <button type="submit">Sair</button>
