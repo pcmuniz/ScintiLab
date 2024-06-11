@@ -9,13 +9,10 @@ from django.contrib.auth.forms import UserCreationForm
 import uuid
 from datetime import datetime
 
-class EmployeePage(View):
-    def get(self, request):
-        return render(request, 'app_chatbot/EmployeePage.html')
-
 class ChangeOrderStatus2(View):
     def get(self, request):
         return render(request, 'app_chatbot/ChangeOrderStatus.html')
+
 
 class HomePage(View):
     def get(self, request):

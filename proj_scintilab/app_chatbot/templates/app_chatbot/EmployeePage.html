@@ -107,26 +107,110 @@ h1{
                 <div class="title">
                     <h1>Tabela de Serviços</h1>
                 </div>
-                <div class="filter">
+                <!-- <div class="filter">
                     Filtrar por:
                     <select>
                         <option value="recente">Mais recente</option>
                     </select>
-                </div>
+                    <select>
+                        <option value="recente">Mais recente</option>
+                    </select>
+                </div> -->
+                <form method="POST">
+                    {% csrf_token %}
+                
+                    <select name="choosen_date">
+                        <option selected disabled>Escolha a Data</option>
+                        <option>Todos</option>
+                        {% for order in service_order_date %}
+                        <option>{{ order.create_date | date:"d/m/Y"}}</option>
+                        {% endfor %}
+                    </select>
+                
+                    <select name="choosen_status">
+                        <option selected disabled>Escolha o Status</option>
+                        <option>Todos</option>
+                        {% for order in service_order_status %}
+                        <option>{{ order.status }}</option>
+                        {% endfor %}
+                    </select>
+                
+                    <button type="submit">Filtrar</button>
+                    <form method="post" action="{% url 'logout' %}">
+                        {% csrf_token %}
+                        <button type="submit">logout</button>
+                    </form>
+                </form>
             </div>
             <table>
                 <thead>
                     <tr>
-                        <th>Status</th>
-                        <th>Código</th>
+                        <th>Data</th>
                         <th>Cliente</th>
+                        <th>Protocolo</th>
+                        <th>Status</th>
                         <th>Modelo</th>
-                        <th>Descrição</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <!-- Adicione as linhas da tabela aqui -->
-                </tbody>
+                {% if filtro == 0 %}
+                    {% for order in service_order %}
+                    <tbody>
+                        <tr>
+                            <td>{{order.create_date | date:"d/m/Y"}}</td>
+                            <td>{{order.client_name}}</td>
+                            <td>{{order.protocol_code}}</td>
+                            <td>{{order.status}}</td>
+                            <td>{{order.status}}</td>
+                        </tr>
+                    </tbody>
+                    {% endfor %}
+                {% else %}
+                    <h3>Filtro: {{choosen_date}} || {{choosen_status}}</h3>
+                    {% for order in service_order %}
+                        {% if choosen_date == 'Todos' and choosen_status == 'Todos' %}
+                            <tbody>
+                                <tr>
+                                    <td>{{order.create_date | date:"d/m/Y"}}</td>
+                                    <td>{{order.client_name}}</td>
+                                    <td>{{order.protocol_code}}</td>
+                                    <td>{{order.status}}</td>
+                                    <td>{{order.status}}</td>
+                                </tr>
+                            </tbody>
+                        {% elif choosen_date == order.create_date and choosen_status == 'Todos' %}
+                            <tbody>
+                                <tr>
+                                    <td>{{order.create_date | date:"d/m/Y"}}</td>
+                                    <td>{{order.client_name}}</td>
+                                    <td>{{order.protocol_code}}</td>
+                                    <td>{{order.status}}</td>
+                                    <td>{{order.status}}</td>
+                                </tr>
+                            </tbody>
+                        {% elif choosen_date == 'Todos' and choosen_status ==  order.status %}
+                            <tbody>
+                                <tr>
+                                    <td>{{order.create_date | date:"d/m/Y"}}</td>
+                                    <td>{{order.client_name}}</td>
+                                    <td>{{order.protocol_code}}</td>
+                                    <td>{{order.status}}</td>
+                                    <td>{{order.status}}</td>
+                                </tr>
+                            </tbody>
+                        {% elif choosen_date == order.create_date and choosen_status ==  order.status %}
+                            <tbody>
+                                <tr>
+                                    <td>{{order.create_date | date:"d/m/Y"}}</td>
+                                    <td>{{order.client_name}}</td>
+                                    <td>{{order.protocol_code}}</td>
+                                    <td>{{order.status}}</td>
+                                    <td>{{order.status}}</td>
+                                </tr>
+                            </tbody>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+                
             </table>
         </main>
     </div>
