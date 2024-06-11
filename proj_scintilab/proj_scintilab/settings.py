@@ -165,4 +165,6 @@ LOGIN_REDIRECT_URL = 'service_order_list'
 
 LOGIN_URL = 'login'
 
+LOGOUT_REDIRECT_URL = 'home-page'
+
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
