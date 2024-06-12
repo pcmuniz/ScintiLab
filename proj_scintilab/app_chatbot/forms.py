@@ -24,7 +24,7 @@ class CreateServiceOrder(forms.Form):
     client_rg_ie = forms.CharField(label="RG ou IE", max_length=15, required=True, widget=forms.TextInput(attrs={'class': 'form-control', 'style': 'width: 300px;'}))
     client_birthdate = forms.DateField(label="Data de Nascimento", required=True, widget=forms.TextInput(attrs={'class': 'form-control', 'style': 'width: 300px;'}))
     client_email = forms.CharField(label="Email", max_length=30, required=True, widget=forms.TextInput(attrs={'class': 'form-control', 'style': 'width: 300px;'}))
-    client_cellphone = forms.CharField(label="Celular", max_length=11, required=True, widget=forms.TextInput(attrs={'class': 'form-control', 'style': 'width: 300px;'}))
+    client_cellphone = forms.CharField(label="Celular", max_length=13, required=True, widget=forms.TextInput(attrs={'class': 'form-control', 'style': 'width: 300px;'}))
     client_telephone = forms.CharField(label="Telefone Fixo", max_length=11, required=True, widget=forms.TextInput(attrs={'class': 'form-control', 'style': 'width: 300px;'}))
     client_adress = forms.CharField(label="Rua", max_length=60, required=True, widget=forms.TextInput(attrs={'class': 'form-control', 'style': 'width: 1025px;'}))
     client_neighborhood = forms.CharField(label="Bairro", max_length=20, required=True, widget=forms.TextInput(attrs={'class': 'form-control', 'style': 'width: 200px;'}))
