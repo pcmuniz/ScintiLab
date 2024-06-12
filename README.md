@@ -61,6 +61,8 @@ Para isso, estamos desenvolvendo processos de formulários personalizados, pensa
 <a href="#" target="_blank">Screencast Build + Deploy</a>
 <br>
 <a href="https://docs.google.com/document/d/1gKXneyY8k2mToiWCbWmxslwMKK1UqDDC7RRs9JaPtPg/edit?usp=drive_link" target="_blank">Relatório da programação em par</a>
+<br>
+<a href="https://www.figma.com/design/gSO8Lo07SavqbDDNNCQMMW/ScintiLab---M%C3%A9dia-Fidelidade?node-id=0-1&t=KX1bDP7ylsawACY1-1" target="_blank">Protótio Média-Fidelidade</a>
 <h3>Backlog</h3>
 <img width="1319" alt="board_sr2" src="https://github.com/pcmuniz/ScintiLab/assets/149506953/5022088a-07f3-4625-8da5-7884577b52dd">
 <img width="1319" alt="backlog_sr2" src="https://github.com/pcmuniz/ScintiLab/assets/149506953/44f0d591-200f-4a28-87dd-46071a434903">
