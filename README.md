@@ -67,7 +67,7 @@ Para isso, estamos desenvolvendo processos de formulários personalizados, pensa
 <img width="1319" alt="board_sr2" src="https://github.com/pcmuniz/ScintiLab/assets/149506953/5022088a-07f3-4625-8da5-7884577b52dd">
 <img width="1319" alt="backlog_sr2" src="https://github.com/pcmuniz/ScintiLab/assets/149506953/44f0d591-200f-4a28-87dd-46071a434903">
 <h3>Issue Tracker</h3>
-<img width="1319" alt="tracker_sr2" src="">
+<img width="1319" alt="tracker_sr2" src="https://github.com/pcmuniz/ScintiLab/assets/149506953/c81c32f9-530c-4464-8c15-e30ef6b0f5e9">
 <br>
 <h3>Diagrama de atividades<h3>
 <img width="1319" alt="diagrama_cliente_sr2" src="https://github.com/pcmuniz/ScintiLab/assets/149506953/0ef92d21-0994-417d-bce1-40ddaeaf807c">
