@@ -1,0 +1,55 @@
+name: Django CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 4
+      matrix:
+        python-version: [3.7, 3.8, 3.9]
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python version
+      uses: actions/setup-python@v1
+      with:
+          python-version: '3.11'
+          
+    - name: Create and start virtual environment
+      run: |
+        python -m venv venv
+        source venv/bin/activate
+        
+    - name: Install dependencies
+      run: |
+        cd proj_scintilab
+        pip install -r requirements.txt
+        npm ci
+        cd ..
+          
+    - name: Run local server
+      run: |
+        cd proj_scintilab
+        python manage.py migrate
+        python manage.py runserver &
+        sleep 5
+        npx cypress run
+
+    - name: Cleaning testing files
+      run: |
+        cd proj_scintilab/
+        rm .env
+        rm db.sqlite3
+        rm cypress.config.js
+        rm package-lock.json
+        rm package.json
+        rm -rf cypress
+        rm -rf node_modules
+        cd ..
