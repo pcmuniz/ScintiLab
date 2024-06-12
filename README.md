@@ -67,6 +67,7 @@ Para isso, estamos desenvolvendo processos de formulários personalizados, pensa
 <h3>Issue Tracker</h3>
 <img width="1319" alt="tracker_sr2" src="">
 <br>
-  <a href="https://drive.google.com/file/d/1Cj4x_oeCT7zmOTZQArjaCSFQP7g2zXIo/view?usp=drive_link" target="_blank">Diagrama de atividades</a>
-<img width="1319" alt="diagrama_sr2" src="">
+<h3>Diagrama de atividades<h3>
+<img width="1319" alt="diagrama_cliente_sr2" src="https://github.com/pcmuniz/ScintiLab/assets/149506953/0ef92d21-0994-417d-bce1-40ddaeaf807c">
+<img width="1319" alt="diagrama_funcionario_sr2" src="https://github.com/pcmuniz/ScintiLab/assets/149506953/cd2143db-a23b-4e9b-a94b-4b02aac5fbac">
 </details>
