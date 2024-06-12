@@ -52,21 +52,24 @@ Para isso, estamos desenvolvendo processos de formulários personalizados, pensa
 <details open>
 <summary>Status Report 2</summary>
 <br>
-<a href="#" target="_blank">Screencast Aplicação</a>
+<a href="https://youtu.be/brH6N_MIrd4" target="_blank">Screencast Aplicação</a>
 <br>
-<a href="#" target="_blank">Screencast LoFi</a>
+<a href="https://youtube.com/watch?v=dVt0I4_rEP0&si=i9lJJ31PHHum2Yye" target="_blank">Screencast LoFi</a>
 <br>
 <a href="#" target="_blank">Screencast Testes Automatizados</a>
 <br>
 <a href="#" target="_blank">Screencast Build + Deploy</a>
 <br>
 <a href="https://docs.google.com/document/d/1gKXneyY8k2mToiWCbWmxslwMKK1UqDDC7RRs9JaPtPg/edit?usp=drive_link" target="_blank">Relatório da programação em par</a>
-<h3>Backlog</h3>
-<img width="1319" alt="board_sr2" src="">
-<img width="1319" alt="backlog_sr2" src="">
-<h3>Issue Tracker</h3>
-<img width="1319" alt="tracker_sr2" src="">
 <br>
-  <a href="https://drive.google.com/file/d/1Cj4x_oeCT7zmOTZQArjaCSFQP7g2zXIo/view?usp=drive_link" target="_blank">Diagrama de atividades</a>
-<img width="1319" alt="diagrama_sr2" src="">
+<a href="https://www.figma.com/design/gSO8Lo07SavqbDDNNCQMMW/ScintiLab---M%C3%A9dia-Fidelidade?node-id=0-1&t=KX1bDP7ylsawACY1-1" target="_blank">Protótio Média-Fidelidade</a>
+<h3>Backlog</h3>
+<img width="1319" alt="board_sr2" src="https://github.com/pcmuniz/ScintiLab/assets/149506953/5022088a-07f3-4625-8da5-7884577b52dd">
+<img width="1319" alt="backlog_sr2" src="https://github.com/pcmuniz/ScintiLab/assets/149506953/44f0d591-200f-4a28-87dd-46071a434903">
+<h3>Issue Tracker</h3>
+<img width="1319" alt="tracker_sr2" src="https://github.com/pcmuniz/ScintiLab/assets/149506953/c81c32f9-530c-4464-8c15-e30ef6b0f5e9">
+<br>
+<h3>Diagrama de atividades<h3>
+<img width="1319" alt="diagrama_cliente_sr2" src="https://github.com/pcmuniz/ScintiLab/assets/149506953/0ef92d21-0994-417d-bce1-40ddaeaf807c">
+<img width="1319" alt="diagrama_funcionario_sr2" src="https://github.com/pcmuniz/ScintiLab/assets/149506953/cd2143db-a23b-4e9b-a94b-4b02aac5fbac">
 </details>
