@@ -52,7 +52,7 @@ Para isso, estamos desenvolvendo processos de formulários personalizados, pensa
 <details open>
 <summary>Status Report 2</summary>
 <br>
-<a href="#" target="_blank">Screencast Aplicação</a>
+<a href="https://youtu.be/brH6N_MIrd4" target="_blank">Screencast Aplicação</a>
 <br>
 <a href="https://youtube.com/watch?v=dVt0I4_rEP0&si=i9lJJ31PHHum2Yye" target="_blank">Screencast LoFi</a>
 <br>
