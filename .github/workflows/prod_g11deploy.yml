@@ -44,7 +44,7 @@ jobs:
 
       - name: Cleaning testing files
         run: |
-          cd proj_stockgestor/
+          cd proj_scintilab/
           rm .env
           rm db.sqlite3
           rm cypress.config.js
