@@ -56,7 +56,7 @@ Para isso, estamos desenvolvendo processos de formulários personalizados, pensa
 <br>
 <a href="https://youtube.com/watch?v=dVt0I4_rEP0&si=i9lJJ31PHHum2Yye" target="_blank">Screencast LoFi</a>
 <br>
-<a href="#" target="_blank">Screencast Testes Automatizados</a>
+<a href="https://youtu.be/F8IQ7vSJYgc" target="_blank">Screencast Testes Automatizados</a>
 <br>
 <a href="https://youtu.be/9a-LUAeeS8I" target="_blank">Screencast Build + Deploy</a>
 <br>
