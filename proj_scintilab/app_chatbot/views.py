@@ -1,4 +1,4 @@
-from pyexpat.errors import messages
+# from pyexpat.errors import messages
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views import View
 from .forms import ChangeOrderStatusForm, CreateServiceOrder
@@ -7,6 +7,7 @@ from django.http import HttpResponse
 from django.contrib.auth import authenticate, login as auth_login
 import uuid
 from datetime import datetime
+from django.contrib import messages
 
 class ChangeOrderStatus2(View):
     def get(self, request, order_id):
@@ -253,6 +254,7 @@ class ServiceOrderView(View):
             
             service_order_data.save()
 
+            messages.info(request, f'Ordem criada com sucesso! Anote seu procolo: {service_order_data.protocol_code}')
             return redirect('customer-page')
             # return HttpResponse('Thanks, ' + client_data.client_name + '. Write down your protocol code: ' + service_order_data.protocol_code)
         else:
