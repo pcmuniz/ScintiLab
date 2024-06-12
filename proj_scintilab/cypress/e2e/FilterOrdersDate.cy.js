@@ -17,7 +17,7 @@ describe('funcionário vai cancelar a ordem emitida', () => {
         cy.wait(60);
         cy.get('.main-header > :nth-child(1) > button').click()
         cy.wait(60);
-        cy.get('tbody > tr > :nth-child(3)').should('have.text', '12/06/2024');
+        cy.get(':nth-child(3) > tr > :nth-child(1)').should('have.text', '12/06/2024');
 
     })
 
