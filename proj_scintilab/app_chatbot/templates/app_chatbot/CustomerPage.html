@@ -170,7 +170,22 @@ h1 {
 }
 </style>
 
+
+
 <div class="svg-container">
+    {% if messages %}
+    <div class="container-fluid fixed-top">
+            <div class="col-5">
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li {% if message.tags %}class="alert alert-{{message.tags}}"{% endif %}>
+                            {{message}}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+    </div>
+    {% endif %}
     <img src="{% static 'app_chatbot/img/bg.svg' %}" alt="SVG Image 1">
     <img src="{% static 'app_chatbot/img/card_h.svg' %}" alt="SVG Image 2" id="cp-0">
     <p class="custom-font" id="cp-1"><b>Bem vindo(a)! Como podemos te ajudar?</b></p>
